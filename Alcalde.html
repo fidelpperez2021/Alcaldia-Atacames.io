@@ -1,0 +1,2698 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Página oficial del Alcalde del Gobierno Autónomo Descentralizado Municipal de Atacames"
+    >
+
+    <title>Alcalde de Atacames | GAD Municipal de Atacames</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <style>
+        /* =====================================================
+           VARIABLES GENERALES
+        ===================================================== */
+
+        :root {
+            --azul-principal: #164a7b;
+            --azul-secundario: #0b3155;
+            --azul-claro: #1b75bc;
+            --turquesa: #00a8a8;
+            --turquesa-claro: #21c0bd;
+            --dorado: #e3ad3d;
+            --blanco: #ffffff;
+            --gris-fondo: #f4f7fa;
+            --gris-claro: #e8edf2;
+            --gris-medio: #6c757d;
+            --gris-oscuro: #263238;
+            --negro: #111111;
+            --sombra: 0 15px 35px rgba(12, 48, 79, 0.13);
+            --sombra-suave: 0 8px 25px rgba(0, 0, 0, 0.08);
+            --radio: 18px;
+            --transicion: all 0.3s ease;
+        }
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Montserrat", sans-serif;
+            color: var(--gris-oscuro);
+            background: var(--blanco);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        body.menu-abierto {
+            overflow: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        button,
+        input,
+        textarea {
+            font-family: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .contenedor {
+            width: min(1180px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        .seccion {
+            padding: 95px 0;
+        }
+
+        .seccion-fondo {
+            background: var(--gris-fondo);
+        }
+
+        /* =====================================================
+           BARRA SUPERIOR
+        ===================================================== */
+
+        .barra-superior {
+            background: var(--azul-secundario);
+            color: var(--blanco);
+            font-size: 0.82rem;
+        }
+
+        .barra-superior-contenido {
+            min-height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .datos-superiores,
+        .enlaces-superiores {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .dato-superior {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0.92;
+        }
+
+        .dato-superior i {
+            color: var(--turquesa-claro);
+        }
+
+        .enlaces-superiores a {
+            transition: var(--transicion);
+        }
+
+        .enlaces-superiores a:hover {
+            color: var(--turquesa-claro);
+        }
+
+        /* =====================================================
+           ENCABEZADO Y NAVEGACIÓN
+        ===================================================== */
+
+ .encabezado {
+    position: absolute;
+    top: 42px;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+
+    background: linear-gradient(
+        90deg,
+        #041221 0%,
+        #082B49 55%,
+        #0B3155 100%
+    );
+
+    border-bottom: 1px solid rgba(255,255,255,.12);
+    transition: var(--transicion);
+}
+
+.encabezado.fijo {
+    position: fixed;
+    top: 0;
+
+    background: linear-gradient(
+        90deg,
+        #041221 0%,
+        #082B49 55%,
+        #0B3155 100%
+    );
+
+    backdrop-filter: blur(14px);
+    box-shadow: 0 8px 25px rgba(0,0,0,.18);
+}
+
+        .navegacion {
+            min-height: 92px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            color: var(--blanco);
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 250px;
+            height: 250px;
+            object-fit: contain;
+        }
+
+        .logo-texto {
+            line-height: 1.2;
+        }
+
+        .logo-texto strong {
+            display: block;
+            font-size: 1.22rem;
+            font-weight: 800;
+        }
+
+        .logo-texto span {
+            font-size: 0.69rem;
+            letter-spacing: 0.7px;
+            opacity: 0.88;
+        }
+
+        .menu-principal {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .menu-principal > li {
+            position: relative;
+        }
+
+        .menu-principal > li > a {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 13px 14px;
+            color: var(--blanco);
+            font-size: 0.87rem;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: var(--transicion);
+        }
+
+        .menu-principal > li > a:hover,
+        .menu-principal > li > a.activo {
+            background: rgba(255, 255, 255, 0.13);
+            color: var(--turquesa-claro);
+        }
+
+        .submenu {
+            position: absolute;
+            top: calc(100% + 12px);
+            left: 0;
+            min-width: 235px;
+            background: var(--blanco);
+            padding: 10px;
+            border-radius: 12px;
+            box-shadow: var(--sombra);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transicion);
+        }
+
+        .menu-principal li:hover .submenu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .submenu a {
+            display: block;
+            padding: 11px 13px;
+            border-radius: 8px;
+            color: var(--gris-oscuro);
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: var(--transicion);
+        }
+
+        .submenu a:hover {
+            background: var(--gris-fondo);
+            color: var(--azul-claro);
+            padding-left: 18px;
+        }
+
+        .boton-menu {
+            width: 45px;
+            height: 45px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            color: var(--blanco);
+            border: 1px solid rgba(255, 255, 255, 0.55);
+            border-radius: 10px;
+            font-size: 1.25rem;
+        }
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+            min-height: 650px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            color: var(--blanco);
+
+            /*
+               CAMBIA ESTA IMAGEN POR UNA FOTO DE ATACAMES,
+               EL MUNICIPIO O EL ALCALDE.
+            */
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(4, 29, 52, 0.95) 0%,
+                    rgba(9, 49, 82, 0.84) 46%,
+                    rgba(6, 41, 71, 0.42) 100%
+                ),
+                url("img/atacames-banner.jpg") center/cover no-repeat;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(
+                90deg,
+                var(--azul-claro),
+                var(--turquesa),
+                var(--dorado)
+            );
+        }
+
+        .hero-contenido {
+            position: relative;
+            z-index: 2;
+            max-width: 760px;
+            padding-top: 115px;
+        }
+
+        .hero-etiqueta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 22px;
+            padding: 9px 17px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            border-radius: 50px;
+            backdrop-filter: blur(8px);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 1.3px;
+            text-transform: uppercase;
+        }
+
+        .hero-etiqueta i {
+            color: var(--turquesa-claro);
+        }
+
+        .hero h1 {
+            font-family: "Playfair Display", serif;
+            max-width: 750px;
+            margin-bottom: 14px;
+            font-size: clamp(2.7rem, 6vw, 5rem);
+            line-height: 1.04;
+            text-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+        }
+
+        .hero h2 {
+            margin-bottom: 22px;
+            font-size: clamp(1.25rem, 2.5vw, 1.9rem);
+            font-weight: 600;
+            color: var(--turquesa-claro);
+        }
+
+        .hero p {
+            max-width: 690px;
+            margin-bottom: 34px;
+            font-size: 1.03rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-botones {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .boton {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 50px;
+            padding: 12px 23px;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            font-weight: 700;
+            transition: var(--transicion);
+        }
+
+        .boton-primario {
+            background: var(--turquesa);
+            color: var(--blanco);
+            box-shadow: 0 8px 24px rgba(0, 168, 168, 0.3);
+        }
+
+        .boton-primario:hover {
+            background: var(--turquesa-claro);
+            transform: translateY(-3px);
+        }
+
+        .boton-transparente {
+            border-color: rgba(255, 255, 255, 0.7);
+            color: var(--blanco);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .boton-transparente:hover {
+            background: var(--blanco);
+            color: var(--azul-secundario);
+            transform: translateY(-3px);
+        }
+
+        /* =====================================================
+           MIGAS DE PAN
+        ===================================================== */
+
+        .breadcrumb-wrapper {
+            background: var(--blanco);
+            padding: 25px 0;
+            border-bottom: 1px solid var(--gris-claro);
+        }
+
+        .breadcrumb {
+            display: inline-flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 13px 18px;
+            background: var(--gris-fondo);
+            border-radius: 9px;
+            font-size: 0.91rem;
+        }
+
+        .breadcrumb a {
+            color: var(--azul-claro);
+            font-weight: 600;
+        }
+
+        .breadcrumb i {
+            color: var(--azul-claro);
+        }
+
+        .breadcrumb span {
+            color: var(--gris-medio);
+        }
+
+        /* =====================================================
+           ENCABEZADOS DE SECCIÓN
+        ===================================================== */
+
+        .encabezado-seccion {
+            max-width: 780px;
+            margin: 0 auto 55px;
+            text-align: center;
+        }
+
+        .subtitulo-seccion {
+            display: inline-block;
+            margin-bottom: 10px;
+            color: var(--turquesa);
+            font-size: 0.81rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .titulo-seccion {
+            position: relative;
+            margin-bottom: 18px;
+            color: var(--azul-principal);
+            font-family: "Playfair Display", serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1.15;
+        }
+
+        .titulo-seccion::after {
+            content: "";
+            display: block;
+            width: 85px;
+            height: 4px;
+            margin: 18px auto 0;
+            border-radius: 4px;
+            background: linear-gradient(
+                90deg,
+                var(--azul-claro),
+                var(--turquesa)
+            );
+        }
+
+        .encabezado-seccion p {
+            color: var(--gris-medio);
+        }
+
+        /* =====================================================
+           PERFIL DEL ALCALDE
+        ===================================================== */
+
+        .perfil-grid {
+            display: grid;
+            grid-template-columns: 0.88fr 1.12fr;
+            align-items: center;
+            gap: 70px;
+        }
+
+        .foto-alcalde-wrapper {
+            position: relative;
+        }
+
+        .foto-alcalde-wrapper::before {
+            content: "";
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 150px;
+            height: 150px;
+            border-top: 8px solid var(--turquesa);
+            border-left: 8px solid var(--turquesa);
+            border-radius: 20px 0 0 0;
+            z-index: 0;
+        }
+
+        .foto-alcalde-wrapper::after {
+            content: "";
+            position: absolute;
+            right: -22px;
+            bottom: -22px;
+            width: 170px;
+            height: 170px;
+            background-image: radial-gradient(
+                var(--turquesa) 2px,
+                transparent 2px
+            );
+            background-size: 14px 14px;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .foto-alcalde {
+            position: relative;
+            z-index: 1;
+            min-height: 580px;
+            width: 100%;
+            object-fit: cover;
+            object-position: center top;
+            border-radius: 18px;
+            box-shadow: var(--sombra);
+        }
+
+        .insignia-periodo {
+            position: absolute;
+            z-index: 3;
+            right: -25px;
+            bottom: 35px;
+            max-width: 210px;
+            padding: 18px 22px;
+            background: var(--azul-principal);
+            color: var(--blanco);
+            border-radius: 14px;
+            box-shadow: var(--sombra);
+        }
+
+        .insignia-periodo i {
+            margin-bottom: 8px;
+            color: var(--turquesa-claro);
+            font-size: 1.6rem;
+        }
+
+        .insignia-periodo strong,
+        .insignia-periodo span {
+            display: block;
+        }
+
+        .insignia-periodo strong {
+            font-size: 1rem;
+        }
+
+        .insignia-periodo span {
+            margin-top: 3px;
+            font-size: 0.84rem;
+            opacity: 0.85;
+        }
+
+        .perfil-contenido h2 {
+            margin-bottom: 7px;
+            color: var(--azul-principal);
+            font-family: "Playfair Display", serif;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            line-height: 1.1;
+        }
+
+        .perfil-cargo {
+            margin-bottom: 25px;
+            color: var(--turquesa);
+            font-weight: 700;
+        }
+
+        .perfil-contenido p {
+            margin-bottom: 19px;
+            color: #5d6870;
+            text-align: justify;
+        }
+
+        .perfil-destacados {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+            margin-top: 30px;
+        }
+
+        .perfil-destacado {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            background: var(--gris-fondo);
+            border-left: 4px solid var(--turquesa);
+            border-radius: 9px;
+        }
+
+        .perfil-destacado i {
+            width: 36px;
+            color: var(--azul-claro);
+            font-size: 1.35rem;
+            text-align: center;
+        }
+
+        .perfil-destacado span {
+            font-size: 0.86rem;
+            font-weight: 650;
+        }
+
+        /* =====================================================
+           MENSAJE DEL ALCALDE
+        ===================================================== */
+
+        .mensaje {
+            position: relative;
+            overflow: hidden;
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(7, 41, 70, 0.96),
+                    rgba(18, 78, 124, 0.88)
+                ),
+                url("img/atacames-playa.jpg") center/cover no-repeat;
+            color: var(--blanco);
+        }
+
+        .mensaje::before {
+            content: "“";
+            position: absolute;
+            top: -75px;
+            left: 3%;
+            color: rgba(255, 255, 255, 0.07);
+            font-family: Georgia, serif;
+            font-size: 24rem;
+            line-height: 1;
+        }
+
+        .mensaje-contenido {
+            position: relative;
+            z-index: 2;
+            max-width: 960px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .mensaje-icono {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--turquesa);
+            border-radius: 50%;
+            box-shadow: 0 10px 25px rgba(0, 168, 168, 0.35);
+            font-size: 1.8rem;
+        }
+
+        .mensaje blockquote {
+            margin-bottom: 25px;
+            font-family: "Playfair Display", serif;
+            font-size: clamp(1.55rem, 3vw, 2.45rem);
+            line-height: 1.45;
+        }
+
+        .mensaje firma {
+            display: block;
+        }
+
+        .mensaje-firma strong,
+        .mensaje-firma span {
+            display: block;
+        }
+
+        .mensaje-firma strong {
+            font-size: 1.05rem;
+        }
+
+        .mensaje-firma span {
+            margin-top: 4px;
+            color: var(--turquesa-claro);
+            font-size: 0.88rem;
+        }
+
+        /* =====================================================
+           EJES DE GESTIÓN
+        ===================================================== */
+
+        .ejes-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+
+        .tarjeta-eje {
+            position: relative;
+            overflow: hidden;
+            min-height: 315px;
+            padding: 32px 25px;
+            background: var(--blanco);
+            border: 1px solid var(--gris-claro);
+            border-radius: var(--radio);
+            box-shadow: var(--sombra-suave);
+            transition: var(--transicion);
+        }
+
+        .tarjeta-eje::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(
+                90deg,
+                var(--azul-claro),
+                var(--turquesa)
+            );
+        }
+
+        .tarjeta-eje::after {
+            content: "";
+            position: absolute;
+            right: -55px;
+            bottom: -55px;
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: rgba(0, 168, 168, 0.07);
+            transition: var(--transicion);
+        }
+
+        .tarjeta-eje:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 168, 168, 0.35);
+            box-shadow: var(--sombra);
+        }
+
+        .tarjeta-eje:hover::after {
+            transform: scale(1.35);
+        }
+
+        .icono-eje {
+            position: relative;
+            z-index: 1;
+            width: 68px;
+            height: 68px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(
+                135deg,
+                var(--azul-principal),
+                var(--azul-claro)
+            );
+            color: var(--blanco);
+            border-radius: 16px;
+            box-shadow: 0 10px 20px rgba(22, 74, 123, 0.22);
+            font-size: 1.75rem;
+        }
+
+        .tarjeta-eje h3 {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 13px;
+            color: var(--azul-principal);
+            font-size: 1.1rem;
+        }
+
+        .tarjeta-eje p {
+            position: relative;
+            z-index: 1;
+            color: var(--gris-medio);
+            font-size: 0.88rem;
+        }
+
+        /* =====================================================
+           INFORMACIÓN INSTITUCIONAL
+        ===================================================== */
+
+        .informacion-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .tarjeta-informacion {
+            padding: 30px;
+            background: var(--blanco);
+            border-radius: 15px;
+            box-shadow: var(--sombra-suave);
+            border-bottom: 4px solid var(--turquesa);
+            transition: var(--transicion);
+        }
+
+        .tarjeta-informacion:hover {
+            transform: translateY(-7px);
+            box-shadow: var(--sombra);
+        }
+
+        .tarjeta-informacion i {
+            margin-bottom: 18px;
+            color: var(--turquesa);
+            font-size: 2rem;
+        }
+
+        .tarjeta-informacion h3 {
+            margin-bottom: 12px;
+            color: var(--azul-principal);
+            font-size: 1.15rem;
+        }
+
+        .tarjeta-informacion p {
+            color: var(--gris-medio);
+            font-size: 0.88rem;
+        }
+
+        /* =====================================================
+           REDES SOCIALES
+        ===================================================== */
+
+        .redes-contenedor {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            align-items: center;
+            gap: 65px;
+            padding: 55px;
+            background: linear-gradient(
+                135deg,
+                var(--azul-secundario),
+                var(--azul-principal)
+            );
+            color: var(--blanco);
+            border-radius: 24px;
+            box-shadow: var(--sombra);
+        }
+
+        .redes-texto h2 {
+            margin-bottom: 14px;
+            font-family: "Playfair Display", serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+        }
+
+        .redes-texto p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .redes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .red-social {
+            min-height: 115px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 13px;
+            transition: var(--transicion);
+        }
+
+        .red-social:hover {
+            background: var(--turquesa);
+            transform: translateY(-6px);
+        }
+
+        .red-social i {
+            font-size: 1.75rem;
+        }
+
+        .red-social span {
+            font-size: 0.79rem;
+            font-weight: 650;
+        }
+
+        /* =====================================================
+           CONTACTO
+        ===================================================== */
+
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: 0.82fr 1.18fr;
+            gap: 60px;
+        }
+
+        .contacto-informacion h2 {
+            margin-bottom: 18px;
+            color: var(--azul-principal);
+            font-family: "Playfair Display", serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+        }
+
+        .contacto-informacion > p {
+            margin-bottom: 30px;
+            color: var(--gris-medio);
+        }
+
+        .contacto-lista {
+            display: grid;
+            gap: 18px;
+        }
+
+        .contacto-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .contacto-item-icono {
+            flex: 0 0 48px;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gris-fondo);
+            color: var(--turquesa);
+            border-radius: 12px;
+            font-size: 1.1rem;
+        }
+
+        .contacto-item strong,
+        .contacto-item span {
+            display: block;
+        }
+
+        .contacto-item strong {
+            margin-bottom: 3px;
+            color: var(--azul-principal);
+            font-size: 0.9rem;
+        }
+
+        .contacto-item span {
+            color: var(--gris-medio);
+            font-size: 0.85rem;
+        }
+
+        .formulario {
+            padding: 35px;
+            background: var(--blanco);
+            border-radius: 18px;
+            box-shadow: var(--sombra);
+        }
+
+        .formulario-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 17px;
+        }
+
+        .campo {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .campo-completo {
+            grid-column: 1 / -1;
+        }
+
+        .campo label {
+            color: var(--azul-principal);
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
+
+        .campo input,
+        .campo textarea,
+        .campo select {
+            width: 100%;
+            padding: 14px 15px;
+            background: var(--gris-fondo);
+            border: 1px solid var(--gris-claro);
+            border-radius: 9px;
+            color: var(--gris-oscuro);
+            outline: none;
+            transition: var(--transicion);
+        }
+
+        .campo textarea {
+            min-height: 135px;
+            resize: vertical;
+        }
+
+        .campo input:focus,
+        .campo textarea:focus,
+        .campo select:focus {
+            border-color: var(--turquesa);
+            box-shadow: 0 0 0 4px rgba(0, 168, 168, 0.1);
+        }
+
+        .boton-formulario {
+            margin-top: 18px;
+            border: none;
+        }
+
+        .mensaje-formulario {
+            display: none;
+            margin-top: 17px;
+            padding: 13px 15px;
+            background: #e8f8f3;
+            color: #176d51;
+            border-left: 4px solid #25a878;
+            border-radius: 7px;
+            font-size: 0.84rem;
+        }
+
+        /* =====================================================
+           PIE DE PÁGINA
+        ===================================================== */
+
+        .pie {
+            background: #072844;
+            color: var(--blanco);
+        }
+
+        .pie-principal {
+            padding: 70px 0 45px;
+        }
+
+        .pie-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr 1fr 1fr;
+            gap: 45px;
+        }
+
+        .pie-logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .pie-logo img {
+            width: 70px;
+        }
+
+        .pie-logo strong {
+            display: block;
+            font-size: 1.15rem;
+        }
+
+        .pie-logo span {
+            font-size: 0.73rem;
+            opacity: 0.7;
+        }
+
+        .pie-descripcion {
+            max-width: 340px;
+            color: rgba(255, 255, 255, 0.68);
+            font-size: 0.85rem;
+        }
+
+        .pie h3 {
+            position: relative;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            font-size: 1rem;
+        }
+
+        .pie h3::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 42px;
+            height: 3px;
+            background: var(--turquesa);
+            border-radius: 3px;
+        }
+
+        .pie-enlaces {
+            display: grid;
+            gap: 11px;
+        }
+
+        .pie-enlaces a {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.84rem;
+            transition: var(--transicion);
+        }
+
+        .pie-enlaces a:hover {
+            color: var(--turquesa-claro);
+            padding-left: 6px;
+        }
+
+        .pie-contacto {
+            display: grid;
+            gap: 13px;
+        }
+
+        .pie-contacto li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.83rem;
+        }
+
+        .pie-contacto i {
+            margin-top: 4px;
+            color: var(--turquesa-claro);
+        }
+
+        .pie-inferior {
+            padding: 22px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .pie-inferior-contenido {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.78rem;
+        }
+
+        /* =====================================================
+           BOTONES FLOTANTES
+        ===================================================== */
+
+        .boton-arriba {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            z-index: 900;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--azul-claro);
+            color: var(--blanco);
+            border: none;
+            border-radius: 10px;
+            box-shadow: var(--sombra);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            transition: var(--transicion);
+        }
+
+        .boton-arriba.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .boton-arriba:hover {
+            background: var(--turquesa);
+            transform: translateY(-4px);
+        }
+
+        .boton-accesibilidad {
+            position: fixed;
+            left: 0;
+            top: 55%;
+            z-index: 900;
+            width: 54px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--azul-principal);
+            color: var(--blanco);
+            border: none;
+            border-radius: 0 8px 8px 0;
+            box-shadow: var(--sombra);
+            font-size: 1.45rem;
+        }
+
+        /* =====================================================
+           ANIMACIONES
+        ===================================================== */
+
+        .revelar {
+            opacity: 0;
+            transform: translateY(35px);
+            transition:
+                opacity 0.75s ease,
+                transform 0.75s ease;
+        }
+
+        .revelar.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =====================================================
+           MODO ALTO CONTRASTE
+        ===================================================== */
+
+        body.alto-contraste {
+            --azul-principal: #000000;
+            --azul-secundario: #000000;
+            --azul-claro: #ffd900;
+            --turquesa: #ffd900;
+            --turquesa-claro: #ffff00;
+            --gris-fondo: #111111;
+            --gris-claro: #444444;
+            --gris-medio: #ffffff;
+            --gris-oscuro: #ffffff;
+            --blanco: #000000;
+
+            background: #000000;
+            color: #ffffff;
+        }
+
+        body.alto-contraste .tarjeta-eje,
+        body.alto-contraste .tarjeta-informacion,
+        body.alto-contraste .formulario {
+            border: 1px solid #ffffff;
+        }
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 1100px) {
+            .menu-principal > li > a {
+                padding: 11px 8px;
+                font-size: 0.76rem;
+            }
+
+            .logo-texto span {
+                display: none;
+            }
+
+            .ejes-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .pie-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .barra-superior {
+                display: none;
+            }
+
+            .encabezado {
+                top: 0;
+            }
+
+            .boton-menu {
+                display: flex;
+            }
+
+            .menu-principal {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: min(370px, 88%);
+                height: 100vh;
+                padding: 95px 25px 35px;
+                display: block;
+                overflow-y: auto;
+                background: var(--azul-secundario);
+                box-shadow: -12px 0 30px rgba(0, 0, 0, 0.25);
+                transition: right 0.35s ease;
+            }
+
+            .menu-principal.abierto {
+                right: 0;
+            }
+
+            .menu-principal > li > a {
+                justify-content: space-between;
+                margin-bottom: 4px;
+                padding: 14px;
+                font-size: 0.92rem;
+            }
+
+            .submenu {
+                position: static;
+                display: none;
+                min-width: auto;
+                margin: 4px 0 12px 15px;
+                background: rgba(255, 255, 255, 0.07);
+                box-shadow: none;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+            }
+
+            .submenu.activo {
+                display: block;
+            }
+
+            .submenu a {
+                color: rgba(255, 255, 255, 0.8);
+            }
+
+            .submenu a:hover {
+                background: rgba(255, 255, 255, 0.1);
+                color: var(--turquesa-claro);
+            }
+
+            .hero {
+                min-height: 680px;
+            }
+
+            .perfil-grid,
+            .redes-contenedor,
+            .contacto-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .foto-alcalde-wrapper {
+                width: min(580px, 100%);
+                margin: 0 auto;
+            }
+
+            .redes-contenedor {
+                gap: 35px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .contenedor {
+                width: min(100% - 28px, 1180px);
+            }
+
+            .seccion {
+                padding: 70px 0;
+            }
+
+            .logo img {
+                width: 52px;
+                height: 52px;
+            }
+
+            .logo-texto strong {
+                font-size: 0.98rem;
+            }
+
+            .navegacion {
+                min-height: 76px;
+            }
+
+            .hero {
+                min-height: 630px;
+                text-align: center;
+            }
+
+            .hero-contenido {
+                padding-top: 100px;
+            }
+
+            .hero-etiqueta {
+                font-size: 0.7rem;
+            }
+
+            .hero-botones {
+                justify-content: center;
+            }
+
+            .perfil-grid {
+                gap: 50px;
+            }
+
+            .foto-alcalde {
+                min-height: 480px;
+            }
+
+            .insignia-periodo {
+                right: 12px;
+                bottom: 18px;
+            }
+
+            .perfil-destacados,
+            .informacion-grid,
+            .redes-grid,
+            .formulario-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ejes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .redes-contenedor {
+                padding: 35px 24px;
+            }
+
+            .formulario {
+                padding: 26px 20px;
+            }
+
+            .pie-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pie-inferior-contenido {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .boton-accesibilidad {
+                top: auto;
+                bottom: 85px;
+                width: 45px;
+                height: 50px;
+            }
+        }
+
+        @media (max-width: 460px) {
+            .logo-texto span {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.65rem;
+            }
+
+            .hero-botones .boton {
+                width: 100%;
+            }
+
+            .foto-alcalde {
+                min-height: 410px;
+            }
+
+            .foto-alcalde-wrapper::before,
+            .foto-alcalde-wrapper::after {
+                display: none;
+            }
+
+            .insignia-periodo {
+                position: relative;
+                right: auto;
+                bottom: auto;
+                max-width: 100%;
+                margin-top: -10px;
+                border-radius: 0 0 14px 14px;
+            }
+
+            .perfil-contenido p {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =====================================================
+         BARRA SUPERIOR
+    ====================================================== -->
+
+    <div class="barra-superior">
+        <div class="contenedor barra-superior-contenido">
+
+            <div class="datos-superiores">
+                <div class="dato-superior">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>Atacames, Esmeraldas, Ecuador</span>
+                </div>
+
+                <div class="dato-superior">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>(06) 2730-000</span>
+                </div>
+            </div>
+
+            <div class="enlaces-superiores">
+                <a href="#">Mapa del sitio</a>
+                <a href="#">Correo institucional</a>
+                <a href="#contacto">Contáctenos</a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- =====================================================
+         ENCABEZADO
+    ====================================================== -->
+
+    <header class="encabezado" id="encabezado">
+        <div class="contenedor navegacion">
+
+            <a href="index.html" class="logo">
+                <!-- Reemplaza esta imagen por el escudo oficial -->
+                <img
+                    src="https://www.municipiodeatacames.gob.ec/images/Logo%20Institucional/2023/TRANSPARENTE2.png"
+                    alt="Escudo del GAD Municipal de Atacames"
+                >
+
+                <div class="logo-texto">
+                    <strong>Municipio de Atacames</strong>
+                    <span>Gobierno Autónomo Descentralizado Municipal</span>
+                </div>
+            </a>
+
+            <button
+                class="boton-menu"
+                id="botonMenu"
+                aria-label="Abrir menú"
+                aria-expanded="false"
+            >
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <nav aria-label="Navegación principal">
+                <ul class="menu-principal" id="menuPrincipal">
+
+                    <li>
+                        <a href="index.html">
+                            Inicio
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="enlace-submenu">
+                            Nuestra Institución
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </a>
+
+                        <ul class="submenu">
+                            <li><a href="#">Alcalde</a></li>
+                            <li><a href="#">Vicealcaldesa</a></li>
+                            <li><a href="#">Concejo Municipal</a></li>
+                            <li><a href="#">Misión y visión</a></li>
+                            <li><a href="#">Autoridades</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#" class="enlace-submenu">
+                            Servicios
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </a>
+
+                        <ul class="submenu">
+                            <li><a href="#">Trámites municipales</a></li>
+                            <li><a href="#">Pago de impuestos</a></li>
+                            <li><a href="#">Catastro</a></li>
+                            <li><a href="#">Servicios en línea</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#">Noticias</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Rendición de cuentas</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="enlace-submenu">
+                            Transparencia
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </a>
+
+                        <ul class="submenu">
+                            <li><a href="#">LOTAIP</a></li>
+                            <li><a href="#">Contratación pública</a></li>
+                            <li><a href="#">Presupuesto institucional</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#contacto">
+                            Contacto
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+
+        </div>
+    </header>
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <main>
+
+        <section class="hero">
+            <div class="contenedor">
+                <div class="hero-contenido">
+
+                    <div class="hero-etiqueta">
+                        <i class="fa-solid fa-landmark"></i>
+                        Administración Municipal 2023–2027
+                    </div>
+
+                    <h1>Alcalde de Atacames</h1>
+
+                    <h2>Abg. Willians Mendoza Vidal</h2>
+
+                    <p>
+                        Alcalde del Gobierno Autónomo Descentralizado
+                        Municipal del cantón Atacames, comprometido con una
+                        administración cercana, transparente y orientada al
+                        desarrollo integral de la ciudadanía.
+                    </p>
+
+                    <div class="hero-botones">
+                        <a href="#biografia" class="boton boton-primario">
+                            <i class="fa-solid fa-user-tie"></i>
+                            Conocer biografía
+                        </a>
+
+                        <a href="#gestion" class="boton boton-transparente">
+                            <i class="fa-solid fa-chart-line"></i>
+                            Ejes de gestión
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================
+             MIGAS DE PAN
+        ================================================== -->
+
+        <div class="breadcrumb-wrapper">
+            <div class="contenedor">
+
+                <div class="breadcrumb">
+                    <a href="index.html">
+                        <i class="fa-solid fa-house"></i>
+                        Inicio
+                    </a>
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                    <span>Alcalde de Atacames</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- =================================================
+             BIOGRAFÍA
+        ================================================== -->
+
+        <section class="seccion" id="biografia">
+            <div class="contenedor">
+
+                <div class="encabezado-seccion revelar">
+                    <span class="subtitulo-seccion">Máxima autoridad municipal</span>
+
+                    <h2 class="titulo-seccion">
+                        Alcalde del cantón Atacames
+                    </h2>
+
+                    <p>
+                        Conozca a la autoridad que dirige la administración
+                        municipal y lidera los proyectos de desarrollo del
+                        cantón.
+                    </p>
+                </div>
+
+                <div class="perfil-grid">
+
+                    <div class="foto-alcalde-wrapper revelar">
+
+                        <!--
+                            Reemplaza esta foto por la fotografía oficial
+                            del alcalde.
+                        -->
+                        <img
+                            class="foto-alcalde"
+                            src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Alcalde-de-Atacames.png"
+                            alt="Abg. Willians Mendoza Vidal, alcalde de Atacames"
+                        >
+
+                        <div class="insignia-periodo">
+                            <i class="fa-solid fa-calendar-check"></i>
+
+                            <strong>Periodo administrativo</strong>
+
+                            <span>2023 – 2027</span>
+                        </div>
+
+                    </div>
+
+                    <div class="perfil-contenido revelar">
+
+                        <span class="subtitulo-seccion">
+                            Biografía institucional
+                        </span>
+
+                        <h2>Abg. Willians Mendoza Vidal</h2>
+
+                        <div class="perfil-cargo">
+                            Alcalde del Gobierno Autónomo Descentralizado
+                            Municipal de Atacames
+                        </div>
+
+                        <p>
+                            El Abg. Willians Mendoza Vidal ejerce la Alcaldía
+                            del cantón Atacames durante el periodo
+                            administrativo 2023–2027, liderando una gestión
+                            orientada al desarrollo social, turístico,
+                            económico e institucional del cantón.
+                        </p>
+
+                        <p>
+                            Su administración promueve el fortalecimiento de
+                            los servicios municipales, la recuperación de los
+                            espacios públicos, el impulso al turismo y la
+                            ejecución de proyectos que contribuyan a mejorar
+                            la calidad de vida de los habitantes de Atacames.
+                        </p>
+
+                        <p>
+                            Desde el Gobierno Municipal se trabaja de manera
+                            coordinada con las comunidades, parroquias,
+                            instituciones públicas, organizaciones sociales y
+                            actores privados, con el propósito de construir
+                            un cantón más seguro, ordenado, inclusivo y
+                            sostenible.
+                        </p>
+
+                        <div class="perfil-destacados">
+
+                            <div class="perfil-destacado">
+                                <i class="fa-solid fa-building-columns"></i>
+                                <span>Gestión pública responsable</span>
+                            </div>
+
+                            <div class="perfil-destacado">
+                                <i class="fa-solid fa-umbrella-beach"></i>
+                                <span>Fortalecimiento turístico</span>
+                            </div>
+
+                            <div class="perfil-destacado">
+                                <i class="fa-solid fa-users"></i>
+                                <span>Participación ciudadana</span>
+                            </div>
+
+                            <div class="perfil-destacado">
+                                <i class="fa-solid fa-eye"></i>
+                                <span>Transparencia institucional</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================
+             MENSAJE
+        ================================================== -->
+
+        <section class="seccion mensaje">
+            <div class="contenedor">
+
+                <div class="mensaje-contenido revelar">
+
+                    <div class="mensaje-icono">
+                        <i class="fa-solid fa-quote-left"></i>
+                    </div>
+
+                    <blockquote>
+                        “Nuestro compromiso es trabajar junto a la ciudadanía
+                        para construir un Atacames Seguro, Productivo y Turístico.”
+                    </blockquote>
+
+                    <div class="mensaje-firma">
+                        <strong>Abg. Willians Mendoza Vidal</strong>
+
+                        <span>Alcalde del cantón Atacames</span>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- =================================================
+             EJES DE GESTIÓN
+        ================================================== -->
+
+        <section class="seccion seccion-fondo" id="gestion">
+            <div class="contenedor">
+
+                <div class="encabezado-seccion revelar">
+
+                    <span class="subtitulo-seccion">
+                        Administración municipal
+                    </span>
+
+                    <h2 class="titulo-seccion">
+                        Ejes de gestión
+                    </h2>
+
+                    <p>
+                        La gestión municipal se desarrolla sobre áreas
+                        estratégicas que buscan fortalecer el progreso y
+                        bienestar del cantón Atacames.
+                    </p>
+
+                </div>
+
+                <div class="ejes-grid">
+
+                    <article class="tarjeta-eje revelar">
+
+                        <div class="icono-eje">
+                            <i class="fa-solid fa-umbrella-beach"></i>
+                        </div>
+
+                        <h3>Turismo y desarrollo económico</h3>
+
+                        <p>
+                            Impulso del potencial turístico, gastronómico y
+                            comercial de Atacames, fortaleciendo las
+                            oportunidades para emprendedores y prestadores de
+                            servicios.
+                        </p>
+
+                    </article>
+
+                    <article class="tarjeta-eje revelar">
+
+                        <div class="icono-eje">
+                            <i class="fa-solid fa-road"></i>
+                        </div>
+
+                        <h3>Obras e infraestructura</h3>
+
+                        <p>
+                            Planificación y ejecución de proyectos para
+                            mejorar las vías, espacios públicos, servicios
+                            básicos e infraestructura comunitaria.
+                        </p>
+
+                    </article>
+
+                    <article class="tarjeta-eje revelar">
+
+                        <div class="icono-eje">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+
+                        <h3>Seguridad y orden</h3>
+
+                        <p>
+                            Coordinación institucional para promover espacios
+                            seguros, fortalecer la prevención y mejorar el
+                            ordenamiento del territorio.
+                        </p>
+
+                    </article>
+
+                    <article class="tarjeta-eje revelar">
+
+                        <div class="icono-eje">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+
+                        <h3>Ambiente y sostenibilidad</h3>
+
+                        <p>
+                            Protección de playas, ecosistemas y recursos
+                            naturales mediante campañas, proyectos ambientales
+                            y acciones de educación ciudadana.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- =================================================
+             INFORMACIÓN DEL ALCALDE
+        ================================================== -->
+
+        <section class="seccion">
+            <div class="contenedor">
+
+                <div class="encabezado-seccion revelar">
+
+                    <span class="subtitulo-seccion">
+                        Perfil institucional
+                    </span>
+
+                    <h2 class="titulo-seccion">
+                        Experiencia y compromiso
+                    </h2>
+
+                    <p>
+                        Una administración basada en la planificación, el
+                        servicio público y el trabajo coordinado con la
+                        ciudadanía.
+                    </p>
+
+                </div>
+
+                <div class="informacion-grid">
+
+                    <article class="tarjeta-informacion revelar">
+                        <i class="fa-solid fa-graduation-cap"></i>
+
+                        <h3>Formación académica</h3>
+
+                        <p>
+                            Incluya en este apartado la formación profesional,
+                            títulos académicos, especializaciones y estudios
+                            realizados por el alcalde.
+                        </p>
+                    </article>
+
+                    <article class="tarjeta-informacion revelar">
+                        <i class="fa-solid fa-briefcase"></i>
+
+                        <h3>Experiencia profesional</h3>
+
+                        <p>
+                            Incorpore información oficial sobre la trayectoria
+                            laboral, experiencia administrativa y cargos
+                            desempeñados.
+                        </p>
+                    </article>
+
+                    <article class="tarjeta-informacion revelar">
+                        <i class="fa-solid fa-handshake-angle"></i>
+
+                        <h3>Compromiso ciudadano</h3>
+
+                        <p>
+                            Gestión cercana a las comunidades, organizaciones
+                            sociales, sectores productivos y ciudadanía del
+                            cantón Atacames.
+                        </p>
+                    </article>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- =================================================
+             REDES SOCIALES
+        ================================================== -->
+
+        <section class="seccion seccion-fondo">
+            <div class="contenedor">
+
+                <div class="redes-contenedor revelar">
+
+                    <div class="redes-texto">
+
+                        <span class="subtitulo-seccion">
+                            Canales oficiales
+                        </span>
+
+                        <h2>Siga la gestión municipal</h2>
+
+                        <p>
+                            Manténgase informado sobre noticias, actividades,
+                            obras, proyectos y acciones de la administración
+                            municipal.
+                        </p>
+
+                    </div>
+
+                    <div class="redes-grid">
+
+                        <a
+                            href="https://www.facebook.com/"
+                            class="red-social"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Facebook"
+                        >
+                            <i class="fa-brands fa-facebook-f"></i>
+                            <span>Facebook</span>
+                        </a>
+
+                        <a
+                            href="https://www.instagram.com/"
+                            class="red-social"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Instagram"
+                        >
+                            <i class="fa-brands fa-instagram"></i>
+                            <span>Instagram</span>
+                        </a>
+
+                        <a
+                            href="https://www.tiktok.com/"
+                            class="red-social"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="TikTok"
+                        >
+                            <i class="fa-brands fa-tiktok"></i>
+                            <span>TikTok</span>
+                        </a>
+
+                        <a
+                            href="https://x.com/"
+                            class="red-social"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="X"
+                        >
+                            <i class="fa-brands fa-x-twitter"></i>
+                            <span>X</span>
+                        </a>
+
+                        <a
+                            href="https://www.youtube.com/"
+                            class="red-social"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="YouTube"
+                        >
+                            <i class="fa-brands fa-youtube"></i>
+                            <span>YouTube</span>
+                        </a>
+
+                        <a
+                            href="https://www.whatsapp.com/"
+                            class="red-social"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="WhatsApp"
+                        >
+                            <i class="fa-brands fa-whatsapp"></i>
+                            <span>WhatsApp</span>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- =================================================
+             CONTACTO
+        ================================================== -->
+
+        <section class="seccion" id="contacto">
+            <div class="contenedor">
+
+                <div class="contacto-grid">
+
+                    <div class="contacto-informacion revelar">
+
+                        <span class="subtitulo-seccion">
+                            Atención ciudadana
+                        </span>
+
+                        <h2>Contacto institucional</h2>
+
+                        <p>
+                            Para solicitudes, inquietudes o información
+                            municipal, comuníquese mediante los canales
+                            oficiales del GAD Municipal de Atacames.
+                        </p>
+
+                        <ul class="contacto-lista">
+
+                            <li class="contacto-item">
+                                <div class="contacto-item-icono">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+
+                                <div>
+                                    <strong>Dirección</strong>
+
+                                    <span>
+                                        Edificio Municipal, Atacames,
+                                        Esmeraldas, Ecuador
+                                    </span>
+                                </div>
+                            </li>
+
+                            <li class="contacto-item">
+                                <div class="contacto-item-icono">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+
+                                <div>
+                                    <strong>Teléfono institucional</strong>
+
+                                    <span>(06) 2730-000</span>
+                                </div>
+                            </li>
+
+                            <li class="contacto-item">
+                                <div class="contacto-item-icono">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+
+                                <div>
+                                    <strong>Correo electrónico</strong>
+
+                                    <span>
+                                        alcaldia@municipiodeatacames.gob.ec
+                                    </span>
+                                </div>
+                            </li>
+
+                            <li class="contacto-item">
+                                <div class="contacto-item-icono">
+                                    <i class="fa-solid fa-clock"></i>
+                                </div>
+
+                                <div>
+                                    <strong>Horario de atención</strong>
+
+                                    <span>
+                                        Lunes a viernes, de 08:00 a 17:00
+                                    </span>
+                                </div>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                    <form class="formulario revelar" id="formularioContacto">
+
+                        <div class="formulario-grid">
+
+                            <div class="campo">
+                                <label for="nombre">Nombres completos</label>
+
+                                <input
+                                    type="text"
+                                    id="nombre"
+                                    name="nombre"
+                                    placeholder="Ingrese sus nombres"
+                                    required
+                                >
+                            </div>
+
+                            <div class="campo">
+                                <label for="correo">Correo electrónico</label>
+
+                                <input
+                                    type="email"
+                                    id="correo"
+                                    name="correo"
+                                    placeholder="correo@ejemplo.com"
+                                    required
+                                >
+                            </div>
+
+                            <div class="campo">
+                                <label for="telefono">Teléfono</label>
+
+                                <input
+                                    type="tel"
+                                    id="telefono"
+                                    name="telefono"
+                                    placeholder="09XXXXXXXX"
+                                >
+                            </div>
+
+                            <div class="campo">
+                                <label for="asunto">Asunto</label>
+
+                                <select id="asunto" name="asunto" required>
+                                    <option value="">
+                                        Seleccione una opción
+                                    </option>
+
+                                    <option value="solicitud">
+                                        Solicitud ciudadana
+                                    </option>
+
+                                    <option value="informacion">
+                                        Solicitud de información
+                                    </option>
+
+                                    <option value="reunion">
+                                        Solicitud de reunión
+                                    </option>
+
+                                    <option value="otro">
+                                        Otro asunto
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="campo campo-completo">
+                                <label for="mensaje">Mensaje</label>
+
+                                <textarea
+                                    id="mensaje"
+                                    name="mensaje"
+                                    placeholder="Escriba su mensaje..."
+                                    required
+                                ></textarea>
+                            </div>
+
+                        </div>
+
+                        <button
+                            type="submit"
+                            class="boton boton-primario boton-formulario"
+                        >
+                            <i class="fa-solid fa-paper-plane"></i>
+                            Enviar solicitud
+                        </button>
+
+                        <div
+                            class="mensaje-formulario"
+                            id="mensajeFormulario"
+                        >
+                            <i class="fa-solid fa-circle-check"></i>
+                            El formulario fue validado correctamente. Para
+                            enviar información real debe conectarse con el
+                            sistema de correo o backend institucional.
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- =====================================================
+         PIE DE PÁGINA
+    ====================================================== -->
+
+    <footer class="pie">
+
+        <div class="pie-principal">
+            <div class="contenedor pie-grid">
+
+                <div>
+
+                    <div class="pie-logo">
+                        <img
+                            src="img/logo-atacames.png"
+                            alt="Logo del Municipio de Atacames"
+                        >
+
+                        <div>
+                            <strong>Municipio de Atacames</strong>
+
+                            <span>
+                                Administración Municipal 2023–2027
+                            </span>
+                        </div>
+                    </div>
+
+                    <p class="pie-descripcion">
+                        Portal institucional del Gobierno Autónomo
+                        Descentralizado Municipal del cantón Atacames,
+                        provincia de Esmeraldas.
+                    </p>
+
+                </div>
+
+                <div>
+                    <h3>Enlaces rápidos</h3>
+
+                    <ul class="pie-enlaces">
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="#biografia">Alcalde</a></li>
+                        <li><a href="#">Noticias</a></li>
+                        <li><a href="#">Servicios municipales</a></li>
+                        <li><a href="#">Transparencia</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3>Servicios</h3>
+
+                    <ul class="pie-enlaces">
+                        <li><a href="#">Trámites en línea</a></li>
+                        <li><a href="#">Pagos municipales</a></li>
+                        <li><a href="#">Consulta ciudadana</a></li>
+                        <li><a href="#">Rendición de cuentas</a></li>
+                        <li><a href="#">Contratación pública</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3>Contáctenos</h3>
+
+                    <ul class="pie-contacto">
+
+                        <li>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>Atacames, Esmeraldas, Ecuador</span>
+                        </li>
+
+                        <li>
+                            <i class="fa-solid fa-phone"></i>
+                            <span>(06) 2730-000</span>
+                        </li>
+
+                        <li>
+                            <i class="fa-solid fa-envelope"></i>
+                            <span>
+                                info@municipiodeatacames.gob.ec
+                            </span>
+                        </li>
+
+                        <li>
+                            <i class="fa-solid fa-clock"></i>
+                            <span>Lunes a viernes: 08:00–17:00</span>
+                        </li>
+
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="pie-inferior">
+            <div class="contenedor pie-inferior-contenido">
+
+                <p>
+                    © <span id="anioActual"></span>
+                    GAD Municipal de Atacames. Todos los derechos reservados.
+                </p>
+
+                <p>
+                    Dirección de Tecnologías de la Información
+                </p>
+
+            </div>
+        </div>
+
+    </footer>
+
+    <!-- =====================================================
+         BOTONES FLOTANTES
+    ====================================================== -->
+
+    <button
+        class="boton-accesibilidad"
+        id="botonAccesibilidad"
+        aria-label="Activar alto contraste"
+        title="Activar alto contraste"
+    >
+        <i class="fa-solid fa-universal-access"></i>
+    </button>
+
+    <button
+        class="boton-arriba"
+        id="botonArriba"
+        aria-label="Volver arriba"
+    >
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script>
+        "use strict";
+
+        /* =====================================================
+           ELEMENTOS PRINCIPALES
+        ===================================================== */
+
+        const encabezado = document.getElementById("encabezado");
+        const botonMenu = document.getElementById("botonMenu");
+        const menuPrincipal = document.getElementById("menuPrincipal");
+        const botonArriba = document.getElementById("botonArriba");
+        const botonAccesibilidad =
+            document.getElementById("botonAccesibilidad");
+
+        const formularioContacto =
+            document.getElementById("formularioContacto");
+
+        const mensajeFormulario =
+            document.getElementById("mensajeFormulario");
+
+        const enlacesSubmenu =
+            document.querySelectorAll(".enlace-submenu");
+
+        const elementosRevelar =
+            document.querySelectorAll(".revelar");
+
+        /* =====================================================
+           AÑO AUTOMÁTICO
+        ===================================================== */
+
+        document.getElementById("anioActual").textContent =
+            new Date().getFullYear();
+
+        /* =====================================================
+           MENÚ RESPONSIVE
+        ===================================================== */
+
+        function alternarMenu() {
+            const menuAbierto =
+                menuPrincipal.classList.toggle("abierto");
+
+            document.body.classList.toggle(
+                "menu-abierto",
+                menuAbierto
+            );
+
+            botonMenu.setAttribute(
+                "aria-expanded",
+                String(menuAbierto)
+            );
+
+            botonMenu.innerHTML = menuAbierto
+                ? '<i class="fa-solid fa-xmark"></i>'
+                : '<i class="fa-solid fa-bars"></i>';
+        }
+
+        function cerrarMenu() {
+            menuPrincipal.classList.remove("abierto");
+            document.body.classList.remove("menu-abierto");
+
+            botonMenu.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+            botonMenu.innerHTML =
+                '<i class="fa-solid fa-bars"></i>';
+        }
+
+        botonMenu.addEventListener("click", alternarMenu);
+
+        menuPrincipal
+            .querySelectorAll("a")
+            .forEach((enlace) => {
+                enlace.addEventListener("click", () => {
+                    const tieneSubmenu =
+                        enlace.classList.contains(
+                            "enlace-submenu"
+                        );
+
+                    if (
+                        window.innerWidth <= 900 &&
+                        !tieneSubmenu
+                    ) {
+                        cerrarMenu();
+                    }
+                });
+            });
+
+        /* =====================================================
+           SUBMENÚ EN CELULARES
+        ===================================================== */
+
+        enlacesSubmenu.forEach((enlace) => {
+            enlace.addEventListener("click", (evento) => {
+                if (window.innerWidth <= 900) {
+                    evento.preventDefault();
+
+                    const submenu =
+                        enlace.nextElementSibling;
+
+                    submenu.classList.toggle("activo");
+
+                    const icono =
+                        enlace.querySelector("i");
+
+                    if (submenu.classList.contains("activo")) {
+                        icono.className =
+                            "fa-solid fa-chevron-up";
+                    } else {
+                        icono.className =
+                            "fa-solid fa-chevron-down";
+                    }
+                }
+            });
+        });
+
+        /* =====================================================
+           ENCABEZADO FIJO Y BOTÓN ARRIBA
+        ===================================================== */
+
+        function controlarScroll() {
+            if (window.scrollY > 90) {
+                encabezado.classList.add("fijo");
+            } else {
+                encabezado.classList.remove("fijo");
+            }
+
+            if (window.scrollY > 450) {
+                botonArriba.classList.add("visible");
+            } else {
+                botonArriba.classList.remove("visible");
+            }
+        }
+
+        window.addEventListener("scroll", controlarScroll);
+
+        controlarScroll();
+
+        botonArriba.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+
+        /* =====================================================
+           ANIMACIÓN AL HACER SCROLL
+        ===================================================== */
+
+        const observador = new IntersectionObserver(
+            (entradas, observer) => {
+                entradas.forEach((entrada) => {
+                    if (entrada.isIntersecting) {
+                        entrada.target.classList.add("visible");
+                        observer.unobserve(entrada.target);
+                    }
+                });
+            },
+            {
+                threshold: 0.12,
+                rootMargin: "0px 0px -50px 0px"
+            }
+        );
+
+        elementosRevelar.forEach((elemento) => {
+            observador.observe(elemento);
+        });
+
+        /* =====================================================
+           ALTO CONTRASTE
+        ===================================================== */
+
+        let contrasteActivo = false;
+
+        botonAccesibilidad.addEventListener("click", () => {
+            contrasteActivo = !contrasteActivo;
+
+            document.body.classList.toggle(
+                "alto-contraste",
+                contrasteActivo
+            );
+
+            botonAccesibilidad.title = contrasteActivo
+                ? "Desactivar alto contraste"
+                : "Activar alto contraste";
+
+            botonAccesibilidad.setAttribute(
+                "aria-label",
+                contrasteActivo
+                    ? "Desactivar alto contraste"
+                    : "Activar alto contraste"
+            );
+        });
+
+        /* =====================================================
+           FORMULARIO DEMOSTRATIVO
+        ===================================================== */
+
+        formularioContacto.addEventListener(
+            "submit",
+            (evento) => {
+                evento.preventDefault();
+
+                const nombre =
+                    document.getElementById("nombre").value.trim();
+
+                const correo =
+                    document.getElementById("correo").value.trim();
+
+                const mensaje =
+                    document.getElementById("mensaje").value.trim();
+
+                if (!nombre || !correo || !mensaje) {
+                    alert(
+                        "Por favor, complete los campos obligatorios."
+                    );
+
+                    return;
+                }
+
+                mensajeFormulario.style.display = "block";
+
+                formularioContacto.reset();
+
+                mensajeFormulario.scrollIntoView({
+                    behavior: "smooth",
+                    block: "nearest"
+                });
+
+                setTimeout(() => {
+                    mensajeFormulario.style.display = "none";
+                }, 8000);
+            }
+        );
+
+        /* =====================================================
+           CERRAR MENÚ AL CAMBIAR EL TAMAÑO
+        ===================================================== */
+
+        window.addEventListener("resize", () => {
+            if (window.innerWidth > 900) {
+                cerrarMenu();
+
+                document
+                    .querySelectorAll(".submenu")
+                    .forEach((submenu) => {
+                        submenu.classList.remove("activo");
+                    });
+
+                enlacesSubmenu.forEach((enlace) => {
+                    const icono =
+                        enlace.querySelector("i");
+
+                    icono.className =
+                        "fa-solid fa-chevron-down";
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>

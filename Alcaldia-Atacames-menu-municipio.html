@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alcaldía de Atacames - Portal Municipal</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    :root{
+      --azul:#005b9f;
+      --azul2:#0087ad;
+      --turquesa:#009db1;
+      --verde:#2f8f35;
+      --verde-btn:#198f32;
+      --negro:#1f1f1f;
+      --gris:#f4f7f9;
+      --texto:#333;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:Arial, Helvetica, sans-serif;
+      color:var(--texto);
+      background:#fff;
+    }
+
+    a{
+      text-decoration:none;
+    }
+
+    img{
+      display:block;
+      max-width:100%;
+    }
+
+    .topbar{
+      width:100%;
+      min-height:52px;
+      background:linear-gradient(90deg,#005b9f,#003b82);
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 28px;
+      gap:20px;
+      position:relative;
+      z-index:1000;
+    }
+
+    .top-left,
+    .top-nav,
+    .top-social{
+      display:flex;
+      align-items:center;
+      gap:18px;
+    }
+
+    .top-left{
+      font-size:15px;
+      font-weight:800;
+      white-space:nowrap;
+    }
+
+    .top-left i{
+      font-size:22px;
+    }
+
+    .top-nav{
+      flex:1;
+      justify-content:center;
+      gap:14px;
+    }
+
+    .top-nav a{
+      color:#fff;
+      font-weight:900;
+      font-size:14px;
+      white-space:nowrap;
+    }
+
+    .top-nav a:hover{
+      color:#b6ebff;
+    }
+
+    .top-nav .btn-top{
+      padding:8px 14px;
+      border-radius:3px;
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+    }
+
+    .top-nav .portal{
+      background:#218d24;
+    }
+
+    .top-nav .intranet{
+      border:1px solid rgba(255,255,255,.85);
+      background:rgba(255,255,255,.04);
+    }
+
+
+    /* MENÚ DESPLEGABLE: MUNICIPIO */
+    .nav-dropdown{
+      position:relative;
+      display:flex;
+      align-items:center;
+    }
+
+    .dropdown-toggle{
+      appearance:none;
+      border:0;
+      background:transparent;
+      color:#fff;
+      font-family:inherit;
+      font-size:14px;
+      font-weight:900;
+      white-space:nowrap;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      padding:0;
+    }
+
+    .dropdown-toggle:hover,
+    .dropdown-toggle:focus-visible{
+      color:#b6ebff;
+    }
+
+    .dropdown-toggle i{
+      font-size:11px;
+      transition:transform .25s ease;
+    }
+
+    .nav-dropdown.open .dropdown-toggle i{
+      transform:rotate(180deg);
+    }
+
+    .dropdown-menu{
+      position:absolute;
+      top:calc(100% + 18px);
+      left:50%;
+      transform:translateX(-50%) translateY(-8px);
+      width:340px;
+      max-height:70vh;
+      overflow-y:auto;
+      padding:8px 0;
+      background:#fff;
+      border-radius:3px;
+      box-shadow:0 14px 35px rgba(0,0,0,.24);
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
+      transition:opacity .22s ease, transform .22s ease, visibility .22s;
+      z-index:1500;
+    }
+
+    .dropdown-menu::before{
+      content:"";
+      position:absolute;
+      top:-8px;
+      left:50%;
+      transform:translateX(-50%);
+      border-left:9px solid transparent;
+      border-right:9px solid transparent;
+      border-bottom:9px solid #fff;
+    }
+
+    .nav-dropdown.open .dropdown-menu{
+      opacity:1;
+      visibility:visible;
+      pointer-events:auto;
+      transform:translateX(-50%) translateY(0);
+    }
+
+    .dropdown-menu a{
+      display:block;
+      color:#111;
+      padding:14px 17px;
+      font-size:15px;
+      font-weight:700;
+      line-height:1.35;
+      white-space:normal;
+      transition:background .2s ease, color .2s ease, padding-left .2s ease;
+    }
+
+    .dropdown-menu a:hover,
+    .dropdown-menu a:focus-visible{
+      background:#eef8fb;
+      color:var(--turquesa);
+      padding-left:22px;
+    }
+
+    .top-social a{
+      color:white;
+      font-size:22px;
+      transition:.2s;
+    }
+
+    .top-social a:hover{
+      transform:translateY(-2px);
+      color:#b6ebff;
+    }
+
+    .logo-header{
+      height:142px;
+      background:#fff;
+      display:flex;
+      align-items:center;
+      padding:0 58px;
+      box-shadow:0 2px 8px rgba(0,0,0,.06);
+    }
+
+    .logo-header img{
+      height:92px;
+      width:auto;
+    }
+
+    .mobile-menu-btn{
+      display:none;
+      position:absolute;
+      top:9px;
+      right:18px;
+      background:transparent;
+      border:0;
+      color:#fff;
+      font-size:28px;
+      cursor:pointer;
+    }
+
+    .hero{
+      height:420px;
+      position:relative;
+      overflow:hidden;
+      background:#111;
+    }
+
+    .slide{
+      position:absolute;
+      inset:0;
+      background-size:cover;
+      background-position:center;
+      opacity:0;
+      transform:scale(1.03);
+      transition:opacity 1s ease, transform 5s ease;
+    }
+
+    .slide.active{
+      opacity:1;
+      transform:scale(1);
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(90deg,rgba(0,91,130,.70),rgba(0,0,0,.08));
+      z-index:2;
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:4;
+      height:100%;
+      max-width:1180px;
+      margin:auto;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-start;
+      align-items:flex-start;
+      color:white;
+      padding:65px 0 0;
+      padding-left:12%;
+      max-width:1200px;
+      margin:0 auto;
+    }
+
+    .hero-content h1{
+      font-size:clamp(18px,2.4vw,30px);
+      line-height:1;
+      font-weight:900;
+      text-transform:uppercase;
+      white-space:nowrap;
+      max-width:none;
+      text-shadow:2px 2px 8px rgba(0,0,0,.45);
+      margin-bottom:15px;
+    }
+
+    .hero-content p{
+      font-size:20px;
+      font-weight:800;
+      text-transform:uppercase;
+      margin-bottom:28px;
+      text-shadow:1px 1px 5px rgba(0,0,0,.45);
+    }
+
+    .hero-buttons{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+    .hero-buttons a{
+      min-width:135px;
+      text-align:center;
+      padding:14px 25px;
+      color:#fff;
+      text-transform:uppercase;
+      font-weight:900;
+      font-size:14px;
+      border-radius:3px;
+    }
+
+    .hero-buttons .turismo{
+      background:var(--turquesa);
+    }
+
+    .hero-buttons .contacto{
+      border:2px solid white;
+      background:rgba(255,255,255,.06);
+    }
+
+    .arrow{
+      position:absolute;
+      z-index:5;
+      top:50%;
+      transform:translateY(-50%);
+      width:46px;
+      height:46px;
+      border:0;
+      border-radius:4px;
+      background:rgba(0,0,0,.58);
+      color:#fff;
+      font-size:25px;
+      cursor:pointer;
+      display:grid;
+      place-items:center;
+      transition:.2s;
+    }
+
+    .arrow:hover{
+      background:var(--turquesa);
+    }
+
+    .arrow.left{
+      left:14px;
+    }
+
+    .arrow.right{
+      right:14px;
+    }
+
+    .dots{
+      position:absolute;
+      bottom:25px;
+      left:50%;
+      transform:translateX(-50%);
+      z-index:5;
+      display:flex;
+      gap:12px;
+    }
+
+    .dot{
+      width:14px;
+      height:14px;
+      border-radius:50%;
+      border:2px solid white;
+      background:transparent;
+      cursor:pointer;
+    }
+
+    .dot.active{
+      background:white;
+    }
+
+    .main-content{
+      background:
+        linear-gradient(rgba(255,255,255,.78),rgba(255,255,255,.78)),
+        url('https://www.municipiodeatacames.gob.ec/images/atacames_fondo_pag5.jpg') center/cover fixed no-repeat;
+    }
+
+    .intro-row{
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr;
+      min-height:450px;
+      gap:24px;
+      padding:30px 24px;
+      align-items:stretch;
+    }
+
+    .welcome{
+      background:linear-gradient(135deg,#151515,#2a2a2a);
+      padding:28px;
+      color:white;
+      display:flex;
+      flex-direction:column;
+      border-radius:8px;
+      box-shadow:0 6px 18px rgba(0,0,0,.15);
+    }
+
+    .section-heading{
+      color:#007fa0;
+      font-size:18px; 
+      font-weight:900;
+      text-transform:uppercase;
+      margin-bottom:22px;
+      border-bottom:2px solid #158fb0;
+      padding-bottom:6px;
+      display:inline-block;
+      white-space:nowrap;
+    }
+
+    .info .section-heading,
+    .online .section-heading{
+      margin-top:0;
+    }
+
+    .welcome .section-heading{
+      color:#8cc63f;
+      border-color:#8cc63f;
+    }
+
+    .welcome-grid{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:22px;
+      align-items:center;
+      flex:1;
+    }
+
+    .mayor-photo{
+      width:100%;
+      height:250px;
+      object-fit:cover;
+      border-radius:3px;
+      background:#ddd;
+    }
+
+    .welcome h3{
+      color:#8cc63f;
+      font-size:13px;
+      font-weight:900;
+      text-transform:uppercase;
+      white-space:nowrap;
+      letter-spacing:.5px;
+      margin-bottom:18px;
+    }
+
+    .welcome p{
+      color:#fff;
+      font-size:15px;
+      line-height:1.7;
+      margin-bottom:18px;
+    }
+
+    .green-link{
+      display:inline-block;
+      background:#5c9f2a;
+      color:#fff;
+      padding:11px 20px;
+      border-radius:3px;
+      font-weight:900;
+      text-transform:uppercase;
+      font-size:13px;
+    }
+
+    .info{
+      background:#ffffff;
+      padding:28px;
+      display:flex;
+      flex-direction:column;
+      border-radius:8px;
+      box-shadow:0 6px 18px rgba(0,0,0,.1);
+    }
+
+    .online{
+      background:#ffffff;
+      padding:28px;
+      display:flex;
+      flex-direction:column;
+      border-radius:8px;
+      box-shadow:0 6px 18px rgba(0,0,0,.1);
+    }
+
+    .video-box{
+      width:100%;
+      flex:1;
+      height:100%;
+      min-height:250px;
+      background:#000;
+      border-radius:6px;
+      overflow:hidden;
+    }
+
+    .video-box iframe{
+      width:100%;
+      height:100%;
+      border:none;
+      display:block;
+    }
+
+    .quick-strip{
+      background:white;
+      display:grid;
+      grid-template-columns:repeat(6,1fr);
+      padding:26px 30px;
+      box-shadow:0 -3px 12px rgba(0,0,0,.05);
+    }
+
+    .quick-item{
+      display:grid;
+      grid-template-columns:54px 1fr;
+      gap:16px;
+      align-items:center;
+      padding:0 18px;
+      border-right:1px solid #ddd;
+    }
+
+    .quick-item:last-child{
+      border-right:0;
+    }
+
+    .quick-item i{
+      font-size:38px;
+      color:#007fa0;
+    }
+
+    .quick-item h4{
+      color:#007fa0;
+      font-size:15px;
+      text-transform:uppercase;
+      margin-bottom:4px;
+    }
+
+    .quick-item p{
+      font-size:13px;
+      color:#333;
+      line-height:1.35;
+    }
+
+    .section{
+      max-width:1180px;
+      width:92%;
+      margin:auto;
+      padding:45px 0;
+    }
+
+    .portal-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+    }
+
+    .module-card{
+      background:white;
+      padding:24px;
+      border-radius:5px;
+      box-shadow:0 4px 14px rgba(0,0,0,.08);
+      border-top:5px solid var(--turquesa);
+    }
+
+    .module-card i{
+      font-size:36px;
+      color:var(--turquesa);
+      margin-bottom:12px;
+    }
+
+    .module-card h3{
+      color:#222;
+      margin-bottom:10px;
+      font-size:17px;
+      text-transform:uppercase;
+    }
+
+    .module-card p{
+      color:#666;
+      font-size:14px;
+      line-height: 1.6;
+    }
+
+    .module-card.green{
+      border-top-color:#2f8f35;
+    }
+
+    .module-card.green i{
+      color:#2f8f35;
+    }
+
+    .module-card.orange{
+      border-top-color:#f36f21;
+    }
+
+    .module-card.orange i{
+      color:#f36f21;
+    }
+
+    .footer{
+      background:linear-gradient(90deg,#007f95,#005b80);
+      color:white;
+      padding:30px;
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1.3fr 1fr 1fr;
+      gap:25px;
+      max-width:1180px;
+      margin:auto;
+      font-size:13px;
+    }
+
+    .footer p{
+      margin-bottom:8px;
+    }
+
+    .footer-social a{
+      display:inline-grid;
+      place-items:center;
+      width:34px;
+      height:34px;
+      background:#8cc63f;
+      color:white;
+      margin-right:6px;
+      font-size:17px;
+    }
+
+    .copy{
+      max-width:1180px;
+      margin:22px auto 0;
+      padding-top:16px;
+      border-top:1px solid rgba(255,255,255,.2);
+      font-size:12px;
+    }
+
+    @media(max-width:1200px){
+      .topbar{
+        flex-wrap:wrap;
+        justify-content:center;
+        padding:10px 18px;
+      }
+
+      .top-left{
+        width:100%;
+        justify-content:center;
+      }
+
+      .top-nav{
+        order:3;
+        width:100%;
+        flex-wrap:wrap;
+      }
+    }
+
+    @media(max-width:980px){
+      .mobile-menu-btn{
+        display:block;
+      }
+
+      .topbar{
+        align-items:flex-start;
+        flex-direction:column;
+        padding:12px 18px;
+      }
+
+      .top-left{
+        width:auto;
+        justify-content:flex-start;
+        padding-right:42px;
+      }
+
+      .top-nav{
+        display:none;
+        width:100%;
+        flex-direction:column;
+        align-items:flex-start;
+        gap:12px;
+        padding-top:10px;
+      }
+
+      .top-nav.active{
+        display:flex;
+      }
+
+
+      .nav-dropdown{
+        width:100%;
+        display:block;
+      }
+
+      .dropdown-toggle{
+        width:100%;
+        justify-content:space-between;
+        font-size:14px;
+        padding:2px 0;
+      }
+
+      .dropdown-menu{
+        position:static;
+        width:100%;
+        max-height:0;
+        overflow:hidden;
+        padding:0;
+        margin-top:0;
+        background:rgba(255,255,255,.97);
+        border-radius:4px;
+        box-shadow:none;
+        opacity:1;
+        visibility:visible;
+        pointer-events:none;
+        transform:none;
+        transition:max-height .3s ease, margin-top .3s ease, padding .3s ease;
+      }
+
+      .dropdown-menu::before{
+        display:none;
+      }
+
+      .nav-dropdown.open .dropdown-menu{
+        max-height:620px;
+        margin-top:10px;
+        padding:6px 0;
+        pointer-events:auto;
+        transform:none;
+      }
+
+      .dropdown-menu a{
+        color:#111;
+        padding:12px 14px;
+        font-size:14px;
+      }
+
+      .top-social{
+        display:none;
+      }
+
+      .logo-header{
+        height:105px;
+        padding:0 25px;
+      }
+
+      .logo-header img{
+        height:70px;
+      }
+
+      .hero{
+        height:380px;
+      }
+
+      .hero-content{
+        align-items:center;
+        text-align:center;
+      }
+
+      .hero-content h1{
+        font-size:clamp(18px,5vw,24px);
+        white-space:normal;
+        text-align:center;
+      }
+
+      .hero-content p{
+        font-size:15px;
+      }
+
+      .intro-row{
+        grid-template-columns:1fr;
+        gap:20px;
+        padding:20px 14px;
+      }
+
+      .welcome-grid{
+        grid-template-columns:1fr;
+      }
+
+      .quick-strip{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .quick-item{
+        border-right:0;
+        border-bottom:1px solid #ddd;
+        padding:18px;
+      }
+
+      .portal-grid{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .footer-grid{
+        grid-template-columns:1fr;
+      }
+
+      .section-heading{
+        white-space:normal;
+      }
+    }
+
+    @media(max-width:620px){
+      .top-left{
+        font-size:13px;
+      }
+
+      .top-left i{
+        font-size:18px;
+      }
+
+      .logo-header{
+        height:95px;
+        justify-content:center;
+      }
+
+      .logo-header img{
+        height:62px;
+      }
+
+      .hero{
+        height:360px;
+      }
+
+      .hero-content h1{
+        font-size:clamp(16px,6vw,22px);
+        white-space:normal;
+        text-align:center;
+      }
+
+      .hero-buttons a{
+        width:100%;
+      }
+
+      .arrow{
+        width:38px;
+        height:38px;
+        font-size:18px;
+      }
+
+      .quick-strip{
+        grid-template-columns:1fr;
+      }
+
+      .portal-grid{
+        grid-template-columns:1fr;
+      }
+
+      .section-heading{
+        font-size:22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="topbar">
+    <div class="top-left">
+      <i class="fa-solid fa-location-dot"></i>
+      <span>Atacames, Esmeraldas - Ecuador</span>
+    </div>
+
+    <button class="mobile-menu-btn" id="mobileBtn">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <nav class="top-nav" id="topNav">
+      <a href="#portal" class="btn-top portal"><i class="fa-solid fa-user"></i> Portal Ciudadano</a>
+      <a href="Alcaldia-Atacames-menu-municipio.html">Inicio</a>
+      <div class="nav-dropdown" id="municipioDropdown">
+        <button
+          class="dropdown-toggle"
+          id="municipioToggle"
+          type="button"
+          aria-haspopup="true"
+          aria-expanded="false"
+          aria-controls="municipioMenu"
+        >
+          Municipio
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+
+        <div class="dropdown-menu" id="municipioMenu" role="menu">
+          <a href="#municipio" role="menuitem">Alcalde de Atacames</a>
+          <a href="#filosofia" role="menuitem">Filosofía Institucional</a>
+          <a href="#gobierno-abierto" role="menuitem">Gobierno Abierto</a>
+          <a href="#principios-valores" role="menuitem">Principios y Valores</a>
+          <a href="#concejo-municipal" role="menuitem">Concejo Municipal</a>
+          <a href="#ordenanzas" role="menuitem">Ordenanzas y Resoluciones</a>
+          <a href="#organigrama" role="menuitem">Estructura Orgánica</a>
+          <a href="#autoridades" role="menuitem">Autoridades Municipales</a>
+          <a href="#simbolos" role="menuitem">Símbolos del Cantón</a>
+          <a href="#himno" role="menuitem">Himno de Atacames</a>
+        </div>
+      </div>
+      <a href="#gaceta">Gaceta +</a>
+      <a href="#transparencia">Transparencia +</a>
+      <a href="#convocatorias">Comunicación +</a>
+      <a href="#convocatorias">Convocatorias +</a>
+      <a href="#intranet" class="btn-top intranet"><i class="fa-solid fa-lock"></i> Intranet Municipal</a>
+    </nav>
+
+    <div class="top-social">
+      <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+      <a href="#"><i class="fa-brands fa-instagram"></i></a>
+      <a href="#"><i class="fa-brands fa-youtube"></i></a>
+    </div>
+  </header>
+
+  <section class="logo-header">
+    <img src="https://www.municipiodeatacames.gob.ec/images/Logo%20Institucional/2023/TRANSPARENTE2.png" alt="Alcaldía Atacames">
+  </section>
+
+  <section class="hero" id="inicio">
+    <div class="slide active" style="background-image:url('https://www.municipiodeatacames.gob.ec/images/banner_principal/2022/IMG_5667.JPG')"></div>
+    <div class="slide" style="background-image:url('https://www.municipiodeatacames.gob.ec/images/banner_principal/2022/IMG_5664.JPG')"></div>
+    <div class="slide" style="background-image:url('https://www.municipiodeatacames.gob.ec/images/banner_principal/2022/IMG_5670.JPG')"></div>
+
+    <button class="arrow left" id="prev"><i class="fa-solid fa-chevron-left"></i></button>
+    <button class="arrow right" id="next"><i class="fa-solid fa-chevron-right"></i></button>
+
+    <div class="hero-content">
+      <h1>ATACAMES SEGURO PRODUCTIVO Y TURISTICO.</h1>
+    </div>
+
+    <div class="dots" id="dots"></div>
+  </section>
+
+  <main class="main-content">
+
+    <section class="intro-row">
+      <article class="welcome" id="municipio">
+        <h2 class="section-heading">Bienvenidos a Atacames</h2>
+        <div class="welcome-grid">
+          <img class="mayor-photo" src="https://fidelpperez2021.github.io/Paginamunicipal.io/Captura%20de%20pantalla%202026-06-27%20170007.png" alt="Alcalde">
+          <div>
+            <p>
+              Un pedacito cielo, playa, sol, mar y arena donde el tiempo se detiene y la vida se disfruta y respira a todo pulmon.
+            </p>
+            <h3>PERÍODO 2023-2027</h3>
+            <a href="#portal" class="green-link">Conocelo</a>
+          </div>
+        </div>
+      </article>
+
+<article class="info" id="simbolos">
+
+    <h2 class="section-heading">Símbolos Patrios del antón Atacames</h2>
+
+    <div style="
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        gap:30px;
+        flex-wrap:wrap;
+        margin-top:20px;
+    ">
+
+        
+<div style="text-align:center;">
+            <img src="https://prefecturadeesmeraldas.gob.ec/wp-content/uploads/2022/08/ESCUDO_ATACAMES.png"
+                 alt="Escudo del cantón Atacames"
+                 style="width:180px;max-width:100%;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,.15);">
+            <h3 style="margin-top:15px;">Escudo de Atacames</h3>
+        </div>
+
+<div style="text-align:center;">
+            <img src="https://prefecturadeesmeraldas.gob.ec/wp-content/uploads/2022/08/Flag_of_Atacames.svg-600x400.png"
+                 alt="Bandera del cantón Atacames"
+                 style="width:220px;max-width:100%;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,.15);">
+            <h3 style="margin-top:15px;">Bandera de Atacames</h3>
+        </div>
+        
+
+    </div>
+
+    <p style="margin-top:30px;text-align:center;line-height:1.8;">
+        Los símbolos patrios del cantón Atacames representan su identidad,
+        historia, riqueza natural, cultural y el espíritu de trabajo de su gente,
+        fortaleciendo el sentido de pertenencia de todos los atacameños.
+    </p>
+
+</article>
+
+<article class="online" id="himno">
+    <h2 class="section-heading">Himno del cantón Atacames</h2>
+
+    <div class="video-box">
+        <iframe
+            width="100%"
+            height="315"
+            src="https://www.youtube.com/embed/ZKfW8HMUCBE"
+            title="Himno del cantón Atacames"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+        </iframe>
+    </div>
+</article>
+    </section>
+
+    <section class="quick-strip">
+      <div class="quick-item">
+        <i class="fa-regular fa-credit-card"></i>
+        <div>
+          <h4>Pagos con transferencias</h4>
+          <p>Impuestos, tasas y contribuciones</p>
+        </div>
+      </div>
+
+      <div class="quick-item">
+        <i class="fa-solid fa-clipboard-list"></i>
+        <div>
+          <h4>Guía de Trámites</h4>
+          <p>Permisos, patentes y certificados</p>
+        </div>
+      </div>
+
+      <div class="quick-item">
+        <i class="fa-solid fa-map-location-dot"></i>
+        <div>
+          <h4>Información de Catastros</h4>
+          <p>Geoportal y avalúos en línea</p>
+        </div>
+      </div>
+
+      <div class="quick-item">
+        <i class="fa-solid fa-bullhorn"></i>
+        <div>
+          <h4>Comunicación de agenda diaria de alcaldía</h4>
+          <p>Noticias y avisos oficiales</p>
+        </div>
+      </div>
+
+      <div class="quick-item">
+        <i class="fa-regular fa-calendar-days"></i>
+        <div>
+          <h4>Agenda social y cultural de desarrollo humano</h4>
+          <p>Eventos y actividades del cantón</p>
+        </div>
+      </div>
+
+      <div class="quick-item">
+        <i class="fa-solid fa-users"></i>
+        <div>
+          <h4>Información de Participación Ciudadana</h4>
+          <p>Presupuestos participativos y audiencias</p>
+        </div>
+      </div>
+      
+    </section>
+
+    <section class="section" id="portal">
+      <h2 class="section-heading">Portal de Información Ciudadana</h2>
+
+      <div class="portal-grid">
+        <div class="module-card green">
+          <i class="fa-solid fa-landmark"></i>
+          <h3>Municipio / Alcaldía</h3>
+          <p>• Concejo Municipal, administración 2023-2027.</p>
+          <p>• Gestion documental-ventanilla unicas.</p>
+          <p>• Secretaría General.</p>
+        </div>
+
+        <div class="module-card">
+          <i class="fa-solid fa-money-bill-transfer"></i>
+          <h3>Recaudación-Pagos</h3>
+          <p>
+            • Ventanilla del GADMA<br>
+            • Depósito / Transferencia Bancaria:<br>
+            <span style="display: block; padding-left: 10px; margin-top: 5px; color: #555;">
+              <strong>Banco:</strong> Banco Pichincha<br>
+              <strong>Cta. Corriente:</strong> 3246515804<br>
+              <strong>Nombre:</strong> GAD MUNICIPAL ATACAMES<br>
+              <strong>RUC:</strong> 0860001050001<br>
+              <strong>Sub Línea:</strong> 30200 (Efectivo)
+            </span>
+          </p>
+        </div>
+
+        <div class="module-card orange">
+          <i class="fa-solid fa-file-invoice-dollar"></i>
+          <h3>Registro de la Propiedad</h3>
+          <p>• Consulta y pago de valor de registro de vienes.</p>
+          <p>• Solicitud de certificados de gravamen.</p>
+          <p>• Inscripción de contartos resoluciones judiciales o administrativas de bienes.</p>
+        </div>
+
+        <div class="module-card orange">
+          <i class="fa-solid fa-handshake-angle"></i>
+          <h3>Cooperación internacional</h3>
+          <p>Programas, alianzas estratégicas y proyectos nacionles e internacionales de desarrollo local.</p>
+        </div>
+
+        <div class="module-card green">
+          <i class="fa-solid fa-calendar-check"></i>
+          <h3>Obras publicas</h3>
+          <p>• Ejecución de obras.</p>
+          <p>• Fiscalización de obras.</p>
+          <p>• Permisos de construcción.</p>
+          <p>• Otorgamiento de linea de fabrica.</p>
+          <p>• Control y aprobacion de proyectos de venta de propiedad horizontal.</p>
+        </div>
+
+        <div class="module-card green">
+          <i class="fa-solid fa-chart-line"></i>
+          <h3>Planificación</h3>
+          <p>• PDOT.</p>
+          <p>• indicadores POA.</p>
+          <p>• matriz de seguimiento.</p>
+          <p>• metas institucionales.</p>
+          <p>• PUGS.</p>
+          <p>• Reportes internos.</p>
+          <p>• Informes para permiso de construcción y lineas de fabrica.</p>
+          <p>• Elaboracion de estudios y proyectos de obras.</p>
+        </div>
+
+        <div class="module-card green">
+          <i class="fa-solid fa-map"></i>
+          <h3>Catastros</h3>
+          <p>• Actualizacion del catastro urbano y rual del cantón.</p>
+          <p>• Liquidación de valores para pagos de impuesto predial, tasas y contribuciones especiales.</p>
+          <p>• Elaboracion de planimetrico.</p>
+          <p>Geoportal, avalúos, consulta predial y visualización de información territorial.</p>
+        </div>
+
+        <div class="module-card">
+          <i class="fa-solid fa-umbrella-beach"></i>
+          <h3>Turismo</h3>
+          <p>• Suipervision y control de playas.</p>
+          <p>• Permisos para ejercer actividades turísticas.</p>
+          <p>• Elaboracion y manejo del catastro turistico del canton.
+          <p>• Realizacion de la agenda de eventos turisticos del canton.</p>
+          <p>• Participacion en la mesa de seguridad y planificacion de los feriados turisticos del canton.</p>
+          </p>
+        </div>
+
+        <div class="module-card green">
+          <i class="fa-solid fa-diagram-project"></i>
+          <h3>Gestión Ambiental</h3>
+          <p>• Manejo de desechos solidos y salubridad ambiental en el canton</p>
+          <p>• Preservación y recupercion ecológica cantonal (siembratom).</p>
+          <p>• Educacion ambiental.</p>
+          <p>• Control y administracion del camal municipal.</p>
+          <p>• Control y administracion del cementerio municipal.</p>
+        </div>
+
+        <div class="module-card green">
+          <i class="fa-solid fa-folder-tree"></i>
+          <h3>Gestión de riesgos</h3>
+<p>• Elaboracion de planes de contingencia.</p>
+          <p>• Respuesta inmediata ante emergencias locales.</p>
+          <p>• Elaboracion de mapas de riesgo.</p>
+          <p>• Capacitacion comunitaria con simulacros de eventos naturales.</p>
+          <p>• Coordinacion para la articulacion con el sistema nacional de gestion de riesgos de ayudas humanitrias a personas afectadas por eventos naturales.</p>
+        </div>
+
+         <div class="module-card green">
+          <i class="fa-solid fa-user-tie"></i>
+          <h3>Talento Humano</h3>
+          <p>• Gestion de nomina y control de asistencia del talento humano institucional.</p>
+          <p>• Desarrollo, capacitacion y formacion continua del talento humano institucional.</p>
+          <p>• Evaluacion del desempeño profesional del talento humano institucional.</p>
+          <p>• Creacion de clima laboral saludable y seguro en el trabajo.</p>
+          <p>• Prevencion de riesgos laborales y asistencia social.</p>
+          <p>• Aplicacion de reglamenos internos de procesos diciplinarios administrativos intitucionales.</p>
+        </div>
+
+          <div class="module-card green">
+          <i class="fa-solid fa-headset"></i>
+          <h3>Direccion financiera</h3>
+          <p>• Elaboracion del presupuesto participativo anual.</p>
+          <p>• Certificacion de patidas presupuestarias.</p>
+          <p>• Control y monitoreo del POA.</p>
+          <p>• Emision de titulos de credito institucionales.</p>
+          <p>• Control de la contabilid institucional.</p>
+          <p>• Control de la recaudacion institucional.</p>
+          <p>• Control de tesoreria institucional.</p>
+          <p>• Control de pagos a deudas institucionales.</p>
+          <p>• Control de y supervision de los fondos institucionales.</p>
+          <p>• Asesoria y control financiero institucional.</p>
+        </div>
+
+         
+        
+        <div class="module-card green">
+          <i class="fa-solid fa-envelope"></i>
+          <h3>Direccion administrativa</h3>
+          <p>• Control, custodia y gestion de bienes institucionales.</p>
+          <p>• Servicios generales.</p>
+          <p>• Compras publicas.</p>
+          <p>• Elaboracion, control y ejecucion de procesos administratvos.</p>
+          <p>• Apoyo logistico institucional.</p>
+          <p>• Servicios generales.</p>
+        </div>
+
+
+         <div class="module-card orange">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <h3>Compras Públicas</h3>
+          <p>• Planificar y elaborar el plan anual de contrataciones publicas (PAC).</p>
+          <p>• Estructurar y ejecutar los procesos de contratación publica legalmente establecidos en la Ley.</p>
+          <p>• Asesorar a la maxima autoridad y a los administradores de contrato en el cumplimiento de la normativa de contratación publica.</p>
+          <p>• Gesionar y mantener actualizados el registro y proovedores habilitados para contratar con el estado.</p>
+          <p>• Supervisar que los contratos se cumplan en los tiempos costos y especificaciones tecnicas establecidas.</p>
+        </div>
+
+        <div class="module-card green">
+          <i class="fa-solid fa-folder-tree"></i>
+          <h3>TICS y control de protccion de datos</h3>
+          <p>• Administrar los servicios de centros de datos, redes de comunicacion y brindar soporte tecnico a las diferentes dependencias del GAD.</p>
+          <p>• Desarrollar implementar y mantener sistemas informaticos el GAD en buen estado.</p>
+          <p>• Implementar sistemas de seguridad de datos y ejecutar protocolos de respaldo continuo Backup para evitar la perdida de informacion institucional.</p>
+          <p>• Administrar bases de datos y herramientos georreferenciadas vitales para la planificacion territorial.</p>
+          <p>• Supervisar el cumplimiento de la ley organica de protección de datos personales.</p>
+          <p>• Establecer normas internas sobre la recopilacion, almacenamiento y eliminacion de datos ciudadanos implementando acuerdos de confidencialidad para los funcionarios.</p>
+          <p>• Gestionar las solicitudes e acceso a la información de los ciudadanos respecto a rectificacion o eliminacion de datos personales.</p>
+          <p>• Supervisar los riesgos en el tratamiento de datos y evaluar nuevas bases de datos antes de su implementacion.</p>
+        </div>
+
+        <div class="module-card">
+          <i class="fa-solid fa-file-signature"></i>
+          <h3>Transito GADMA</h3>
+          <p>• Revisión vehicular.</p>
+          <p>• Permiso de ocupacion de vía publica.</p>
+        </div>
+
+
+
+        <div class="module-card green">
+          <i class="fa-solid fa-chart-line"></i>
+          <h3>Asesoria juridica</h3>
+          <p>• Asesoramiento preventivo y estrategico sobre consultas y emite criterios legales para alcaldes, consejales y directores departamentales.</p>
+          <p>• Representa legalmente a la institucion en procesos judiciales.</p>
+          <p>• Revisa la documentacion habilitante y elabora los contratos subidos al sistema de contratacion publica.</p>
+        </div>
+
+
+         <div class="module-card">
+          <i class="fa-solid fa-scale-balanced"></i>
+          <h3>LOTAIP</h3>
+          <p>Publicación mensual de información pública, rendición de cuentas y normativa vigente.</p>
+        </div>
+
+         
+            <div class="module-card">
+  <i class="fa-solid fa-hand-holding-dollar"></i>
+  <h3>Patente y coactivas</h3>
+  <p>• Emisión y renovación de patentes municipales.</p>
+  <p>• Cobro de obligaciones tributarias mediante procesos coactivos.</p>
+  <p>• Consulta de valores pendientes y estado de pagos.</p>
+  <p>• Gestión de convenios y facilidades de pago.</p>
+</div>
+
+           <div class="module-card">
+  <i class="fa-solid fa-file-lines"></i>
+  <h3>Rentas</h3>
+  <p>• Emisión de títulos de crédito.</p>
+  <p>• Liquidación de impuestos, tasas y contribuciones.</p>
+  <p>• Consulta del estado de cuenta tributario.</p>
+  <p>• Atención de trámites relacionados con rentas municipales.</p>
+</div>
+
+
+<div class="module-card">
+    <i class="fa-solid fa-warehouse"></i>
+    <h3>Bodega</h3>
+    <p>• Control y custodia de bienes institucionales.</p>
+    <p>• Recepción y entrega de materiales.</p>
+    <p>• Administración del inventario municipal.</p>
+    <p>• Registro y seguimiento de existencias.</p>
+</div>
+
+
+
+
+       
+      </div>
+    </section>
+
+    
+        
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer" id="contacto">
+    <div class="footer-grid">
+      <div>
+        <p><i class="fa-solid fa-phone"></i> (06) 2730-158 / 2730-207</p>
+        <p><i class="fa-solid fa-envelope"></i> alcaldia@municipiodeatacames.gob.ec</p>
+        <p><i class="fa-solid fa-location-dot"></i> Calle 10 de Agosto y 21 de Noviembre</p>
+      </div>
+
+      <div>
+        <p><strong>Portal Ciudadano e Intranet Municipal</strong></p>
+        <p>Prototipo Mobile-First para 70,000 habitantes y 600 funcionarios.</p>
+      </div>
+
+      <div>
+        <div class="footer-social">
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="copy">© 2026 Municipio de Atacames. Prototipo de portal institucional.</div>
+  </footer>
+
+  <script>
+    const mobileBtn = document.getElementById("mobileBtn");
+    const topNav = document.getElementById("topNav");
+
+    const municipioDropdown = document.getElementById("municipioDropdown");
+    const municipioToggle = document.getElementById("municipioToggle");
+
+    function closeMunicipioDropdown(){
+      municipioDropdown.classList.remove("open");
+      municipioToggle.setAttribute("aria-expanded", "false");
+    }
+
+    municipioToggle.addEventListener("click", (event) => {
+      event.stopPropagation();
+
+      const isOpen = municipioDropdown.classList.toggle("open");
+      municipioToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    municipioDropdown.addEventListener("click", (event) => {
+      event.stopPropagation();
+    });
+
+    document.addEventListener("click", closeMunicipioDropdown);
+
+    document.addEventListener("keydown", (event) => {
+      if(event.key === "Escape"){
+        closeMunicipioDropdown();
+        municipioToggle.focus();
+      }
+    });
+
+    mobileBtn.addEventListener("click", () => {
+      const menuIsOpen = topNav.classList.toggle("active");
+
+      if(!menuIsOpen){
+        closeMunicipioDropdown();
+      }
+    });
+
+    const slides = document.querySelectorAll(".slide");
+    const dotsContainer = document.getElementById("dots");
+    const nextBtn = document.getElementById("next");
+    const prevBtn = document.getElementById("prev");
+
+    let current = 0;
+    let timer;
+
+    slides.forEach((_, index) => {
+      const dot = document.createElement("button");
+      dot.className = "dot";
+      if(index === 0) dot.classList.add("active");
+
+      dot.addEventListener("click", () => {
+        showSlide(index);
+        restart();
+      });
+
+      dotsContainer.appendChild(dot);
+    });
+
+    const dots = document.querySelectorAll(".dot");
+
+    function showSlide(index){
+      slides[current].classList.remove("active");
+      dots[current].classList.remove("active");
+
+      current = index;
+
+      if(current >= slides.length) current = 0;
+      if(current < 0) current = slides.length - 1;
+
+      slides[current].classList.add("active");
+      dots[current].classList.add("active");
+    }
+
+    function nextSlide(){
+      showSlide(current + 1);
+    }
+
+    function prevSlide(){
+      showSlide(current - 1);
+    }
+
+    function start(){
+      timer = setInterval(nextSlide, 5000);
+    }
+
+    function restart(){
+      clearInterval(timer);
+      start();
+    }
+
+    nextBtn.addEventListener("click", () => {
+      nextSlide();
+      restart();
+    });
+
+    prevBtn.addEventListener("click", () => {
+      prevSlide();
+      restart();
+    });
+
+    document.querySelectorAll(".top-nav a").forEach(link => {
+      link.addEventListener("click", () => {
+        closeMunicipioDropdown();
+
+        if(window.innerWidth <= 980){
+          topNav.classList.remove("active");
+        }
+      });
+    });
+
+    window.addEventListener("resize", () => {
+      if(window.innerWidth > 980){
+        topNav.classList.remove("active");
+      }
+
+      closeMunicipioDropdown();
+    });
+
+    start();
+  </script>
+
+</body>
+</html>
