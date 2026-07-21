@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Principios y valores institucionales del Gobierno Autónomo Descentralizado Municipal de Atacames">
+  <title>Principios y Valores | Municipio de Atacames</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    :root{
+      --azul-principal:#164a7b;
+      --azul-secundario:#082b49;
+      --azul-profundo:#041221;
+      --azul-claro:#1b75bc;
+      --turquesa:#00a8a8;
+      --turquesa-claro:#20c4c2;
+      --verde:#20b946;
+      --blanco:#ffffff;
+      --gris-fondo:#f4f7fa;
+      --gris-claro:#e6edf3;
+      --gris-medio:#687782;
+      --gris-oscuro:#263238;
+      --sombra:0 16px 38px rgba(12,48,79,.14);
+      --sombra-suave:0 8px 25px rgba(0,0,0,.08);
+      --transicion:all .3s ease;
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:"Montserrat",sans-serif;color:var(--gris-oscuro);line-height:1.7;overflow-x:hidden;background:#fff}
+    body.menu-abierto{overflow:hidden}
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+    ul{list-style:none;padding-left:0;margin-bottom:0}
+    button{font-family:inherit}
+    .contenedor{width:min(1180px,calc(100% - 40px));margin:0 auto}
+    .seccion{padding:90px 0}
+    .seccion-fondo{background:var(--gris-fondo)}
+
+    .barra-superior{background:#0c385f;color:#fff;font-size:.82rem}
+    .barra-contenido{min-height:42px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .barra-grupo{display:flex;align-items:center;gap:22px}
+    .barra-item{display:flex;align-items:center;gap:8px}
+    .barra-item i{color:var(--turquesa-claro)}
+    .barra-superior a{transition:var(--transicion)}
+    .barra-superior a:hover{color:var(--turquesa-claro)}
+
+    .encabezado{position:absolute;top:42px;left:0;width:100%;z-index:1000;background:linear-gradient(90deg,#041221 0%,#082b49 55%,#0b3155 100%);border-bottom:1px solid rgba(255,255,255,.12);transition:var(--transicion)}
+    .encabezado.fijo{position:fixed;top:0;backdrop-filter:blur(14px);box-shadow:0 8px 25px rgba(0,0,0,.18)}
+    .navegacion{min-height:118px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .logo{display:flex;align-items:center;gap:20px;color:#fff;flex-shrink:0}
+    .logo img{width:240px;height:auto}
+    .logo-texto{line-height:1.25}
+    .logo-texto strong{display:block;font-size:1.3rem;font-weight:800}
+    .logo-texto span{font-size:.72rem;opacity:.88}
+    .menu-principal{display:flex;align-items:center;gap:3px}
+    .menu-principal>li{position:relative}
+    .menu-principal>li>a{display:flex;align-items:center;gap:7px;padding:13px 11px;color:#fff;font-size:.83rem;font-weight:700;border-radius:8px;transition:var(--transicion)}
+    .menu-principal>li>a:hover,.menu-principal>li>a.activo{background:rgba(255,255,255,.12);color:var(--turquesa-claro)}
+    .submenu{position:absolute;top:calc(100% + 12px);left:0;min-width:245px;padding:10px;background:#fff;border-radius:12px;box-shadow:var(--sombra);opacity:0;visibility:hidden;transform:translateY(10px);transition:var(--transicion)}
+    .menu-principal li:hover .submenu{opacity:1;visibility:visible;transform:translateY(0)}
+    .submenu a{display:block;padding:11px 13px;border-radius:8px;color:var(--gris-oscuro);font-size:.84rem;font-weight:600;transition:var(--transicion)}
+    .submenu a:hover{background:var(--gris-fondo);color:var(--azul-claro);padding-left:18px}
+    .boton-menu{display:none;width:45px;height:45px;align-items:center;justify-content:center;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.55);border-radius:10px;font-size:1.25rem}
+
+    .banner-interno{min-height:540px;position:relative;display:flex;align-items:flex-end;color:#fff;background:linear-gradient(90deg,rgba(4,18,33,.93),rgba(8,43,73,.7)),url("img/atacames-principios-valores.jpg") center/cover no-repeat}
+    .banner-interno::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:8px;background:linear-gradient(90deg,var(--azul-claro),var(--turquesa),var(--verde))}
+    .banner-contenido{position:relative;z-index:2;padding:235px 0 72px}
+    .banner-etiqueta{display:inline-flex;align-items:center;gap:10px;margin-bottom:18px;padding:9px 16px;border:1px solid rgba(255,255,255,.25);border-radius:50px;background:rgba(255,255,255,.1);color:var(--turquesa-claro);font-size:.76rem;font-weight:800;letter-spacing:1.3px;text-transform:uppercase;backdrop-filter:blur(8px)}
+    .banner-interno h1{margin-bottom:14px;font-family:"Playfair Display",serif;font-size:clamp(2.8rem,6vw,5rem);line-height:1.05;text-shadow:0 6px 20px rgba(0,0,0,.3)}
+    .banner-interno p{max-width:760px;color:rgba(255,255,255,.86);font-size:1.02rem}
+
+    .breadcrumb-wrapper{padding:25px 0;border-bottom:1px solid var(--gris-claro)}
+    .breadcrumb-custom{display:inline-flex;align-items:center;flex-wrap:wrap;gap:10px;padding:13px 18px;background:var(--gris-fondo);border-radius:9px;font-size:.91rem}
+    .breadcrumb-custom a,.breadcrumb-custom i{color:var(--azul-claro)}
+    .breadcrumb-custom a{font-weight:700}
+    .breadcrumb-custom span{color:var(--gris-medio)}
+
+    .encabezado-seccion{max-width:800px;margin:0 auto 55px;text-align:center}
+    .subtitulo-seccion{display:inline-block;margin-bottom:10px;color:var(--turquesa);font-size:.81rem;font-weight:800;letter-spacing:2px;text-transform:uppercase}
+    .titulo-seccion{margin-bottom:18px;color:var(--azul-principal);font-family:"Playfair Display",serif;font-size:clamp(2rem,4vw,3rem);line-height:1.15}
+    .titulo-seccion::after{content:"";display:block;width:86px;height:4px;margin:18px auto 0;border-radius:4px;background:linear-gradient(90deg,var(--azul-claro),var(--turquesa))}
+    .encabezado-seccion p{color:var(--gris-medio)}
+
+    .principios-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+    .tarjeta-principio{min-height:285px;padding:30px;background:#fff;border:1px solid var(--gris-claro);border-radius:18px;box-shadow:var(--sombra-suave);transition:var(--transicion)}
+    .tarjeta-principio:hover{transform:translateY(-8px);box-shadow:var(--sombra)}
+    .principio-icono{width:66px;height:66px;display:flex;align-items:center;justify-content:center;margin-bottom:22px;color:#fff;border-radius:17px;background:linear-gradient(135deg,var(--azul-principal),var(--turquesa));font-size:1.7rem}
+    .tarjeta-principio h3{color:var(--azul-principal);margin-bottom:12px;font-size:1.1rem}
+    .tarjeta-principio p{color:var(--gris-medio);font-size:.88rem}
+
+    .valores-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .tarjeta-valor{padding:30px;background:#fff;border-radius:16px;border-bottom:4px solid var(--turquesa);box-shadow:var(--sombra-suave);transition:var(--transicion)}
+    .tarjeta-valor:hover{transform:translateY(-7px);box-shadow:var(--sombra)}
+    .tarjeta-valor i{width:58px;height:58px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;color:#fff;border-radius:15px;background:linear-gradient(135deg,var(--azul-principal),var(--turquesa));font-size:1.45rem}
+    .tarjeta-valor h3{margin-bottom:10px;color:var(--azul-principal)}
+    .tarjeta-valor p{color:var(--gris-medio);font-size:.88rem}
+
+    .compromiso{display:grid;grid-template-columns:130px 1fr;gap:35px;padding:50px;background:linear-gradient(135deg,var(--azul-secundario),var(--azul-principal));color:#fff;border-radius:22px;box-shadow:var(--sombra)}
+    .compromiso-icono{width:110px;height:110px;display:flex;align-items:center;justify-content:center;background:var(--turquesa);border-radius:25px;font-size:3rem}
+    .compromiso h2{font-family:"Playfair Display",serif;font-size:clamp(2rem,4vw,3rem);margin-bottom:17px}
+    .compromiso p{color:rgba(255,255,255,.82);margin-bottom:23px}
+    .compromiso ul{display:grid;gap:11px}
+    .compromiso li{display:flex;gap:10px;align-items:flex-start}
+    .compromiso li i{color:var(--turquesa-claro);margin-top:5px}
+
+    .pie{background:#072844;color:#fff}
+    .pie-principal{padding:70px 0 45px}
+    .pie-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:45px}
+    .pie-logo img{width:190px;margin-bottom:20px}
+    .pie-descripcion{color:rgba(255,255,255,.68);font-size:.85rem}
+    .pie h3{margin-bottom:22px}
+    .pie-enlaces,.pie-contacto{display:grid;gap:11px}
+    .pie-enlaces a,.pie-contacto li{color:rgba(255,255,255,.72);font-size:.84rem}
+    .pie-enlaces a:hover{color:var(--turquesa-claro);padding-left:6px}
+    .pie-contacto li{display:flex;gap:10px}
+    .pie-contacto i{color:var(--turquesa-claro);margin-top:4px}
+    .pie-inferior{padding:22px 0;border-top:1px solid rgba(255,255,255,.1)}
+    .pie-inferior-contenido{display:flex;justify-content:space-between;gap:20px;color:rgba(255,255,255,.62);font-size:.78rem}
+
+    .boton-arriba,.boton-accesibilidad{position:fixed;z-index:900;border:none;color:#fff;box-shadow:var(--sombra)}
+    .boton-arriba{right:22px;bottom:22px;width:48px;height:48px;border-radius:10px;background:var(--azul-claro);opacity:0;visibility:hidden;transform:translateY(15px);transition:var(--transicion)}
+    .boton-arriba.visible{opacity:1;visibility:visible;transform:translateY(0)}
+    .boton-accesibilidad{left:0;top:55%;width:54px;height:60px;border-radius:0 8px 8px 0;background:var(--azul-principal);font-size:1.45rem}
+
+    .revelar{opacity:0;transform:translateY(35px);transition:opacity .75s ease,transform .75s ease}
+    .revelar.visible{opacity:1;transform:translateY(0)}
+
+    body.alto-contraste{--azul-principal:#000;--azul-secundario:#000;--azul-claro:#ffd900;--turquesa:#ffd900;--turquesa-claro:#ffff00;--gris-fondo:#111;--gris-claro:#444;--gris-medio:#fff;--gris-oscuro:#fff;background:#000;color:#fff}
+
+    @media(max-width:1200px){
+      .logo img{width:205px}
+      .logo-texto{display:none}
+      .menu-principal>li>a{font-size:.76rem;padding:11px 8px}
+      .principios-grid{grid-template-columns:repeat(2,1fr)}
+    }
+
+    @media(max-width:980px){
+      .barra-superior{display:none}
+      .encabezado{top:0}
+      .navegacion{min-height:88px}
+      .logo img{width:185px}
+      .boton-menu{display:flex}
+      .menu-principal{position:fixed;top:0;right:-100%;width:min(380px,88%);height:100vh;padding:95px 25px 35px;display:block;overflow-y:auto;background:var(--azul-secundario);box-shadow:-12px 0 30px rgba(0,0,0,.25);transition:right .35s ease}
+      .menu-principal.abierto{right:0}
+      .menu-principal>li>a{justify-content:space-between;padding:14px;font-size:.92rem}
+      .submenu{position:static;display:none;min-width:auto;margin:4px 0 12px 15px;background:rgba(255,255,255,.07);box-shadow:none;opacity:1;visibility:visible;transform:none}
+      .submenu.activo{display:block}
+      .submenu a{color:rgba(255,255,255,.82)}
+      .valores-grid{grid-template-columns:repeat(2,1fr)}
+      .pie-grid{grid-template-columns:repeat(2,1fr)}
+    }
+
+    @media(max-width:700px){
+      .contenedor{width:min(100% - 28px,1180px)}
+      .seccion{padding:70px 0}
+      .logo img{width:160px}
+      .banner-interno{min-height:470px;text-align:center}
+      .banner-contenido{padding:170px 0 55px}
+      .principios-grid,.valores-grid{grid-template-columns:1fr}
+      .compromiso{grid-template-columns:1fr;padding:35px 24px;text-align:center}
+      .compromiso-icono{margin:auto}
+      .compromiso li{text-align:left}
+      .pie-grid{grid-template-columns:1fr}
+      .pie-inferior-contenido{flex-direction:column;text-align:center}
+      .boton-accesibilidad{top:auto;bottom:85px;width:45px;height:50px}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="barra-superior">
+    <div class="contenedor barra-contenido">
+      <div class="barra-grupo">
+        <div class="barra-item"><i class="fa-solid fa-location-dot"></i><span>Atacames, Esmeraldas, Ecuador</span></div>
+        <div class="barra-item"><i class="fa-solid fa-phone"></i><span>(06) 2730-000</span></div>
+      </div>
+      <div class="barra-grupo">
+        <a href="#">Mapa del sitio</a>
+        <a href="#">Correo institucional</a>
+        <a href="#contacto">Contáctenos</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="encabezado" id="encabezado">
+    <div class="contenedor navegacion">
+      <a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Alcaldia-Atacames-menu-municipio.html" class="logo">
+        <img src="https://www.municipiodeatacames.gob.ec/images/Logo%20Institucional/2023/TRANSPARENTE2.png" alt="Municipio de Atacames">
+        <div class="logo-texto">
+          <strong>Municipio de Atacames</strong>
+          <span>Gobierno Autónomo Descentralizado Municipal</span>
+        </div>
+      </a>
+
+      <button class="boton-menu" id="botonMenu" aria-label="Abrir menú" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+
+      <nav aria-label="Navegación principal">
+        <ul class="menu-principal" id="menuPrincipal">
+          <li><a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Alcaldia-Atacames-menu-municipio.html">Inicio</a></li>
+          <li>
+            <a href="#" class="enlace-submenu activo">Nuestra Institución <i class="fa-solid fa-chevron-down"></i></a>
+            <ul class="submenu">
+              <li><a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Alcalde.html">Alcalde</a></li>
+              <li><a href="vicealcaldesa.html">Vicealcaldesa</a></li>
+              <li><a href="filosofia-institucional.html">Filosofía Institucional</a></li>
+              <li><a href="principios-valores.html">Principios y valores</a></li>
+              <li><a href="#">Concejo Municipal</a></li>
+              <li><a href="#">Autoridades</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" class="enlace-submenu">Servicios <i class="fa-solid fa-chevron-down"></i></a>
+            <ul class="submenu">
+              <li><a href="#">Trámites municipales</a></li>
+              <li><a href="#">Pago de impuestos</a></li>
+              <li><a href="#">Catastro</a></li>
+              <li><a href="#">Servicios en línea</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Noticias</a></li>
+          <li><a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Gobierno-abierto.html">Gobierno Abierto</a></li>
+          <li><a href="#">Rendición de cuentas</a></li>
+          <li>
+            <a href="#" class="enlace-submenu">Transparencia <i class="fa-solid fa-chevron-down"></i></a>
+            <ul class="submenu">
+              <li><a href="#">LOTAIP</a></li>
+              <li><a href="#">Contratación pública</a></li>
+              <li><a href="#">Presupuesto institucional</a></li>
+            </ul>
+          </li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="banner-interno">
+      <div class="contenedor banner-contenido">
+        <div class="banner-etiqueta"><i class="fa-solid fa-award"></i> Identidad y cultura institucional</div>
+        <h1>Principios y Valores</h1>
+        <p>Lineamientos éticos y principios institucionales que orientan la gestión, el servicio público y la relación del Municipio de Atacames con la ciudadanía.</p>
+      </div>
+    </section>
+
+    <div class="breadcrumb-wrapper">
+      <div class="contenedor">
+        <div class="breadcrumb-custom">
+          <a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Alcaldia-Atacames-menu-municipio.html"><i class="fa-solid fa-house"></i> Inicio</a>
+          <i class="fa-solid fa-chevron-right"></i>
+          <span>Principios y valores</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="seccion" id="principios">
+      <div class="contenedor">
+        <div class="encabezado-seccion revelar">
+          <span class="subtitulo-seccion">Identidad institucional</span>
+          <h2 class="titulo-seccion">Principios institucionales</h2>
+          <p>Lineamientos que orientan la gestión pública, la toma de decisiones y el comportamiento institucional del Municipio de Atacames.</p>
+        </div>
+
+        <div class="principios-grid">
+          <article class="tarjeta-principio revelar"><div class="principio-icono"><i class="fa-solid fa-building-columns"></i></div><h3>Autonomía</h3><p>El Municipio ejercerá responsablemente sus competencias y atribuciones, en beneficio de los habitantes del cantón Atacames.</p></article>
+          <article class="tarjeta-principio revelar"><div class="principio-icono"><i class="fa-solid fa-scale-balanced"></i></div><h3>Legalidad</h3><p>Todas las actuaciones institucionales se desarrollarán conforme al ordenamiento jurídico vigente.</p></article>
+          <article class="tarjeta-principio revelar"><div class="principio-icono"><i class="fa-solid fa-users"></i></div><h3>Participación ciudadana</h3><p>Se promoverá la intervención activa de la ciudadanía en la planificación, ejecución y evaluación de la gestión pública.</p></article>
+          <article class="tarjeta-principio revelar"><div class="principio-icono"><i class="fa-solid fa-eye"></i></div><h3>Transparencia</h3><p>La información pública será accesible, clara, oportuna y comprensible para toda la ciudadanía.</p></article>
+          <article class="tarjeta-principio revelar"><div class="principio-icono"><i class="fa-solid fa-scale-unbalanced-flip"></i></div><h3>Equidad</h3><p>La administración municipal promoverá igualdad de oportunidades, inclusión y atención sin discriminación.</p></article>
+          <article class="tarjeta-principio revelar"><div class="principio-icono"><i class="fa-solid fa-shield-halved"></i></div><h3>Responsabilidad</h3><p>Las decisiones institucionales se asumirán con compromiso, eficiencia y respeto por los recursos públicos.</p></article>
+          <article class="tarjeta-principio revelar"><div class="principio-icono"><i class="fa-solid fa-leaf"></i></div><h3>Sostenibilidad</h3><p>La gestión municipal protegerá el ambiente y promoverá el desarrollo equilibrado del territorio.</p></article>
+          <article class="tarjeta-principio revelar"><div class="principio-icono"><i class="fa-solid fa-bolt"></i></div><h3>Eficiencia</h3><p>Los servicios y procesos municipales buscarán resultados oportunos, útiles y de calidad para la población.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion seccion-fondo" id="valores">
+      <div class="contenedor">
+        <div class="encabezado-seccion revelar">
+          <span class="subtitulo-seccion">Cultura organizacional</span>
+          <h2 class="titulo-seccion">Valores institucionales</h2>
+          <p>Valores que fortalecen el servicio público, la convivencia institucional y la relación del Municipio con la ciudadanía.</p>
+        </div>
+
+        <div class="valores-grid">
+          <article class="tarjeta-valor revelar"><i class="fa-solid fa-hand-holding-heart"></i><h3>Vocación de servicio</h3><p>Atención respetuosa, eficiente y orientada a las necesidades de la ciudadanía.</p></article>
+          <article class="tarjeta-valor revelar"><i class="fa-solid fa-shield-heart"></i><h3>Honestidad</h3><p>Actuación íntegra y responsable en el manejo de los recursos públicos.</p></article>
+          <article class="tarjeta-valor revelar"><i class="fa-solid fa-handshake"></i><h3>Compromiso</h3><p>Responsabilidad permanente con el desarrollo integral del cantón.</p></article>
+          <article class="tarjeta-valor revelar"><i class="fa-solid fa-people-group"></i><h3>Trabajo en equipo</h3><p>Coordinación y cooperación para alcanzar los objetivos institucionales.</p></article>
+          <article class="tarjeta-valor revelar"><i class="fa-solid fa-heart"></i><h3>Respeto</h3><p>Reconocimiento de la dignidad, diversidad y derechos de cada persona.</p></article>
+          <article class="tarjeta-valor revelar"><i class="fa-solid fa-lightbulb"></i><h3>Innovación</h3><p>Búsqueda constante de soluciones modernas para mejorar los servicios.</p></article>
+          <article class="tarjeta-valor revelar"><i class="fa-solid fa-hands-holding-circle"></i><h3>Solidaridad</h3><p>Apoyo y cooperación con los sectores y comunidades que más lo necesitan.</p></article>
+          <article class="tarjeta-valor revelar"><i class="fa-solid fa-user-check"></i><h3>Ética</h3><p>Conducta profesional basada en principios, integridad y responsabilidad.</p></article>
+          <article class="tarjeta-valor revelar"><i class="fa-solid fa-face-smile"></i><h3>Empatía</h3><p>Comprensión y atención sensible a las necesidades de la población.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion">
+      <div class="contenedor">
+        <div class="compromiso revelar">
+          <div class="compromiso-icono"><i class="fa-solid fa-medal"></i></div>
+          <div>
+            <span class="subtitulo-seccion">Servicio público responsable</span>
+            <h2>Compromiso institucional</h2>
+            <p>El Gobierno Autónomo Descentralizado Municipal de Atacames orienta su gestión hacia una administración transparente, eficiente, cercana y comprometida con el bienestar de la ciudadanía.</p>
+            <ul>
+              <li><i class="fa-solid fa-check"></i><span>Actuar con honestidad y responsabilidad en cada proceso.</span></li>
+              <li><i class="fa-solid fa-check"></i><span>Brindar servicios municipales con calidad y calidez.</span></li>
+              <li><i class="fa-solid fa-check"></i><span>Promover el respeto, la participación y la inclusión.</span></li>
+              <li><i class="fa-solid fa-check"></i><span>Proteger los recursos públicos y el patrimonio del cantón.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie" id="contacto">
+    <div class="pie-principal">
+      <div class="contenedor pie-grid">
+        <div>
+          <div class="pie-logo"><img src="https://www.municipiodeatacames.gob.ec/images/Logo%20Institucional/2023/TRANSPARENTE2.png" alt="Municipio de Atacames"></div>
+          <p class="pie-descripcion">Portal institucional del Gobierno Autónomo Descentralizado Municipal del cantón Atacames, provincia de Esmeraldas.</p>
+        </div>
+        <div>
+          <h3>Enlaces rápidos</h3>
+          <ul class="pie-enlaces">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="#principios">Principios</a></li>
+            <li><a href="#valores">Valores</a></li>
+            <li><a href="filosofia-institucional.html">Filosofía institucional</a></li>
+            <li><a href="gobierno-abierto.html">Gobierno abierto</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Institución</h3>
+          <ul class="pie-enlaces">
+            <li><a href="alcalde.html">Alcalde</a></li>
+            <li><a href="vicealcaldesa.html">Vicealcaldesa</a></li>
+            <li><a href="#">Concejo Municipal</a></li>
+            <li><a href="#">Autoridades</a></li>
+            <li><a href="#">Transparencia</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Contáctenos</h3>
+          <ul class="pie-contacto">
+            <li><i class="fa-solid fa-location-dot"></i><span>Atacames, Esmeraldas, Ecuador</span></li>
+            <li><i class="fa-solid fa-phone"></i><span>(06) 2730-000</span></li>
+            <li><i class="fa-solid fa-envelope"></i><span>info@municipiodeatacames.gob.ec</span></li>
+            <li><i class="fa-solid fa-clock"></i><span>Lunes a viernes: 08:00–17:00</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="pie-inferior">
+      <div class="contenedor pie-inferior-contenido">
+        <p>© <span id="anioActual"></span> GAD Municipal de Atacames. Todos los derechos reservados.</p>
+        <p>Dirección de Tecnologías de la Información</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="boton-accesibilidad" id="botonAccesibilidad" aria-label="Activar alto contraste" title="Activar alto contraste"><i class="fa-solid fa-universal-access"></i></button>
+  <button class="boton-arriba" id="botonArriba" aria-label="Volver arriba"><i class="fa-solid fa-chevron-up"></i></button>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    "use strict";
+
+    const encabezado=document.getElementById("encabezado");
+    const botonMenu=document.getElementById("botonMenu");
+    const menuPrincipal=document.getElementById("menuPrincipal");
+    const botonArriba=document.getElementById("botonArriba");
+    const botonAccesibilidad=document.getElementById("botonAccesibilidad");
+    const enlacesSubmenu=document.querySelectorAll(".enlace-submenu");
+    const elementosRevelar=document.querySelectorAll(".revelar");
+
+    document.getElementById("anioActual").textContent=new Date().getFullYear();
+
+    function alternarMenu(){
+      const abierto=menuPrincipal.classList.toggle("abierto");
+      document.body.classList.toggle("menu-abierto",abierto);
+      botonMenu.setAttribute("aria-expanded",String(abierto));
+      botonMenu.innerHTML=abierto?'<i class="fa-solid fa-xmark"></i>':'<i class="fa-solid fa-bars"></i>';
+    }
+
+    function cerrarMenu(){
+      menuPrincipal.classList.remove("abierto");
+      document.body.classList.remove("menu-abierto");
+      botonMenu.setAttribute("aria-expanded","false");
+      botonMenu.innerHTML='<i class="fa-solid fa-bars"></i>';
+    }
+
+    botonMenu.addEventListener("click",alternarMenu);
+
+    enlacesSubmenu.forEach((enlace)=>{
+      enlace.addEventListener("click",(evento)=>{
+        if(window.innerWidth<=980){
+          evento.preventDefault();
+          const submenu=enlace.nextElementSibling;
+          submenu.classList.toggle("activo");
+          enlace.querySelector("i").className=submenu.classList.contains("activo")?"fa-solid fa-chevron-up":"fa-solid fa-chevron-down";
+        }
+      });
+    });
+
+    menuPrincipal.querySelectorAll("a").forEach((enlace)=>{
+      enlace.addEventListener("click",()=>{
+        if(window.innerWidth<=980&&!enlace.classList.contains("enlace-submenu")){
+          cerrarMenu();
+        }
+      });
+    });
+
+    function controlarScroll(){
+      encabezado.classList.toggle("fijo",window.scrollY>90);
+      botonArriba.classList.toggle("visible",window.scrollY>450);
+    }
+
+    window.addEventListener("scroll",controlarScroll);
+    controlarScroll();
+
+    botonArriba.addEventListener("click",()=>{
+      window.scrollTo({top:0,behavior:"smooth"});
+    });
+
+    const observador=new IntersectionObserver((entradas,observer)=>{
+      entradas.forEach((entrada)=>{
+        if(entrada.isIntersecting){
+          entrada.target.classList.add("visible");
+          observer.unobserve(entrada.target);
+        }
+      });
+    },{threshold:.12,rootMargin:"0px 0px -50px 0px"});
+
+    elementosRevelar.forEach((elemento)=>observador.observe(elemento));
+
+    botonAccesibilidad.addEventListener("click",()=>{
+      const activo=document.body.classList.toggle("alto-contraste");
+      botonAccesibilidad.title=activo?"Desactivar alto contraste":"Activar alto contraste";
+      botonAccesibilidad.setAttribute("aria-label",activo?"Desactivar alto contraste":"Activar alto contraste");
+    });
+
+    window.addEventListener("resize",()=>{
+      if(window.innerWidth>980){
+        cerrarMenu();
+        document.querySelectorAll(".submenu").forEach((submenu)=>submenu.classList.remove("activo"));
+        enlacesSubmenu.forEach((enlace)=>{
+          enlace.querySelector("i").className="fa-solid fa-chevron-down";
+        });
+      }
+    });
+  </script>
+</body>
+</html>
