@@ -6,6 +6,7 @@
   <title>Alcaldía de Atacames - Portal Municipal</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <style>
     :root{
@@ -856,6 +857,379 @@
         font-size:22px;
       }
     }
+
+    /* =========================================================
+       TRES CARRUSELES ANTES DEL PORTAL DE INFORMACIÓN CIUDADANA
+       ========================================================= */
+    .featured-carousels{
+      max-width:1180px;
+      width:92%;
+      margin:0 auto;
+      padding:42px 0 12px;
+    }
+
+    .featured-carousels-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:22px;
+    }
+
+    .featured-card{
+      min-width:0;
+      overflow:hidden;
+      background:#fff;
+      border-radius:8px;
+      box-shadow:0 8px 22px rgba(0,0,0,.13);
+    }
+
+    .featured-card.green{ border-top:5px solid #2f8f35; }
+    .featured-card.blue{ border-top:5px solid #00a0b5; }
+    .featured-card.orange{ border-top:5px solid #f36f21; }
+
+    .featured-card-header{
+      min-height:58px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:12px 18px;
+      background:#fff;
+    }
+
+    .featured-card-header i{
+      flex:0 0 auto;
+      font-size:25px;
+    }
+
+    .featured-card.green .featured-card-header i{ color:#2f8f35; }
+    .featured-card.blue .featured-card-header i{ color:#00a0b5; }
+    .featured-card.orange .featured-card-header i{ color:#f36f21; }
+
+    .featured-card-header h3{
+      margin:0;
+      color:#171717;
+      font-size:19px;
+      line-height:1.15;
+      font-weight:900;
+      text-transform:uppercase;
+    }
+
+    .mini-carousel{
+      position:relative;
+      height:260px;
+      overflow:hidden;
+      background:#161616;
+    }
+
+    .mini-carousel-track{
+      position:relative;
+      width:100%;
+      height:100%;
+    }
+
+    .mini-carousel-slide{
+      position:absolute;
+      inset:0;
+      opacity:0;
+      visibility:hidden;
+      transform:scale(1.04);
+      transition:opacity .55s ease, visibility .55s ease, transform 4s ease;
+    }
+
+    .mini-carousel-slide.active{
+      opacity:1;
+      visibility:visible;
+      transform:scale(1);
+    }
+
+    .mini-carousel-slide img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .mini-carousel-slide::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to bottom, transparent 40%, rgba(0,0,0,.82) 100%);
+      pointer-events:none;
+    }
+
+    .mini-carousel-caption{
+      position:absolute;
+      left:16px;
+      right:16px;
+      bottom:16px;
+      z-index:2;
+      color:#fff;
+      font-size:14px;
+      font-weight:900;
+      line-height:1.35;
+      text-shadow:0 2px 5px rgba(0,0,0,.85);
+    }
+
+    .mini-carousel-btn{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      z-index:4;
+      width:36px;
+      height:36px;
+      border:0;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      color:#fff;
+      background:rgba(30,30,30,.65);
+      cursor:pointer;
+      transition:background .2s ease, transform .2s ease;
+    }
+
+    .mini-carousel-btn:hover{
+      background:var(--turquesa);
+      transform:translateY(-50%) scale(1.06);
+    }
+
+    .mini-carousel-btn.prev{ left:10px; }
+    .mini-carousel-btn.next{ right:10px; }
+
+    .mini-carousel-dots{
+      position:absolute;
+      left:50%;
+      bottom:8px;
+      transform:translateX(-50%);
+      z-index:5;
+      display:flex;
+      gap:6px;
+    }
+
+    .mini-carousel-dot{
+      width:7px;
+      height:7px;
+      padding:0;
+      border:0;
+      border-radius:50%;
+      background:rgba(255,255,255,.55);
+      cursor:pointer;
+    }
+
+    .mini-carousel-dot.active{
+      background:#fff;
+      transform:scale(1.25);
+    }
+
+    @media(max-width:980px){
+      .featured-carousels-grid{
+        grid-template-columns:1fr;
+      }
+
+      .mini-carousel{
+        height:310px;
+      }
+    }
+
+    @media(max-width:620px){
+      .featured-carousels{
+        width:94%;
+        padding-top:28px;
+      }
+
+      .featured-card-header h3{
+        font-size:17px;
+      }
+
+      .mini-carousel{
+        height:235px;
+      }
+    }
+
+
+    /* =========================================================
+       EXPANSIÓN DE CARRUSELES CON BOOTSTRAP MODAL
+       ========================================================= */
+    .featured-card{
+      cursor:pointer;
+      transition:transform .3s ease, box-shadow .3s ease;
+    }
+
+    .featured-card:hover{
+      transform:translateY(-7px);
+      box-shadow:0 18px 38px rgba(0,0,0,.22);
+    }
+
+    .featured-card:focus-visible{
+      outline:4px solid rgba(0,157,177,.28);
+      outline-offset:4px;
+    }
+
+    .featured-card .mini-carousel-btn,
+    .featured-card .mini-carousel-dot{
+      cursor:pointer;
+    }
+
+    .carousel-expand-modal .modal-dialog{
+      max-width:min(94vw, 1400px);
+      margin:2vh auto;
+    }
+
+    .carousel-expand-modal .modal-content{
+      border:0;
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow:0 25px 70px rgba(0,0,0,.42);
+    }
+
+    .carousel-expand-modal .modal-header{
+      border-bottom:0;
+      padding:18px 24px;
+      background:#fff;
+    }
+
+    .carousel-expand-modal .modal-title{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin:0;
+      color:#161616;
+      font-size:clamp(20px,2.2vw,30px);
+      font-weight:900;
+      text-transform:uppercase;
+    }
+
+    .carousel-expand-modal .modal-title i{
+      font-size:1em;
+    }
+
+    .carousel-expand-modal .modal-body{
+      padding:0;
+      background:#111;
+    }
+
+    .carousel-expand-modal .expanded-carousel{
+      position:relative;
+      height:min(76vh, 760px);
+      overflow:hidden;
+      background:#111;
+    }
+
+    .carousel-expand-modal .expanded-slide{
+      position:absolute;
+      inset:0;
+      opacity:0;
+      visibility:hidden;
+      transform:scale(1.03);
+      transition:opacity .55s ease, visibility .55s ease, transform 4s ease;
+    }
+
+    .carousel-expand-modal .expanded-slide.active{
+      opacity:1;
+      visibility:visible;
+      transform:scale(1);
+    }
+
+    .carousel-expand-modal .expanded-slide img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .carousel-expand-modal .expanded-slide::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to bottom, transparent 38%, rgba(0,0,0,.88) 100%);
+      pointer-events:none;
+    }
+
+    .carousel-expand-modal .expanded-caption{
+      position:absolute;
+      left:clamp(22px,4vw,60px);
+      right:clamp(22px,4vw,60px);
+      bottom:clamp(38px,7vh,78px);
+      z-index:3;
+      color:#fff;
+      font-size:clamp(20px,2.4vw,36px);
+      line-height:1.2;
+      font-weight:900;
+      text-shadow:0 3px 10px rgba(0,0,0,.9);
+    }
+
+    .carousel-expand-modal .expanded-control{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      z-index:4;
+      width:52px;
+      height:52px;
+      border:0;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      color:#fff;
+      background:rgba(20,20,20,.68);
+      font-size:22px;
+      transition:background .2s ease, transform .2s ease;
+    }
+
+    .carousel-expand-modal .expanded-control:hover{
+      background:var(--turquesa);
+      transform:translateY(-50%) scale(1.07);
+    }
+
+    .carousel-expand-modal .expanded-control.prev{
+      left:18px;
+    }
+
+    .carousel-expand-modal .expanded-control.next{
+      right:18px;
+    }
+
+    .carousel-expand-modal .expanded-dots{
+      position:absolute;
+      left:50%;
+      bottom:20px;
+      transform:translateX(-50%);
+      z-index:5;
+      display:flex;
+      gap:9px;
+    }
+
+    .carousel-expand-modal .expanded-dot{
+      width:10px;
+      height:10px;
+      padding:0;
+      border:0;
+      border-radius:50%;
+      background:rgba(255,255,255,.52);
+    }
+
+    .carousel-expand-modal .expanded-dot.active{
+      background:#fff;
+      transform:scale(1.25);
+    }
+
+    @media(max-width:620px){
+      .carousel-expand-modal .modal-dialog{
+        max-width:100%;
+        margin:0;
+        min-height:100%;
+      }
+
+      .carousel-expand-modal .modal-content{
+        min-height:100vh;
+        border-radius:0;
+      }
+
+      .carousel-expand-modal .expanded-carousel{
+        height:calc(100vh - 74px);
+      }
+
+      .carousel-expand-modal .expanded-control{
+        width:42px;
+        height:42px;
+      }
+    }
+
   </style>
 </head>
 
@@ -889,9 +1263,9 @@
 
         <div class="dropdown-menu" id="municipioMenu" role="menu">
           <a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Alcalde.html" role="menuitem">Alcalde de Atacames</a>
-          <a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Filosof%C3%ADa-institucional.html" role="menuitem">Filosofía Institucional</a>
-          <a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Gobierno-abierto.html" role="menuitem">Gobierno Abierto</a>
-          <a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Principios-institucionales.html" role="menuitem">Principios y Valores</a>
+          <a href="#filosofia" role="menuitem">Filosofía Institucional</a>
+          <a href="#gobierno-abierto" role="menuitem">Gobierno Abierto</a>
+          <a href="#principios-valores" role="menuitem">Principios y Valores</a>
           <a href="#concejo-municipal" role="menuitem">Concejo Municipal</a>
           <a href="#ordenanzas" role="menuitem">Ordenanzas y Resoluciones</a>
           <a href="#organigrama" role="menuitem">Estructura Orgánica</a>
@@ -1058,6 +1432,159 @@
       </div>
       
     </section>
+
+
+<!-- TRES CARRUSELES DESTACADOS -->
+<section class="featured-carousels" aria-label="Información municipal destacada">
+    <div class="featured-carousels-grid">
+
+        <!-- INFORMATIVO GADMA -->
+        <article class="featured-card green" tabindex="0" role="button" aria-label="Abrir carrusel en pantalla completa">
+            <header class="featured-card-header">
+                <i class="fa-solid fa-newspaper" aria-hidden="true"></i>
+                <h3>Informativo GADMA</h3>
+            </header>
+
+            <div class="mini-carousel" data-carousel data-interval="4500">
+<div class="mini-carousel-track">
+
+                    <div class="mini-carousel-slide active">
+                        <img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Carrusel%203%20(1).jpeg">
+                        <div class="mini-carousel-caption">
+                            Transparencia y participación ciudadana
+                        </div>
+                    </div>
+
+                    <div class="mini-carousel-slide">
+                        <img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Carrusel%203%20(6).jpeg">
+                        <div class="mini-carousel-caption">
+                            Gestión municipal cercana a la comunidad
+                        </div>
+                    </div>
+
+                    <div class="mini-carousel-slide">
+                        <img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Carrusel%203%20(3).jpeg">
+                        <div class="mini-carousel-caption">
+                            Información pública y rendición de cuentas
+                        </div>
+                    </div>
+
+                </div>
+                <button class="mini-carousel-btn prev">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+
+                <button class="mini-carousel-btn next">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
+                <div class="mini-carousel-dots"></div>
+
+            </div>
+        </article>
+
+
+
+        <!-- TURISMO -->
+        <article class="featured-card blue" tabindex="0" role="button" aria-label="Abrir carrusel en pantalla completa">
+
+            <header class="featured-card-header">
+                <i class="fa-solid fa-camera-retro" aria-hidden="true"></i>
+                <h3>Turismo y Cultura</h3>
+            </header>
+
+            <div class="mini-carousel" data-carousel data-interval="5200">
+
+                <div class="mini-carousel-track">
+
+                    <div class="mini-carousel-slide active">
+                        <img src="https://www.municipiodeatacames.gob.ec/images/banner_principal/2022/IMG_5664.JPG">
+                        <div class="mini-carousel-caption">
+                            Atacames: destino turístico de excelencia
+                        </div>
+                    </div>
+
+                    <div class="mini-carousel-slide">
+                        <img src="https://www.municipiodeatacames.gob.ec/images/banner_principal/2022/IMG_5670.JPG">
+                        <div class="mini-carousel-caption">
+                            Tradición, gastronomía y cultura del cantón
+                        </div>
+                    </div>
+
+                    <div class="mini-carousel-slide">
+                        <img src="https://www.municipiodeatacames.gob.ec/images/banner_principal/2022/IMG_5667.JPG">
+                        <div class="mini-carousel-caption">
+                            Playas, naturaleza y experiencias inolvidables
+                        </div>
+                    </div>
+
+                </div>
+
+                <button class="mini-carousel-btn prev">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+
+                <button class="mini-carousel-btn next">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
+                <div class="mini-carousel-dots"></div>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- NOTICIAS -->
+        <article class="featured-card orange" tabindex="0" role="button" aria-label="Abrir carrusel en pantalla completa">
+
+            <header class="featured-card-header">
+                <i class="fa-solid fa-bullhorn" aria-hidden="true"></i>
+                <h3>Noticias</h3>
+            </header>
+
+            <div class="mini-carousel" data-carousel data-interval="5900">
+<div class="mini-carousel-track">
+
+                    <div class="mini-carousel-slide active">
+                        <img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Carrusel%203.jpeg">
+                        <div class="mini-carousel-caption">
+                            Mantenimiento vial e infraestructura
+                        </div>
+                    </div>
+
+                    <div class="mini-carousel-slide">
+                        <img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Carrusel%203%20(2).jpeg">
+                        <div class="mini-carousel-caption">
+                            Proyectos para mejorar los espacios públicos
+                        </div>
+                    </div>
+
+                    <div class="mini-carousel-slide">
+                        <img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Carrusel%203%20(5).jpeg">
+                        <div class="mini-carousel-caption">
+                            Desarrollo urbano y servicios para la ciudadanía
+                        </div>
+                    </div>
+
+                </div>              
+                <button class="mini-carousel-btn prev">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+
+                <button class="mini-carousel-btn next">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
+                <div class="mini-carousel-dots"></div>
+
+            </div>
+
+        </article>
+
+    </div>
+</section>
 
     <section class="section" id="portal">
       <h2 class="section-heading">Portal de Información Ciudadana</h2>
@@ -1294,6 +1821,44 @@
 
   </main>
 
+
+  <!-- MODAL BOOTSTRAP PARA EXPANDIR LOS CARRUSELES -->
+  <div class="modal fade carousel-expand-modal" id="carouselExpandModal" tabindex="-1"
+       aria-labelledby="carouselExpandTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h2 class="modal-title" id="carouselExpandTitle"></h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="expanded-carousel" id="expandedCarousel">
+
+            <div class="expanded-slides" id="expandedSlides"></div>
+
+            <button class="expanded-control prev" id="expandedPrev" type="button"
+                    aria-label="Imagen anterior">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+
+            <button class="expanded-control next" id="expandedNext" type="button"
+                    aria-label="Imagen siguiente">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+            <div class="expanded-dots" id="expandedDots"
+                 aria-label="Selector de imágenes"></div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
   <footer class="footer" id="contacto">
     <div class="footer-grid">
       <div>
@@ -1442,6 +2007,241 @@
     });
 
     start();
+
+
+    /* CARRUSELES DESTACADOS INDEPENDIENTES */
+    document.querySelectorAll("[data-carousel]").forEach((carousel) => {
+      const carouselSlides = Array.from(carousel.querySelectorAll(".mini-carousel-slide"));
+      const previousButton = carousel.querySelector(".mini-carousel-btn.prev");
+      const followingButton = carousel.querySelector(".mini-carousel-btn.next");
+      const carouselDots = carousel.querySelector(".mini-carousel-dots");
+      const interval = Number(carousel.dataset.interval) || 5000;
+
+      let activeIndex = 0;
+      let autoPlay;
+
+      const dotButtons = carouselSlides.map((_, index) => {
+        const dotButton = document.createElement("button");
+        dotButton.type = "button";
+        dotButton.className = "mini-carousel-dot";
+        dotButton.setAttribute("aria-label", `Mostrar imagen ${index + 1}`);
+
+        if(index === 0){
+          dotButton.classList.add("active");
+        }
+
+        dotButton.addEventListener("click", () => {
+          showFeaturedSlide(index);
+          restartFeaturedCarousel();
+        });
+
+        carouselDots.appendChild(dotButton);
+        return dotButton;
+      });
+
+      function showFeaturedSlide(index){
+        carouselSlides[activeIndex].classList.remove("active");
+        dotButtons[activeIndex].classList.remove("active");
+
+        activeIndex = (index + carouselSlides.length) % carouselSlides.length;
+
+        carouselSlides[activeIndex].classList.add("active");
+        dotButtons[activeIndex].classList.add("active");
+      }
+
+      function startFeaturedCarousel(){
+        autoPlay = setInterval(() => {
+          showFeaturedSlide(activeIndex + 1);
+        }, interval);
+      }
+
+      function restartFeaturedCarousel(){
+        clearInterval(autoPlay);
+        startFeaturedCarousel();
+      }
+
+      previousButton.addEventListener("click", () => {
+        showFeaturedSlide(activeIndex - 1);
+        restartFeaturedCarousel();
+      });
+
+      followingButton.addEventListener("click", () => {
+        showFeaturedSlide(activeIndex + 1);
+        restartFeaturedCarousel();
+      });
+
+      carousel.addEventListener("mouseenter", () => clearInterval(autoPlay));
+      carousel.addEventListener("mouseleave", startFeaturedCarousel);
+
+      startFeaturedCarousel();
+    });
+
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const cards = document.querySelectorAll(".featured-card");
+      const modalElement = document.getElementById("carouselExpandModal");
+
+      if(!modalElement || typeof bootstrap === "undefined"){
+        return;
+      }
+
+      const modal = new bootstrap.Modal(modalElement);
+      const modalTitle = document.getElementById("carouselExpandTitle");
+      const expandedSlides = document.getElementById("expandedSlides");
+      const expandedDots = document.getElementById("expandedDots");
+      const expandedPrev = document.getElementById("expandedPrev");
+      const expandedNext = document.getElementById("expandedNext");
+
+      let expandedIndex = 0;
+      let expandedItems = [];
+      let expandedTimer = null;
+      let expandedInterval = 5000;
+
+      function clearExpandedTimer(){
+        if(expandedTimer){
+          clearInterval(expandedTimer);
+          expandedTimer = null;
+        }
+      }
+
+      function startExpandedTimer(){
+        clearExpandedTimer();
+
+        if(expandedItems.length > 1){
+          expandedTimer = setInterval(() => {
+            showExpandedSlide(expandedIndex + 1);
+          }, expandedInterval);
+        }
+      }
+
+      function showExpandedSlide(index){
+        if(!expandedItems.length) return;
+
+        const slideElements = expandedSlides.querySelectorAll(".expanded-slide");
+        const dotElements = expandedDots.querySelectorAll(".expanded-dot");
+
+        slideElements[expandedIndex]?.classList.remove("active");
+        dotElements[expandedIndex]?.classList.remove("active");
+
+        expandedIndex = (index + expandedItems.length) % expandedItems.length;
+
+        slideElements[expandedIndex]?.classList.add("active");
+        dotElements[expandedIndex]?.classList.add("active");
+      }
+
+      function openExpandedCarousel(card){
+        const titleElement = card.querySelector(".featured-card-header h3");
+        const iconElement = card.querySelector(".featured-card-header i");
+        const slides = Array.from(card.querySelectorAll(".mini-carousel-slide"));
+        const activeSlide = slides.findIndex(slide => slide.classList.contains("active"));
+
+        expandedIndex = activeSlide >= 0 ? activeSlide : 0;
+        expandedInterval = Number(card.querySelector("[data-carousel]")?.dataset.interval) || 5000;
+
+        expandedItems = slides.map(slide => ({
+          image: slide.querySelector("img")?.src || "",
+          alt: slide.querySelector("img")?.alt || titleElement?.textContent?.trim() || "",
+          caption: slide.querySelector(".mini-carousel-caption")?.textContent?.trim() || ""
+        }));
+
+        const titleIcon = iconElement
+          ? `<i class="${iconElement.className}" aria-hidden="true"></i>`
+          : "";
+
+        modalTitle.innerHTML = `${titleIcon}<span>${titleElement?.textContent?.trim() || "Información"}</span>`;
+
+        expandedSlides.innerHTML = "";
+        expandedDots.innerHTML = "";
+
+        expandedItems.forEach((item, index) => {
+          const slide = document.createElement("div");
+          slide.className = "expanded-slide";
+
+          if(index === expandedIndex){
+            slide.classList.add("active");
+          }
+
+          slide.innerHTML = `
+            <img src="${item.image}" alt="${item.alt}">
+            <div class="expanded-caption">${item.caption}</div>
+          `;
+
+          expandedSlides.appendChild(slide);
+
+          const dot = document.createElement("button");
+          dot.type = "button";
+          dot.className = "expanded-dot";
+          dot.setAttribute("aria-label", `Mostrar imagen ${index + 1}`);
+
+          if(index === expandedIndex){
+            dot.classList.add("active");
+          }
+
+          dot.addEventListener("click", () => {
+            showExpandedSlide(index);
+            startExpandedTimer();
+          });
+
+          expandedDots.appendChild(dot);
+        });
+
+        modal.show();
+        startExpandedTimer();
+      }
+
+      cards.forEach(card => {
+        card.addEventListener("click", event => {
+          if(event.target.closest(".mini-carousel-btn") ||
+             event.target.closest(".mini-carousel-dot")){
+            return;
+          }
+
+          openExpandedCarousel(card);
+        });
+
+        card.addEventListener("keydown", event => {
+          if(event.key === "Enter" || event.key === " "){
+            event.preventDefault();
+            openExpandedCarousel(card);
+          }
+        });
+      });
+
+      expandedPrev.addEventListener("click", () => {
+        showExpandedSlide(expandedIndex - 1);
+        startExpandedTimer();
+      });
+
+      expandedNext.addEventListener("click", () => {
+        showExpandedSlide(expandedIndex + 1);
+        startExpandedTimer();
+      });
+
+      modalElement.addEventListener("hidden.bs.modal", () => {
+        clearExpandedTimer();
+        expandedItems = [];
+        expandedSlides.innerHTML = "";
+        expandedDots.innerHTML = "";
+      });
+
+      document.addEventListener("keydown", event => {
+        if(!modalElement.classList.contains("show")) return;
+
+        if(event.key === "ArrowLeft"){
+          showExpandedSlide(expandedIndex - 1);
+          startExpandedTimer();
+        }
+
+        if(event.key === "ArrowRight"){
+          showExpandedSlide(expandedIndex + 1);
+          startExpandedTimer();
+        }
+      });
+    });
   </script>
 
 </body>
