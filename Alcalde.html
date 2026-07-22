@@ -585,14 +585,22 @@
         .insignia-periodo {
             position: absolute;
             z-index: 3;
-            right: -25px;
+            left: -25px;
+            right: auto;
             bottom: 35px;
-            max-width: 210px;
+            width: 220px;
+            max-width: 220px;
             padding: 18px 22px;
-            background: var(--azul-principal);
+            background: linear-gradient(135deg, #164a7b, #0b3155);
             color: var(--blanco);
             border-radius: 14px;
-            box-shadow: var(--sombra);
+            box-shadow: 0 15px 35px rgba(12, 48, 79, 0.25);
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .insignia-periodo:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 22px 45px rgba(12, 48, 79, 0.35);
         }
 
         .insignia-periodo i {
@@ -702,7 +710,7 @@
         }
 
         .mensaje-icono {
-            width: 70px;
+            width: 180px;
             height: 70px;
             margin: 0 auto 24px;
             display: flex;
@@ -1097,7 +1105,8 @@
         }
 
         .pie-logo img {
-            width: 70px;
+            width: 180px;
+            height: auto;
         }
 
         .pie-logo strong {
@@ -1433,8 +1442,12 @@
             }
 
             .insignia-periodo {
-                right: 12px;
+                left: 12px;
+                right: auto;
                 bottom: 18px;
+                width: 190px;
+                max-width: 190px;
+                padding: 15px 18px;
             }
 
             .perfil-destacados,
@@ -1497,8 +1510,10 @@
 
             .insignia-periodo {
                 position: relative;
+                left: auto;
                 right: auto;
                 bottom: auto;
+                width: 100%;
                 max-width: 100%;
                 margin-top: -10px;
                 border-radius: 0 0 14px 14px;
@@ -1586,7 +1601,7 @@
                         </a>
 
                         <ul class="submenu">
-                            <li><a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Alcalde.html">Alcalde</a></li>
+                            <li><a href="#">Alcalde</a></li>
                             <li><a href="#">Vicealcaldesa</a></li>
                             <li><a href="#">Concejo Municipal</a></li>
                             <li><a href="#">Misión y visión</a></li>
@@ -1658,11 +1673,11 @@
 
                     <h1>Alcalde de Atacames</h1>
 
-                    <h2>Abg. Willians Mendoza Vidal</h2>
+                    <h2>Sr. Willians Mendoza Vidal</h2>
 
                     <p>
                         Alcalde del Gobierno Autónomo Descentralizado
-                        Municipal del cantón Atacames, comprometido con una
+                        del cantón Atacames, comprometido con una
                         administración cercana, transparente y orientada al
                         desarrollo integral de la ciudadanía.
                     </p>
@@ -1755,7 +1770,7 @@
                             Biografía institucional
                         </span>
 
-                        <h2>Abg. Willians Mendoza Vidal</h2>
+                        <h2>Sr. Willians Mendoza Vidal</h2>
 
                         <div class="perfil-cargo">
                             Alcalde del Gobierno Autónomo Descentralizado
@@ -1763,7 +1778,7 @@
                         </div>
 
                         <p>
-                            El Abg. Willians Mendoza Vidal ejerce la Alcaldía
+                            El Sr. Willians Mendoza Vidal ejerce la Alcaldía
                             del cantón Atacames durante el periodo
                             administrativo 2023–2027, liderando una gestión
                             orientada al desarrollo social, turístico,
@@ -1780,11 +1795,10 @@
 
                         <p>
                             Desde el Gobierno Municipal se trabaja de manera
-                            coordinada con las comunidades, parroquias,
+                            coordinada a traves de la participación por medio de la Asamblea de participacion ciudadana del cantón Atacames, con las comunidades, parroquias,
                             instituciones públicas, organizaciones sociales y
                             actores privados, con el propósito de construir
-                            un cantón más seguro, ordenado, inclusivo y
-                            sostenible.
+                            un cantón más seguro, productivo y turístico.
                         </p>
 
                         <div class="perfil-destacados">
@@ -1836,7 +1850,7 @@
                     </blockquote>
 
                     <div class="mensaje-firma">
-                        <strong>Abg. Willians Mendoza Vidal</strong>
+                        <strong>Sr. Willians Mendoza Vidal</strong>
 
                         <span>Alcalde del cantón Atacames</span>
                     </div>
@@ -2313,7 +2327,7 @@
 
                     <div class="pie-logo">
                         <img
-                            src="img/logo-atacames.png"
+                            src="https://www.municipiodeatacames.gob.ec/images/Logo%20Institucional/2023/TRANSPARENTE2.png"
                             alt="Logo del Municipio de Atacames"
                         >
 
@@ -2694,5 +2708,6 @@
         });
     </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
