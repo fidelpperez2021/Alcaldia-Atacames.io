@@ -119,7 +119,7 @@
       align-items:center;
     }
 
-    .dropdown-toggle{
+    .municipio-toggle-btn{
       appearance:none;
       border:0;
       background:transparent;
@@ -135,21 +135,21 @@
       padding:0;
     }
 
-    .dropdown-toggle:hover,
-    .dropdown-toggle:focus-visible{
+    .municipio-toggle-btn:hover,
+    .municipio-toggle-btn:focus-visible{
       color:#b6ebff;
     }
 
-    .dropdown-toggle i{
+    .municipio-toggle-btn i{
       font-size:11px;
       transition:transform .25s ease;
     }
 
-    .nav-dropdown.open .dropdown-toggle i{
+    .nav-dropdown.open .municipio-toggle-btn i{
       transform:rotate(180deg);
     }
 
-    .dropdown-menu{
+    .municipio-menu{
       position:absolute;
       top:calc(100% + 18px);
       left:50%;
@@ -168,7 +168,7 @@
       z-index:1500;
     }
 
-    .dropdown-menu::before{
+    .municipio-menu::before{
       content:"";
       position:absolute;
       top:-8px;
@@ -179,14 +179,14 @@
       border-bottom:9px solid #fff;
     }
 
-    .nav-dropdown.open .dropdown-menu{
+    .nav-dropdown.open .municipio-menu{
       opacity:1;
       visibility:visible;
       pointer-events:auto;
       transform:translateX(-50%) translateY(0);
     }
 
-    .dropdown-menu a{
+    .municipio-menu a{
       display:block;
       color:#111;
       padding:14px 17px;
@@ -197,8 +197,8 @@
       transition:background .2s ease, color .2s ease, padding-left .2s ease;
     }
 
-    .dropdown-menu a:hover,
-    .dropdown-menu a:focus-visible{
+    .municipio-menu a:hover,
+    .municipio-menu a:focus-visible{
       background:#eef8fb;
       color:var(--turquesa);
       padding-left:22px;
@@ -700,14 +700,14 @@
         display:block;
       }
 
-      .dropdown-toggle{
+      .municipio-toggle-btn{
         width:100%;
         justify-content:space-between;
         font-size:14px;
         padding:2px 0;
       }
 
-      .dropdown-menu{
+      .municipio-menu{
         position:static;
         width:100%;
         max-height:0;
@@ -724,11 +724,11 @@
         transition:max-height .3s ease, margin-top .3s ease, padding .3s ease;
       }
 
-      .dropdown-menu::before{
+      .municipio-menu::before{
         display:none;
       }
 
-      .nav-dropdown.open .dropdown-menu{
+      .nav-dropdown.open .municipio-menu{
         max-height:620px;
         margin-top:10px;
         padding:6px 0;
@@ -736,7 +736,7 @@
         transform:none;
       }
 
-      .dropdown-menu a{
+      .municipio-menu a{
         color:#111;
         padding:12px 14px;
         font-size:14px;
@@ -1230,6 +1230,155 @@
       }
     }
 
+  
+    /* =========================================================
+       CORRECCIÓN DEL MENÚ MUNICIPIO — COMPATIBLE CON BOOTSTRAP
+       ========================================================= */
+    .nav-dropdown{
+      position:relative;
+      z-index:2000;
+    }
+
+    .municipio-toggle-btn{
+      appearance:none;
+      -webkit-appearance:none;
+      border:0;
+      background:transparent;
+      color:#fff;
+      font-family:inherit;
+      font-size:14px;
+      font-weight:900;
+      white-space:nowrap;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:0;
+      line-height:1.2;
+    }
+
+    .municipio-toggle-btn::after{
+      display:none !important;
+      content:none !important;
+    }
+
+    .municipio-toggle-btn:hover,
+    .municipio-toggle-btn:focus-visible{
+      color:#b6ebff;
+    }
+
+    .municipio-toggle-btn i{
+      font-size:11px;
+      transition:transform .25s ease;
+    }
+
+    .nav-dropdown.open .municipio-toggle-btn i{
+      transform:rotate(180deg);
+    }
+
+    .municipio-menu{
+      display:block;
+      position:absolute;
+      top:calc(100% + 18px);
+      left:50%;
+      transform:translateX(-50%) translateY(-8px);
+      width:340px;
+      max-height:70vh;
+      overflow-y:auto;
+      margin:0;
+      padding:8px 0;
+      list-style:none;
+      background:#fff;
+      border:0;
+      border-radius:4px;
+      box-shadow:0 14px 35px rgba(0,0,0,.24);
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
+      transition:opacity .22s ease, transform .22s ease, visibility .22s;
+      z-index:3000;
+    }
+
+    .municipio-menu::before{
+      content:"";
+      position:absolute;
+      top:-8px;
+      left:50%;
+      transform:translateX(-50%);
+      border-left:9px solid transparent;
+      border-right:9px solid transparent;
+      border-bottom:9px solid #fff;
+    }
+
+    .nav-dropdown.open .municipio-menu{
+      opacity:1;
+      visibility:visible;
+      pointer-events:auto;
+      transform:translateX(-50%) translateY(0);
+    }
+
+    .municipio-menu a{
+      display:block;
+      width:100%;
+      color:#111 !important;
+      padding:14px 17px;
+      font-size:15px;
+      font-weight:700;
+      line-height:1.35;
+      white-space:normal;
+      background:transparent;
+      transition:background .2s ease, color .2s ease, padding-left .2s ease;
+    }
+
+    .municipio-menu a:hover,
+    .municipio-menu a:focus-visible{
+      background:#eef8fb;
+      color:var(--turquesa) !important;
+      padding-left:22px;
+    }
+
+    @media(max-width:980px){
+      .municipio-toggle-btn{
+        width:100%;
+        justify-content:space-between;
+        padding:2px 0;
+      }
+
+      .municipio-menu{
+        position:static;
+        width:100%;
+        max-height:0;
+        overflow:hidden;
+        margin-top:0;
+        padding:0;
+        background:rgba(255,255,255,.98);
+        border-radius:4px;
+        box-shadow:none;
+        opacity:1;
+        visibility:visible;
+        pointer-events:none;
+        transform:none;
+        transition:max-height .3s ease, margin-top .3s ease, padding .3s ease;
+      }
+
+      .municipio-menu::before{
+        display:none;
+      }
+
+      .nav-dropdown.open .municipio-menu{
+        max-height:620px;
+        margin-top:10px;
+        padding:6px 0;
+        pointer-events:auto;
+        transform:none;
+      }
+
+      .municipio-menu a{
+        padding:12px 14px;
+        font-size:14px;
+      }
+    }
+
   </style>
 </head>
 
@@ -1250,7 +1399,7 @@
       <a href="Alcaldia-Atacames-menu-municipio.html">Inicio</a>
       <div class="nav-dropdown" id="municipioDropdown">
         <button
-          class="dropdown-toggle"
+          class="municipio-toggle-btn"
           id="municipioToggle"
           type="button"
           aria-haspopup="true"
@@ -1261,7 +1410,7 @@
           <i class="fa-solid fa-chevron-down"></i>
         </button>
 
-        <div class="dropdown-menu" id="municipioMenu" role="menu">
+        <div class="municipio-menu" id="municipioMenu" role="menu">
           <a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Alcalde.html" role="menuitem">Alcalde de Atacames</a>
           <a href="#filosofia" role="menuitem">Filosofía Institucional</a>
           <a href="#gobierno-abierto" role="menuitem">Gobierno Abierto</a>
