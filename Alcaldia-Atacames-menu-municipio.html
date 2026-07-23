@@ -1043,9 +1043,9 @@
       }
     }
 
-
     /* =========================================================
        EXPANSIÓN DE CARRUSELES CON BOOTSTRAP MODAL
+       La imagen se muestra completa, sin recortes.
        ========================================================= */
     .featured-card{
       cursor:pointer;
@@ -1067,31 +1067,43 @@
       cursor:pointer;
     }
 
+    .carousel-expand-modal{
+      --bs-modal-zindex:9999;
+    }
+
     .carousel-expand-modal .modal-dialog{
-      max-width:min(94vw, 1400px);
-      margin:2vh auto;
+      width:calc(100% - 24px);
+      max-width:1760px;
+      height:calc(100vh - 24px);
+      margin:12px auto;
     }
 
     .carousel-expand-modal .modal-content{
+      width:100%;
+      height:100%;
+      max-height:calc(100vh - 24px);
       border:0;
-      border-radius:18px;
+      border-radius:22px;
       overflow:hidden;
-      box-shadow:0 25px 70px rgba(0,0,0,.42);
+      background:#fff;
+      box-shadow:0 25px 70px rgba(0,0,0,.48);
     }
 
     .carousel-expand-modal .modal-header{
-      border-bottom:0;
-      padding:18px 24px;
+      flex:0 0 auto;
+      min-height:86px;
+      border-bottom:1px solid #ececec;
+      padding:18px 28px;
       background:#fff;
     }
 
     .carousel-expand-modal .modal-title{
       display:flex;
       align-items:center;
-      gap:12px;
+      gap:14px;
       margin:0;
-      color:#161616;
-      font-size:clamp(20px,2.2vw,30px);
+      color:#111;
+      font-size:clamp(22px,2.2vw,38px);
       font-weight:900;
       text-transform:uppercase;
     }
@@ -1100,25 +1112,48 @@
       font-size:1em;
     }
 
+    .carousel-expand-modal .btn-close{
+      flex:0 0 auto;
+      width:1.35rem;
+      height:1.35rem;
+      margin:0;
+      font-size:1.2rem;
+      box-shadow:none;
+    }
+
     .carousel-expand-modal .modal-body{
+      flex:1 1 auto;
+      min-height:0;
       padding:0;
-      background:#111;
+      overflow:hidden;
+      background:#eef1f5;
     }
 
     .carousel-expand-modal .expanded-carousel{
       position:relative;
-      height:min(76vh, 760px);
+      width:100%;
+      height:100%;
+      min-height:0;
       overflow:hidden;
-      background:#111;
+      background:#eef1f5;
+    }
+
+    .carousel-expand-modal .expanded-slides{
+      position:absolute;
+      inset:0;
     }
 
     .carousel-expand-modal .expanded-slide{
       position:absolute;
       inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:16px 78px 100px;
       opacity:0;
       visibility:hidden;
-      transform:scale(1.03);
-      transition:opacity .55s ease, visibility .55s ease, transform 4s ease;
+      transform:scale(.985);
+      transition:opacity .4s ease, visibility .4s ease, transform .4s ease;
     }
 
     .carousel-expand-modal .expanded-slide.active{
@@ -1127,40 +1162,51 @@
       transform:scale(1);
     }
 
+    /* CLAVE: contain evita que la noticia sea recortada */
     .carousel-expand-modal .expanded-slide img{
+      display:block;
       width:100%;
       height:100%;
-      object-fit:cover;
+      max-width:100%;
+      max-height:100%;
+      object-fit:contain;
+      object-position:center;
+      background:#eef1f5;
     }
 
+    /* Se elimina la capa oscura que cubría parte de la noticia */
     .carousel-expand-modal .expanded-slide::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(to bottom, transparent 38%, rgba(0,0,0,.88) 100%);
-      pointer-events:none;
+      display:none;
+      content:none;
     }
 
     .carousel-expand-modal .expanded-caption{
       position:absolute;
-      left:clamp(22px,4vw,60px);
-      right:clamp(22px,4vw,60px);
-      bottom:clamp(38px,7vh,78px);
+      left:0;
+      right:0;
+      bottom:0;
       z-index:3;
+      min-height:84px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:18px 100px 28px;
       color:#fff;
-      font-size:clamp(20px,2.4vw,36px);
-      line-height:1.2;
+      background:linear-gradient(90deg,rgba(10,15,22,.94),rgba(23,29,38,.92));
+      font-size:clamp(17px,1.8vw,30px);
+      line-height:1.25;
+      text-align:center;
       font-weight:900;
-      text-shadow:0 3px 10px rgba(0,0,0,.9);
+      text-shadow:0 2px 6px rgba(0,0,0,.55);
     }
 
     .carousel-expand-modal .expanded-control{
       position:absolute;
       top:50%;
       transform:translateY(-50%);
-      z-index:4;
-      width:52px;
-      height:52px;
+      z-index:6;
+      width:54px;
+      height:54px;
       border:0;
       border-radius:50%;
       display:grid;
@@ -1168,6 +1214,7 @@
       color:#fff;
       background:rgba(20,20,20,.68);
       font-size:22px;
+      cursor:pointer;
       transition:background .2s ease, transform .2s ease;
     }
 
@@ -1177,30 +1224,31 @@
     }
 
     .carousel-expand-modal .expanded-control.prev{
-      left:18px;
+      left:22px;
     }
 
     .carousel-expand-modal .expanded-control.next{
-      right:18px;
+      right:22px;
     }
 
     .carousel-expand-modal .expanded-dots{
       position:absolute;
       left:50%;
-      bottom:20px;
+      bottom:10px;
       transform:translateX(-50%);
-      z-index:5;
+      z-index:7;
       display:flex;
       gap:9px;
     }
 
     .carousel-expand-modal .expanded-dot{
-      width:10px;
-      height:10px;
+      width:11px;
+      height:11px;
       padding:0;
       border:0;
       border-radius:50%;
-      background:rgba(255,255,255,.52);
+      background:rgba(255,255,255,.55);
+      cursor:pointer;
     }
 
     .carousel-expand-modal .expanded-dot.active{
@@ -1208,27 +1256,75 @@
       transform:scale(1.25);
     }
 
-    @media(max-width:620px){
+    @media(max-width:768px){
       .carousel-expand-modal .modal-dialog{
+        width:100%;
         max-width:100%;
+        height:100vh;
         margin:0;
-        min-height:100%;
       }
 
       .carousel-expand-modal .modal-content{
-        min-height:100vh;
+        max-height:100vh;
         border-radius:0;
       }
 
-      .carousel-expand-modal .expanded-carousel{
-        height:calc(100vh - 74px);
+      .carousel-expand-modal .modal-header{
+        min-height:70px;
+        padding:14px 18px;
+      }
+
+      .carousel-expand-modal .modal-title{
+        font-size:clamp(18px,5vw,24px);
+      }
+
+      .carousel-expand-modal .expanded-slide{
+        padding:10px 48px 92px;
+      }
+
+      .carousel-expand-modal .expanded-caption{
+        min-height:76px;
+        padding:15px 54px 25px;
+        font-size:clamp(15px,4.3vw,20px);
       }
 
       .carousel-expand-modal .expanded-control{
         width:42px;
         height:42px;
+        font-size:17px;
+      }
+
+      .carousel-expand-modal .expanded-control.prev{
+        left:6px;
+      }
+
+      .carousel-expand-modal .expanded-control.next{
+        right:6px;
+      }
+
+      .carousel-expand-modal .expanded-dots{
+        bottom:8px;
       }
     }
+
+    @media(max-width:420px){
+      .carousel-expand-modal .modal-header{
+        min-height:64px;
+        padding:12px 14px;
+      }
+
+      .carousel-expand-modal .expanded-slide{
+        padding:8px 40px 90px;
+      }
+
+      .carousel-expand-modal .expanded-caption{
+        padding-left:46px;
+        padding-right:46px;
+      }
+    }
+
+
+
 
   
     /* =========================================================
@@ -1379,6 +1475,129 @@
       }
     }
 
+  
+    /* =========================================================
+       SÍMBOLOS PATRIOS — TARJETAS Y MODAL
+       ========================================================= */
+    .simbolos-section{
+      position:relative;
+    }
+
+    .simbolos-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:22px;
+      margin-top:10px;
+    }
+
+    .simbolo-card{
+      appearance:none;
+      -webkit-appearance:none;
+      width:100%;
+      border:1px solid #e2e8ee;
+      border-radius:14px;
+      padding:16px;
+      background:#fff;
+      color:inherit;
+      cursor:pointer;
+      text-align:center;
+      box-shadow:0 8px 22px rgba(0,0,0,.08);
+      transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+
+    .simbolo-card:hover{
+      transform:translateY(-5px);
+      border-color:var(--turquesa);
+      box-shadow:0 16px 34px rgba(0,0,0,.15);
+    }
+
+    .simbolo-card:focus-visible{
+      outline:4px solid rgba(0,157,177,.25);
+      outline-offset:3px;
+    }
+
+    .simbolo-image-wrap{
+      position:relative;
+      width:100%;
+      height:190px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      border-radius:10px;
+      background:linear-gradient(135deg,#f4f8fa,#eaf1f5);
+    }
+
+    .simbolo-image-wrap img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      object-position:center;
+      padding:12px;
+      transition:transform .3s ease;
+    }
+
+    .simbolo-card:hover .simbolo-image-wrap img{
+      transform:scale(1.04);
+    }
+
+    .simbolo-zoom{
+      position:absolute;
+      left:50%;
+      bottom:12px;
+      transform:translateX(-50%) translateY(8px);
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      padding:8px 12px;
+      border-radius:999px;
+      color:#fff;
+      background:rgba(0,91,159,.9);
+      font-size:12px;
+      font-weight:900;
+      text-transform:uppercase;
+      opacity:0;
+      transition:opacity .25s ease, transform .25s ease;
+      pointer-events:none;
+    }
+
+    .simbolo-card:hover .simbolo-zoom,
+    .simbolo-card:focus-visible .simbolo-zoom{
+      opacity:1;
+      transform:translateX(-50%) translateY(0);
+    }
+
+    .simbolo-name{
+      display:block;
+      margin-top:14px;
+      color:#16384d;
+      font-size:16px;
+      font-weight:900;
+    }
+
+    .simbolos-description{
+      margin:26px 0 0;
+      color:#4d5962;
+      font-size:15px;
+      line-height:1.75;
+      text-align:center;
+    }
+
+    @media(max-width:620px){
+      .simbolos-grid{
+        grid-template-columns:1fr;
+      }
+
+      .simbolo-image-wrap{
+        height:220px;
+      }
+
+      .simbolo-zoom{
+        opacity:1;
+        transform:translateX(-50%) translateY(0);
+      }
+    }
+
   </style>
 </head>
 
@@ -1414,18 +1633,17 @@
           <a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Alcalde.html" role="menuitem">Alcalde de Atacames</a>
           <a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Filosof%C3%ADa-institucional.html" role="menuitem">Filosofía Institucional</a>
           <a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Gobierno-abierto.html" role="menuitem">Gobierno Abierto</a>
-          <a href="#principios-valores" role="menuitem">Principios y Valores</a>
-          <a href="#concejo-municipal" role="menuitem">Concejo Municipal</a>
-          <a href="#ordenanzas" role="menuitem">Ordenanzas y Resoluciones</a>
-          <a href="#organigrama" role="menuitem">Estructura Orgánica</a>
-          <a href="#autoridades" role="menuitem">Autoridades Municipales</a>
+          <a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Principios-institucionales.html" role="menuitem">Principios y Valores</a>
+          <a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Consejo-municipal.html" role="menuitem">Concejo Municipal</a>
+          <a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Estructura-organica.html" role="menuitem">Estructura Orgánica</a>
+          <a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Autoridades.html" role="menuitem">Autoridades Municipales</a>
           <a href="#simbolos" role="menuitem">Símbolos del Cantón</a>
           <a href="#himno" role="menuitem">Himno de Atacames</a>
         </div>
       </div>
       <a href="#gaceta">Gaceta +</a>
       <a href="#transparencia">Transparencia +</a>
-      <a href="#convocatorias">Comunicación +</a>
+      <a href="#Comunicacion">Comunicación +</a>
       <a href="#convocatorias">Convocatorias +</a>
       <a href="#intranet" class="btn-top intranet"><i class="fa-solid fa-lock"></i> Intranet Municipal</a>
     </nav>
@@ -1473,44 +1691,59 @@
         </div>
       </article>
 
-<article class="info" id="simbolos">
 
-    <h2 class="section-heading">Símbolos Patrios del antón Atacames</h2>
+<article class="info simbolos-section" id="simbolos">
+  <h2 class="section-heading">Símbolos Patrios del cantón Atacames</h2>
 
-    <div style="
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        gap:30px;
-        flex-wrap:wrap;
-        margin-top:20px;
-    ">
+  <div class="simbolos-grid" id="simbolosGrid">
+    <button
+      class="simbolo-card"
+      type="button"
+      data-symbol-index="0"
+      aria-label="Ampliar Escudo de Atacames"
+    >
+      <span class="simbolo-image-wrap">
+        <img
+          src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/ESCUDO_ATACAMES.png"
+          alt="Escudo del cantón Atacames"
+        >
+        <span class="simbolo-zoom">
+          <i class="fa-solid fa-magnifying-glass-plus"></i>
+          Ampliar
+        </span>
+      </span>
 
-        
-<div style="text-align:center;">
-            <img src="https://prefecturadeesmeraldas.gob.ec/wp-content/uploads/2022/08/ESCUDO_ATACAMES.png"
-                 alt="Escudo del cantón Atacames"
-                 style="width:180px;max-width:100%;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,.15);">
-            <h3 style="margin-top:15px;">Escudo de Atacames</h3>
-        </div>
+      <span class="simbolo-name">Escudo de Atacames</span>
+    </button>
 
-<div style="text-align:center;">
-            <img src="https://prefecturadeesmeraldas.gob.ec/wp-content/uploads/2022/08/Flag_of_Atacames.svg-600x400.png"
-                 alt="Bandera del cantón Atacames"
-                 style="width:220px;max-width:100%;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,.15);">
-            <h3 style="margin-top:15px;">Bandera de Atacames</h3>
-        </div>
-        
+    <button
+      class="simbolo-card"
+      type="button"
+      data-symbol-index="1"
+      aria-label="Ampliar Bandera de Atacames"
+    >
+      <span class="simbolo-image-wrap">
+        <img
+          src="https://prefecturadeesmeraldas.gob.ec/wp-content/uploads/2022/08/Flag_of_Atacames.svg-600x400.png"
+          alt="Bandera del cantón Atacames"
+        >
+        <span class="simbolo-zoom">
+          <i class="fa-solid fa-magnifying-glass-plus"></i>
+          Ampliar
+        </span>
+      </span>
 
-    </div>
+      <span class="simbolo-name">Bandera de Atacames</span>
+    </button>
+  </div>
 
-    <p style="margin-top:30px;text-align:center;line-height:1.8;">
-        Los símbolos patrios del cantón Atacames representan su identidad,
-        historia, riqueza natural, cultural y el espíritu de trabajo de su gente,
-        fortaleciendo el sentido de pertenencia de todos los atacameños.
-    </p>
-
+  <p class="simbolos-description">
+    Los símbolos patrios del cantón Atacames representan su identidad,
+    historia, riqueza natural, cultural y el espíritu de trabajo de su gente,
+    fortaleciendo el sentido de pertenencia de todos los atacameños.
+  </p>
 </article>
+
 
 <article class="online" id="himno">
     <h2 class="section-heading">Himno del cantón Atacames</h2>
@@ -1599,21 +1832,21 @@
                     <div class="mini-carousel-slide active">
                         <img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Carrusel%203%20(1).jpeg">
                         <div class="mini-carousel-caption">
-                            Transparencia y participación ciudadana
+                            Actividades y eventos de la alcaldía y el concejo municipal.
                         </div>
                     </div>
 
                     <div class="mini-carousel-slide">
                         <img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Carrusel%203%20(6).jpeg">
                         <div class="mini-carousel-caption">
-                            Gestión municipal cercana a la comunidad
+                            Gestión municipal cercana a la comunidad.
                         </div>
                     </div>
 
                     <div class="mini-carousel-slide">
                         <img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Carrusel%203%20(3).jpeg">
                         <div class="mini-carousel-caption">
-                            Información pública y rendición de cuentas
+                            🌎 Juntos por un Atacames mas limpio.
                         </div>
                     </div>
 
@@ -1653,7 +1886,7 @@
                     </div>
 
                     <div class="mini-carousel-slide">
-                        <img src="https://www.municipiodeatacames.gob.ec/images/banner_principal/2022/IMG_5670.JPG">
+                        <img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Gastronomia%201.png">
                         <div class="mini-carousel-caption">
                             Tradición, gastronomía y cultura del cantón
                         </div>
@@ -1689,7 +1922,7 @@
 
             <header class="featured-card-header">
                 <i class="fa-solid fa-bullhorn" aria-hidden="true"></i>
-                <h3>Obras para el desarrollo de la comunidad</h3>
+                <h3>Obras publicas</h3>
             </header>
 
             <div class="mini-carousel" data-carousel data-interval="5900">
@@ -2230,6 +2463,7 @@
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const cards = document.querySelectorAll(".featured-card");
+      const symbolButtons = document.querySelectorAll(".simbolo-card");
       const modalElement = document.getElementById("carouselExpandModal");
 
       if(!modalElement || typeof bootstrap === "undefined"){
@@ -2339,6 +2573,76 @@
         modal.show();
         startExpandedTimer();
       }
+
+
+      function openSymbolsModal(startIndex = 0){
+        const symbolData = Array.from(symbolButtons).map(button => {
+          const image = button.querySelector("img");
+          const name = button.querySelector(".simbolo-name");
+
+          return {
+            image: image?.src || "",
+            alt: image?.alt || name?.textContent?.trim() || "Símbolo patrio",
+            caption: name?.textContent?.trim() || "Símbolo patrio"
+          };
+        });
+
+        if(!symbolData.length) return;
+
+        expandedItems = symbolData;
+        expandedIndex = Math.max(0, Math.min(startIndex, expandedItems.length - 1));
+        expandedInterval = 7000;
+
+        modalTitle.innerHTML = `
+          <i class="fa-solid fa-landmark" aria-hidden="true"></i>
+          <span>Símbolos Patrios de Atacames</span>
+        `;
+
+        expandedSlides.innerHTML = "";
+        expandedDots.innerHTML = "";
+
+        expandedItems.forEach((item, index) => {
+          const slide = document.createElement("div");
+          slide.className = "expanded-slide";
+
+          if(index === expandedIndex){
+            slide.classList.add("active");
+          }
+
+          slide.innerHTML = `
+            <img src="${item.image}" alt="${item.alt}">
+            <div class="expanded-caption">${item.caption}</div>
+          `;
+
+          expandedSlides.appendChild(slide);
+
+          const dot = document.createElement("button");
+          dot.type = "button";
+          dot.className = "expanded-dot";
+          dot.setAttribute("aria-label", `Mostrar ${item.caption}`);
+
+          if(index === expandedIndex){
+            dot.classList.add("active");
+          }
+
+          dot.addEventListener("click", () => {
+            showExpandedSlide(index);
+            startExpandedTimer();
+          });
+
+          expandedDots.appendChild(dot);
+        });
+
+        modal.show();
+        startExpandedTimer();
+      }
+
+      symbolButtons.forEach(button => {
+        button.addEventListener("click", () => {
+          const startIndex = Number(button.dataset.symbolIndex) || 0;
+          openSymbolsModal(startIndex);
+        });
+      });
 
       cards.forEach(card => {
         card.addEventListener("click", event => {
