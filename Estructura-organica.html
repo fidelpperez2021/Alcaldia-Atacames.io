@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Estructura orgánica del Gobierno Autónomo Descentralizado Municipal de Atacames">
+  <meta name="theme-color" content="#082b49">
+  <title>Estructura Orgánica | Municipio de Atacames</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    :root{
+      --azul:#164a7b;
+      --azul2:#082b49;
+      --azul3:#041221;
+      --celeste:#1b75bc;
+      --turquesa:#00a8a8;
+      --turquesa2:#20c4c2;
+      --verde:#20b946;
+      --fondo:#f4f7fa;
+      --borde:#e6edf3;
+      --gris:#687782;
+      --texto:#263238;
+      --naranja:#f6c98f;
+      --morado:#9c96b4;
+      --amarillo:#fffe64;
+      --verde-proceso:#a9d29b;
+      --sombra:0 16px 38px rgba(12,48,79,.14);
+      --sombra2:0 8px 25px rgba(0,0,0,.08);
+      --t:all .3s ease;
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:110px}
+    body{
+      font-family:Montserrat,sans-serif;
+      color:var(--texto);
+      line-height:1.7;
+      overflow-x:hidden;
+      background:#fff;
+    }
+    body.menu-abierto,
+    body.modal-abierto{overflow:hidden}
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+    ul{list-style:none;padding:0;margin:0}
+    button,a{-webkit-tap-highlight-color:transparent}
+    button:focus-visible,
+    a:focus-visible{
+      outline:3px solid var(--turquesa2);
+      outline-offset:3px;
+    }
+    .contenedor{width:min(1180px,calc(100% - 40px));margin:auto}
+    .seccion{padding:90px 0}
+    .fondo{background:var(--fondo)}
+
+    /* Barra superior */
+    .barra{background:#0c385f;color:#fff;font-size:.82rem}
+    .barra-in{
+      min-height:42px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+    .barra-grupo{display:flex;gap:22px}
+    .barra-item{display:flex;gap:8px;align-items:center}
+    .barra-item i{color:var(--turquesa2)}
+    .barra a{transition:var(--t)}
+    .barra a:hover{color:var(--turquesa2)}
+
+    /* Encabezado y navegación */
+    .header{
+      position:absolute;
+      top:42px;
+      left:0;
+      width:100%;
+      z-index:1000;
+      background:linear-gradient(90deg,#041221,#082b49 55%,#0b3155);
+      border-bottom:1px solid rgba(255,255,255,.12);
+      transition:var(--t);
+    }
+    .header.fijo{
+      position:fixed;
+      top:0;
+      box-shadow:0 8px 25px rgba(0,0,0,.18);
+      backdrop-filter:blur(14px);
+    }
+    .nav{
+      min-height:118px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:20px;
+      color:#fff;
+      flex-shrink:0;
+    }
+    .logo img{width:240px;height:auto}
+    .logo-texto strong{display:block;font-size:1.3rem}
+    .logo-texto span{font-size:.72rem;opacity:.88}
+    .menu{display:flex;align-items:center;gap:3px}
+    .menu>li{position:relative}
+    .menu>li>a{
+      display:flex;
+      align-items:center;
+      gap:7px;
+      padding:13px 11px;
+      color:#fff;
+      font-size:.83rem;
+      font-weight:700;
+      border-radius:8px;
+      transition:var(--t);
+    }
+    .menu>li>a:hover,
+    .menu>li>a.activo{
+      background:rgba(255,255,255,.12);
+      color:var(--turquesa2);
+    }
+    .submenu{
+      position:absolute;
+      top:calc(100% + 12px);
+      left:0;
+      min-width:255px;
+      padding:10px;
+      background:#fff;
+      border-radius:12px;
+      box-shadow:var(--sombra);
+      opacity:0;
+      visibility:hidden;
+      transform:translateY(10px);
+      transition:var(--t);
+    }
+    .menu li:hover>.submenu,
+    .menu li:focus-within>.submenu{
+      opacity:1;
+      visibility:visible;
+      transform:none;
+    }
+    .submenu a{
+      display:block;
+      padding:11px 13px;
+      border-radius:8px;
+      color:var(--texto);
+      font-size:.84rem;
+      font-weight:600;
+      transition:var(--t);
+    }
+    .submenu a:hover,
+    .submenu a[aria-current="page"]{
+      background:var(--fondo);
+      color:var(--celeste);
+      padding-left:18px;
+    }
+    .btn-menu{
+      display:none;
+      width:45px;
+      height:45px;
+      align-items:center;
+      justify-content:center;
+      background:transparent;
+      color:#fff;
+      border:1px solid rgba(255,255,255,.55);
+      border-radius:10px;
+      font-size:1.25rem;
+    }
+    .menu-fondo{
+      position:fixed;
+      inset:0;
+      z-index:990;
+      background:rgba(4,18,33,.62);
+      backdrop-filter:blur(2px);
+      opacity:0;
+      visibility:hidden;
+      transition:var(--t);
+    }
+    .menu-fondo.visible{opacity:1;visibility:visible}
+
+    /* Banner */
+    .banner{
+      min-height:540px;
+      position:relative;
+      display:flex;
+      align-items:flex-end;
+      overflow:hidden;
+      color:#fff;
+      background:
+        radial-gradient(circle at 78% 35%,rgba(32,196,194,.21) 0 4%,transparent 25%),
+        radial-gradient(circle at 16% 85%,rgba(27,117,188,.24) 0 3%,transparent 28%),
+        linear-gradient(120deg,#041221 0%,#082b49 56%,#0b3f65 100%);
+    }
+    .banner:before{
+      content:"";
+      position:absolute;
+      width:460px;
+      height:460px;
+      right:-100px;
+      bottom:-170px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:50%;
+      box-shadow:
+        0 0 0 45px rgba(255,255,255,.025),
+        0 0 0 90px rgba(255,255,255,.02);
+    }
+    .banner:after{
+      content:"";
+      position:absolute;
+      bottom:0;
+      left:0;
+      width:100%;
+      height:8px;
+      background:linear-gradient(90deg,var(--celeste),var(--turquesa),var(--verde));
+    }
+    .banner-in{position:relative;z-index:2;padding:235px 0 72px}
+    .etiqueta{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:18px;
+      padding:9px 16px;
+      border:1px solid rgba(255,255,255,.25);
+      border-radius:50px;
+      background:rgba(255,255,255,.1);
+      color:var(--turquesa2);
+      font-size:.76rem;
+      font-weight:800;
+      letter-spacing:1.3px;
+      text-transform:uppercase;
+    }
+    .banner h1{
+      max-width:900px;
+      font-family:"Playfair Display",serif;
+      font-size:clamp(2.8rem,6vw,5rem);
+      line-height:1.05;
+      margin-bottom:14px;
+    }
+    .banner p{max-width:760px;color:rgba(255,255,255,.86);margin:0}
+
+    /* Migas de pan y títulos */
+    .breadcrumb-wrap{padding:25px 0;border-bottom:1px solid var(--borde)}
+    .breadcrumbx{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      padding:13px 18px;
+      background:var(--fondo);
+      border-radius:9px;
+      font-size:.91rem;
+    }
+    .breadcrumbx a,
+    .breadcrumbx i{color:var(--celeste)}
+    .breadcrumbx a{font-weight:700}
+    .breadcrumbx span{color:var(--gris)}
+    .titulo-wrap{max-width:830px;margin:0 auto 55px;text-align:center}
+    .sobre{
+      display:inline-block;
+      margin-bottom:10px;
+      color:var(--turquesa);
+      font-size:.81rem;
+      font-weight:800;
+      letter-spacing:2px;
+      text-transform:uppercase;
+    }
+    .titulo{
+      font-family:"Playfair Display",serif;
+      font-size:clamp(2rem,4vw,3rem);
+      color:var(--azul);
+      line-height:1.15;
+      margin-bottom:18px;
+    }
+    .titulo:after{
+      content:"";
+      display:block;
+      width:86px;
+      height:4px;
+      margin:18px auto 0;
+      border-radius:4px;
+      background:linear-gradient(90deg,var(--celeste),var(--turquesa));
+    }
+    .titulo-wrap p{color:var(--gris);margin:0}
+
+    /* Introducción */
+    .intro{
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:55px;
+      align-items:center;
+    }
+    .intro h2{
+      font-family:"Playfair Display",serif;
+      color:var(--azul);
+      font-size:clamp(2rem,4vw,3rem);
+      margin-bottom:18px;
+    }
+    .intro p{color:var(--gris);margin-bottom:18px;text-align:justify}
+    .checks{display:grid;gap:12px;margin-top:24px}
+    .checks li{display:flex;gap:12px;color:var(--gris)}
+    .checks i{color:var(--turquesa);margin-top:5px}
+    .procesos-resumen{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:16px;
+      padding:24px;
+      background:var(--fondo);
+      border:1px solid var(--borde);
+      border-radius:24px;
+      box-shadow:var(--sombra2);
+    }
+    .proceso{
+      min-height:155px;
+      padding:23px 20px;
+      background:#fff;
+      border-radius:17px;
+      border-top:5px solid var(--proceso-color);
+      box-shadow:0 7px 18px rgba(12,48,79,.07);
+      transition:var(--t);
+    }
+    .proceso:hover{transform:translateY(-5px);box-shadow:var(--sombra2)}
+    .proceso i{
+      width:43px;
+      height:43px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-bottom:13px;
+      border-radius:12px;
+      color:var(--azul2);
+      background:color-mix(in srgb,var(--proceso-color) 35%,white);
+      font-size:1.15rem;
+    }
+    .proceso h3{color:var(--azul);font-size:.94rem;margin-bottom:6px}
+    .proceso p{font-size:.76rem;text-align:left;margin:0}
+
+    /* Visor del organigrama oficial */
+    .org-panel{
+      overflow:hidden;
+      background:#fff;
+      border:1px solid var(--borde);
+      border-radius:22px;
+      box-shadow:var(--sombra);
+    }
+    .org-toolbar{
+      min-height:70px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      padding:14px 20px;
+      background:linear-gradient(135deg,var(--azul2),var(--azul));
+      color:#fff;
+    }
+    .org-toolbar-text{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-size:.93rem;
+      font-weight:700;
+    }
+    .org-toolbar-text i{color:var(--turquesa2);font-size:1.25rem}
+    .org-acciones{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+    .org-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      min-height:40px;
+      padding:8px 14px;
+      border:1px solid rgba(255,255,255,.3);
+      border-radius:9px;
+      background:rgba(255,255,255,.1);
+      color:#fff;
+      font:inherit;
+      font-size:.79rem;
+      font-weight:800;
+      cursor:pointer;
+      transition:var(--t);
+    }
+    .org-btn:hover{background:#fff;color:var(--azul2)}
+    .org-btn.destacado{border-color:var(--turquesa);background:var(--turquesa)}
+    .org-lienzo{
+      padding:24px;
+      overflow:auto;
+      background:
+        linear-gradient(45deg,#f8fafc 25%,transparent 25%),
+        linear-gradient(-45deg,#f8fafc 25%,transparent 25%),
+        linear-gradient(45deg,transparent 75%,#f8fafc 75%),
+        linear-gradient(-45deg,transparent 75%,#f8fafc 75%);
+      background-size:24px 24px;
+      background-position:0 0,0 12px,12px -12px,-12px 0;
+    }
+    .org-lienzo button{
+      display:block;
+      width:100%;
+      padding:0;
+      border:0;
+      background:#fff;
+      border-radius:12px;
+      cursor:zoom-in;
+    }
+    .org-lienzo img{
+      width:100%;
+      height:auto;
+      border-radius:12px;
+      background:#fff;
+    }
+    .org-caption{
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+      padding:18px 24px;
+      border-top:1px solid var(--borde);
+      color:var(--gris);
+      font-size:.83rem;
+    }
+    .org-caption i{color:var(--turquesa);margin-top:4px}
+    .leyenda{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:15px;
+      margin-top:26px;
+    }
+    .leyenda-item{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:16px;
+      border:1px solid var(--borde);
+      border-radius:13px;
+      background:#fff;
+      color:var(--azul);
+      font-size:.78rem;
+      font-weight:800;
+      box-shadow:var(--sombra2);
+    }
+    .leyenda-color{
+      width:18px;
+      height:42px;
+      flex:0 0 18px;
+      border-radius:8px;
+      background:var(--color);
+      border:1px solid rgba(0,0,0,.08);
+    }
+
+    /* Dependencias */
+    .deps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .dep{
+      padding:28px;
+      background:#fff;
+      border-radius:16px;
+      border-left:5px solid var(--turquesa);
+      box-shadow:var(--sombra2);
+      transition:var(--t);
+    }
+    .dep:hover{transform:translateY(-7px);box-shadow:var(--sombra)}
+    .dep-icon{
+      width:58px;
+      height:58px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-bottom:18px;
+      color:#fff;
+      border-radius:15px;
+      background:linear-gradient(135deg,var(--azul),var(--turquesa));
+      font-size:1.45rem;
+    }
+    .dep h3{color:var(--azul);font-size:1.02rem;margin-bottom:10px}
+    .dep p{color:var(--gris);font-size:.86rem;margin:0}
+
+    /* Documentos */
+    .docs{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+    .doc{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      padding:24px;
+      background:#fff;
+      border-radius:16px;
+      box-shadow:var(--sombra2);
+      transition:var(--t);
+    }
+    .doc:hover{transform:translateY(-5px);box-shadow:var(--sombra)}
+    .doc-icon{
+      width:58px;
+      height:58px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:15px;
+      background:var(--azul);
+      color:#fff;
+      font-size:1.4rem;
+      flex:0 0 58px;
+    }
+    .doc h3{color:var(--azul);font-size:1rem;margin-bottom:5px}
+    .doc p{color:var(--gris);font-size:.83rem;margin:0}
+    .doc .flecha{margin-left:auto;color:var(--turquesa)}
+    .doc.inactivo{cursor:default}
+    .doc.inactivo:hover{transform:none}
+
+    /* Llamado a la acción */
+    .cta{
+      padding:50px;
+      border-radius:24px;
+      background:linear-gradient(135deg,var(--azul2),var(--azul));
+      color:#fff;
+      box-shadow:var(--sombra);
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:30px;
+      align-items:center;
+    }
+    .cta h2{
+      font-family:"Playfair Display",serif;
+      font-size:clamp(2rem,4vw,3rem);
+      margin-bottom:12px;
+    }
+    .cta p{color:rgba(255,255,255,.8);margin:0}
+    .btn-cta{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:14px 22px;
+      border-radius:10px;
+      background:var(--turquesa);
+      color:#fff;
+      font-weight:800;
+      transition:var(--t);
+    }
+    .btn-cta:hover{background:#fff;color:var(--azul2);transform:translateY(-3px)}
+
+    /* Footer */
+    .footer{background:#072844;color:#fff}
+    .footer-main{padding:70px 0 45px}
+    .footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:45px}
+    .footer-logo img{width:190px;margin-bottom:20px}
+    .footer-desc{color:rgba(255,255,255,.68);font-size:.85rem}
+    .footer h3{margin-bottom:22px;font-size:1.08rem}
+    .footer-links,
+    .footer-contacto{display:grid;gap:11px}
+    .footer-links a,
+    .footer-contacto li{color:rgba(255,255,255,.72);font-size:.84rem}
+    .footer-links a:hover{color:var(--turquesa2)}
+    .footer-contacto li{display:flex;gap:10px}
+    .footer-contacto i{color:var(--turquesa2);margin-top:4px}
+    .footer-bottom{padding:22px 0;border-top:1px solid rgba(255,255,255,.1)}
+    .footer-bottom-in{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      color:rgba(255,255,255,.62);
+      font-size:.78rem;
+    }
+    .footer-bottom p{margin:0}
+
+    /* Modal ampliado del organigrama */
+    .org-modal{
+      position:fixed;
+      inset:0;
+      z-index:2500;
+      display:flex;
+      flex-direction:column;
+      background:rgba(2,12,22,.97);
+      opacity:0;
+      visibility:hidden;
+      transition:opacity .25s ease,visibility .25s ease;
+    }
+    .org-modal.abierto{opacity:1;visibility:visible}
+    .modal-cabecera{
+      min-height:70px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      padding:12px 24px;
+      border-bottom:1px solid rgba(255,255,255,.13);
+      color:#fff;
+      background:#061f35;
+    }
+    .modal-titulo{display:flex;align-items:center;gap:11px;font-size:.95rem;font-weight:800}
+    .modal-titulo i{color:var(--turquesa2)}
+    .modal-controles{display:flex;align-items:center;gap:8px}
+    .modal-btn{
+      width:42px;
+      height:42px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border:1px solid rgba(255,255,255,.3);
+      border-radius:9px;
+      background:rgba(255,255,255,.08);
+      color:#fff;
+      cursor:pointer;
+      transition:var(--t);
+    }
+    .modal-btn:hover{background:var(--turquesa);border-color:var(--turquesa)}
+    .zoom-valor{
+      min-width:58px;
+      color:rgba(255,255,255,.8);
+      text-align:center;
+      font-size:.78rem;
+      font-weight:800;
+    }
+    .modal-lienzo{
+      flex:1;
+      overflow:auto;
+      padding:28px;
+      text-align:center;
+      background:#111b24;
+    }
+    .modal-lienzo img{
+      width:100%;
+      max-width:none;
+      height:auto;
+      margin:0 auto;
+      border-radius:9px;
+      background:#fff;
+      box-shadow:0 14px 45px rgba(0,0,0,.35);
+      transition:width .18s ease;
+    }
+
+    /* Botones flotantes */
+    .arriba,
+    .accesibilidad{
+      position:fixed;
+      z-index:900;
+      border:none;
+      color:#fff;
+      box-shadow:var(--sombra);
+    }
+    .arriba{
+      right:22px;
+      bottom:22px;
+      width:48px;
+      height:48px;
+      border-radius:10px;
+      background:var(--celeste);
+      opacity:0;
+      visibility:hidden;
+      transform:translateY(15px);
+      transition:var(--t);
+    }
+    .arriba.visible{opacity:1;visibility:visible;transform:none}
+    .accesibilidad{
+      left:0;
+      top:55%;
+      width:54px;
+      height:60px;
+      border-radius:0 8px 8px 0;
+      background:var(--azul);
+      font-size:1.45rem;
+    }
+
+    /* Animaciones */
+    .revelar{
+      opacity:0;
+      transform:translateY(35px);
+      transition:opacity .75s ease,transform .75s ease;
+    }
+    .revelar.visible{opacity:1;transform:none}
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,
+      *:before,
+      *:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+      .revelar{opacity:1;transform:none}
+    }
+
+    /* Alto contraste */
+    body.alto-contraste{
+      --azul:#000;
+      --azul2:#000;
+      --azul3:#000;
+      --celeste:#ffd900;
+      --turquesa:#ffd900;
+      --turquesa2:#ffff00;
+      --fondo:#111;
+      --borde:#777;
+      --gris:#fff;
+      --texto:#fff;
+      background:#000;
+      color:#fff;
+    }
+    body.alto-contraste .header,
+    body.alto-contraste .footer,
+    body.alto-contraste .org-toolbar,
+    body.alto-contraste .cta{background:#000}
+    body.alto-contraste .proceso,
+    body.alto-contraste .dep,
+    body.alto-contraste .doc,
+    body.alto-contraste .org-panel,
+    body.alto-contraste .leyenda-item,
+    body.alto-contraste .breadcrumbx{background:#111}
+    body.alto-contraste .org-lienzo{background:#222}
+    body.alto-contraste .titulo,
+    body.alto-contraste .intro h2,
+    body.alto-contraste .dep h3,
+    body.alto-contraste .doc h3,
+    body.alto-contraste .proceso h3,
+    body.alto-contraste .leyenda-item{color:#fff}
+
+    /* Responsive */
+    @media(max-width:1200px){
+      .logo img{width:205px}
+      .logo-texto{display:none}
+      .menu>li>a{font-size:.76rem;padding:11px 8px}
+      .deps{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:980px){
+      .barra{display:none}
+      .header{top:0}
+      .nav{min-height:88px}
+      .logo img{width:185px}
+      .btn-menu{display:flex;position:relative;z-index:1010}
+      .menu{
+        position:fixed;
+        top:0;
+        right:-100%;
+        z-index:1005;
+        width:min(380px,88%);
+        height:100dvh;
+        padding:95px 25px 35px;
+        display:block;
+        overflow-y:auto;
+        background:var(--azul2);
+        box-shadow:-12px 0 30px rgba(0,0,0,.25);
+        transition:right .35s ease;
+      }
+      .menu.abierto{right:0}
+      .menu>li>a{justify-content:space-between;padding:14px;font-size:.92rem}
+      .submenu{
+        position:static;
+        display:none;
+        min-width:auto;
+        margin:4px 0 12px 15px;
+        background:rgba(255,255,255,.07);
+        box-shadow:none;
+        opacity:1;
+        visibility:visible;
+        transform:none;
+      }
+      .submenu.activo{display:block}
+      .submenu a{color:rgba(255,255,255,.82)}
+      .intro{grid-template-columns:1fr}
+      .docs{grid-template-columns:1fr}
+      .leyenda{grid-template-columns:repeat(2,1fr)}
+      .cta{grid-template-columns:1fr;text-align:center}
+      .footer-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:700px){
+      .contenedor{width:min(100% - 28px,1180px)}
+      .seccion{padding:70px 0}
+      .logo img{width:160px}
+      .banner{min-height:470px;text-align:center}
+      .banner-in{padding:170px 0 55px}
+      .banner h1{font-size:clamp(2.4rem,13vw,3.5rem)}
+      .procesos-resumen{grid-template-columns:1fr;padding:16px}
+      .proceso{min-height:auto}
+      .deps{grid-template-columns:1fr}
+      .leyenda{grid-template-columns:1fr}
+      .org-toolbar{align-items:flex-start;flex-direction:column}
+      .org-acciones{width:100%}
+      .org-btn{flex:1}
+      .org-lienzo{padding:10px}
+      .org-lienzo button{min-width:720px}
+      .org-caption{padding:16px}
+      .cta{padding:35px 24px}
+      .footer-grid{grid-template-columns:1fr}
+      .footer-bottom-in{flex-direction:column;text-align:center}
+      .accesibilidad{top:auto;bottom:85px;width:45px;height:50px}
+      .modal-cabecera{padding:10px 12px}
+      .modal-titulo span{display:none}
+      .modal-controles{gap:5px}
+      .modal-btn{width:38px;height:38px}
+      .modal-lienzo{padding:12px}
+      .modal-lienzo img{min-width:760px}
+    }
+    @media(max-width:420px){
+      .org-btn span{display:none}
+      .org-btn{flex:0 0 44px;padding:8px}
+      .zoom-valor{display:none}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="barra">
+    <div class="contenedor barra-in">
+      <div class="barra-grupo">
+        <div class="barra-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>Atacames, Esmeraldas, Ecuador</span>
+        </div>
+        <div class="barra-item">
+          <i class="fa-solid fa-phone"></i>
+          <span>(06) 2730-000</span>
+        </div>
+      </div>
+      <div class="barra-grupo">
+        <a href="#">Mapa del sitio</a>
+        <a href="#">Correo institucional</a>
+        <a href="#contacto">Contáctenos</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="header" id="header">
+    <div class="contenedor nav">
+      <a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Alcaldia-Atacames-menu-municipio.html" class="logo">
+        <img src="https://www.municipiodeatacames.gob.ec/images/Logo%20Institucional/2023/TRANSPARENTE2.png" alt="Municipio de Atacames">
+        <div class="logo-texto">
+          <strong>Municipio de Atacames</strong>
+          <span>Gobierno Autónomo Descentralizado Municipal</span>
+        </div>
+      </a>
+
+      <button class="btn-menu" id="btnMenu" type="button" aria-label="Abrir menú" aria-controls="menu" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <nav aria-label="Navegación principal">
+        <ul class="menu" id="menu">
+          <li>
+            <a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Alcaldia-Atacames-menu-municipio.html">Inicio</a>
+          </li>
+          <li>
+            <a href="#" class="sub-link activo" aria-expanded="false">
+              Nuestra Institución <i class="fa-solid fa-chevron-down"></i>
+            </a>
+            <ul class="submenu">
+              <li><a href="Alcalde.html">Alcalde</a></li>
+              <li><a href="vicealcaldesa.html">Vicealcaldesa</a></li>
+              <li><a href="filosofia-institucional.html">Filosofía Institucional</a></li>
+              <li><a href="principios-valores.html">Principios y valores</a></li>
+              <li><a href="estructura-organica.html" aria-current="page">Estructura orgánica</a></li>
+              <li><a href="concejo-municipal.html">Concejo Municipal</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" class="sub-link" aria-expanded="false">
+              Servicios <i class="fa-solid fa-chevron-down"></i>
+            </a>
+            <ul class="submenu">
+              <li><a href="#">Trámites municipales</a></li>
+              <li><a href="#">Pagos</a></li>
+              <li><a href="#">Catastro</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Noticias</a></li>
+          <li><a href="gobierno-abierto.html">Gobierno Abierto</a></li>
+          <li><a href="#">Rendición de cuentas</a></li>
+          <li>
+            <a href="#" class="sub-link" aria-expanded="false">
+              Transparencia <i class="fa-solid fa-chevron-down"></i>
+            </a>
+            <ul class="submenu">
+              <li><a href="#">LOTAIP</a></li>
+              <li><a href="#">Contratación pública</a></li>
+            </ul>
+          </li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="menu-fondo" id="menuFondo" aria-hidden="true"></div>
+
+  <main>
+    <section class="banner">
+      <div class="contenedor banner-in">
+        <div class="etiqueta">
+          <i class="fa-solid fa-sitemap"></i>
+          Organización y gestión institucional
+        </div>
+        <h1>Estructura Orgánica</h1>
+        <p>Conozca la organización administrativa y funcional del Gobierno Autónomo Descentralizado Municipal de Atacames.</p>
+      </div>
+    </section>
+
+    <div class="breadcrumb-wrap">
+      <div class="contenedor">
+        <nav class="breadcrumbx" aria-label="Migas de pan">
+          <a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Alcaldia-Atacames-menu-municipio.html">
+            <i class="fa-solid fa-house"></i> Inicio
+          </a>
+          <i class="fa-solid fa-chevron-right"></i>
+          <span>Estructura orgánica</span>
+        </nav>
+      </div>
+    </div>
+
+    <section class="seccion">
+      <div class="contenedor">
+        <div class="intro">
+          <div class="revelar">
+            <span class="sobre">Gestión municipal organizada</span>
+            <h2>¿Qué es la estructura orgánica?</h2>
+            <p>La estructura orgánica define cómo se distribuyen las funciones, responsabilidades y niveles de autoridad dentro del Gobierno Autónomo Descentralizado Municipal de Atacames.</p>
+            <p>Su finalidad es garantizar una gestión coordinada, eficiente y transparente, facilitando la prestación de servicios públicos y el cumplimiento de los objetivos institucionales.</p>
+            <ul class="checks">
+              <li><i class="fa-solid fa-circle-check"></i><span>Define niveles de autoridad y responsabilidad.</span></li>
+              <li><i class="fa-solid fa-circle-check"></i><span>Facilita la coordinación entre dependencias.</span></li>
+              <li><i class="fa-solid fa-circle-check"></i><span>Mejora la eficiencia administrativa.</span></li>
+              <li><i class="fa-solid fa-circle-check"></i><span>Fortalece la transparencia institucional.</span></li>
+            </ul>
+          </div>
+
+          <ul class="procesos-resumen revelar" aria-label="Tipos de procesos institucionales">
+            <li class="proceso" style="--proceso-color:var(--naranja)">
+              <i class="fa-solid fa-landmark"></i>
+              <h3>Proceso gobernante</h3>
+              <p>Concejo Municipal y Alcaldía.</p>
+            </li>
+            <li class="proceso" style="--proceso-color:var(--verde-proceso)">
+              <i class="fa-solid fa-scale-balanced"></i>
+              <h3>Proceso de asesoría</h3>
+              <p>Unidades de apoyo estratégico y asesoramiento.</p>
+            </li>
+            <li class="proceso" style="--proceso-color:var(--morado)">
+              <i class="fa-solid fa-gears"></i>
+              <h3>Proceso de apoyo</h3>
+              <p>Gestión financiera, administrativa y de talento humano.</p>
+            </li>
+            <li class="proceso" style="--proceso-color:var(--amarillo)">
+              <i class="fa-solid fa-people-group"></i>
+              <h3>Agregación de valor</h3>
+              <p>Direcciones y servicios orientados a la ciudadanía.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion fondo" id="organigrama">
+      <div class="contenedor">
+        <div class="titulo-wrap revelar">
+          <span class="sobre">Organización institucional</span>
+          <h2 class="titulo">Organigrama municipal</h2>
+          <p>Visualice la distribución jerárquica de las autoridades, direcciones, unidades y procesos del GAD Municipal de Atacames.</p>
+        </div>
+
+        <div class="org-panel revelar">
+          <div class="org-toolbar">
+            <div class="org-toolbar-text">
+              <i class="fa-solid fa-diagram-project"></i>
+              <span>Organigrama institucional del GAD Municipal de Atacames</span>
+            </div>
+            <div class="org-acciones">
+              <button class="org-btn destacado" id="abrirOrganigrama" type="button">
+                <i class="fa-solid fa-expand"></i>
+                <span>Ampliar</span>
+              </button>
+              <a class="org-btn" href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Organigrama.png" download="Organigrama-GAD-Atacames.png">
+                <i class="fa-solid fa-download"></i>
+                <span>Descargar</span>
+              </a>
+            </div>
+          </div>
+
+          <figure class="m-0">
+            <div class="org-lienzo">
+              <button id="imagenOrganigrama" type="button" aria-label="Ampliar organigrama institucional">
+                <img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Organigrama.png" alt="Organigrama institucional completo del GAD Municipal de Atacames" loading="lazy">
+              </button>
+            </div>
+            <figcaption class="org-caption">
+              <i class="fa-solid fa-circle-info"></i>
+              <span>En celulares puede desplazarse horizontalmente sobre la imagen. Use el botón <strong>Ampliar</strong> para abrir el visor con controles de zoom.</span>
+            </figcaption>
+          </figure>
+        </div>
+
+        <ul class="leyenda revelar" aria-label="Leyenda del organigrama">
+          <li class="leyenda-item">
+            <span class="leyenda-color" style="--color:var(--naranja)"></span>
+            <span>Proceso gobernante</span>
+          </li>
+          <li class="leyenda-item">
+            <span class="leyenda-color" style="--color:var(--verde-proceso)"></span>
+            <span>Proceso habilitante de asesoría</span>
+          </li>
+          <li class="leyenda-item">
+            <span class="leyenda-color" style="--color:var(--morado)"></span>
+            <span>Proceso habilitante de apoyo</span>
+          </li>
+          <li class="leyenda-item">
+            <span class="leyenda-color" style="--color:var(--amarillo)"></span>
+            <span>Proceso agregador de valor</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="seccion" id="dependencias">
+      <div class="contenedor">
+        <div class="titulo-wrap revelar">
+          <span class="sobre">Áreas municipales</span>
+          <h2 class="titulo">Principales dependencias</h2>
+          <p>Unidades responsables de ejecutar procesos y prestar servicios municipales en beneficio de la ciudadanía.</p>
+        </div>
+
+        <div class="deps">
+          <article class="dep revelar">
+            <div class="dep-icon"><i class="fa-solid fa-coins"></i></div>
+            <h3>Dirección Financiera</h3>
+            <p>Integra contabilidad, presupuesto, rentas, tesorería y recaudación municipal.</p>
+          </article>
+          <article class="dep revelar">
+            <div class="dep-icon"><i class="fa-solid fa-building"></i></div>
+            <h3>Dirección Administrativa</h3>
+            <p>Gestiona compras públicas, tecnologías y sistemas, activos fijos y servicios generales.</p>
+          </article>
+          <article class="dep revelar">
+            <div class="dep-icon"><i class="fa-solid fa-users-gear"></i></div>
+            <h3>Dirección de Talento Humano</h3>
+            <p>Coordina trabajo social, salud ocupacional y seguridad industrial.</p>
+          </article>
+          <article class="dep revelar">
+            <div class="dep-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+            <h3>Planificación y Desarrollo Territorial</h3>
+            <p>Gestiona planificación urbana y rural, proyectos institucionales y gestión de riesgos.</p>
+          </article>
+          <article class="dep revelar">
+            <div class="dep-icon"><i class="fa-solid fa-map"></i></div>
+            <h3>Avalúo y Catastro</h3>
+            <p>Administra avalúos, catastros, geomática, regularización y archivo catastral.</p>
+          </article>
+          <article class="dep revelar">
+            <div class="dep-icon"><i class="fa-solid fa-road"></i></div>
+            <h3>Dirección de Obras Públicas</h3>
+            <p>Ejecuta infraestructura, construcciones, fiscalización, alcantarillado y gestión territorial.</p>
+          </article>
+          <article class="dep revelar">
+            <div class="dep-icon"><i class="fa-solid fa-leaf"></i></div>
+            <h3>Gestión e Higiene Ambiental</h3>
+            <p>Coordina higiene, salubridad, educación ambiental, calidad ambiental y recursos naturales.</p>
+          </article>
+          <article class="dep revelar">
+            <div class="dep-icon"><i class="fa-solid fa-umbrella-beach"></i></div>
+            <h3>Dirección de Turismo</h3>
+            <p>Promueve el destino Atacames y fortalece la gestión de promoción turística.</p>
+          </article>
+          <article class="dep revelar">
+            <div class="dep-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+            <h3>Desarrollo Humano, Social y Solidario</h3>
+            <p>Impulsa cultura, deporte, acción social, desarrollo comunitario, acuacultura y cooperación.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion fondo" id="documentos">
+      <div class="contenedor">
+        <div class="titulo-wrap revelar">
+          <span class="sobre">Documentación institucional</span>
+          <h2 class="titulo">Documentos relacionados</h2>
+          <p>Consulte documentos vinculados con la estructura y organización municipal.</p>
+        </div>
+
+        <div class="docs">
+          <a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Organigrama.png" download="Organigrama-GAD-Atacames.png" class="doc revelar">
+            <div class="doc-icon"><i class="fa-solid fa-file-image"></i></div>
+            <div>
+              <h3>Organigrama institucional</h3>
+              <p>Descargar el organigrama en formato PNG.</p>
+            </div>
+            <i class="fa-solid fa-download flecha"></i>
+          </a>
+          <div class="doc inactivo revelar">
+            <div class="doc-icon"><i class="fa-solid fa-book-open"></i></div>
+            <div>
+              <h3>Estatuto orgánico por procesos</h3>
+              <p>Espacio preparado para incorporar el documento oficial.</p>
+            </div>
+            <i class="fa-solid fa-clock flecha"></i>
+          </div>
+          <div class="doc inactivo revelar">
+            <div class="doc-icon"><i class="fa-solid fa-address-card"></i></div>
+            <div>
+              <h3>Directorio institucional</h3>
+              <p>Espacio preparado para autoridades y responsables de área.</p>
+            </div>
+            <i class="fa-solid fa-clock flecha"></i>
+          </div>
+          <div class="doc inactivo revelar">
+            <div class="doc-icon"><i class="fa-solid fa-sitemap"></i></div>
+            <div>
+              <h3>Mapa de procesos</h3>
+              <p>Espacio preparado para los procesos estratégicos y operativos.</p>
+            </div>
+            <i class="fa-solid fa-clock flecha"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion">
+      <div class="contenedor">
+        <div class="cta revelar">
+          <div>
+            <h2>Una institución organizada para servir</h2>
+            <p>La estructura orgánica permite coordinar recursos, procesos y responsabilidades para ofrecer mejores servicios.</p>
+          </div>
+          <a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Organigrama.png" class="btn-cta" download="Organigrama-GAD-Atacames.png">
+            <i class="fa-solid fa-file-arrow-down"></i>
+            Descargar organigrama
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="contacto">
+    <div class="footer-main">
+      <div class="contenedor footer-grid">
+        <div>
+          <div class="footer-logo">
+            <img src="https://www.municipiodeatacames.gob.ec/images/Logo%20Institucional/2023/TRANSPARENTE2.png" alt="Municipio de Atacames">
+          </div>
+          <p class="footer-desc">Portal institucional del Gobierno Autónomo Descentralizado Municipal del cantón Atacames.</p>
+        </div>
+        <div>
+          <h3>Enlaces rápidos</h3>
+          <ul class="footer-links">
+            <li><a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Alcaldia-Atacames-menu-municipio.html">Inicio</a></li>
+            <li><a href="#organigrama">Organigrama</a></li>
+            <li><a href="#dependencias">Dependencias</a></li>
+            <li><a href="#documentos">Documentos</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Institución</h3>
+          <ul class="footer-links">
+            <li><a href="Alcalde.html">Alcalde</a></li>
+            <li><a href="filosofia-institucional.html">Filosofía institucional</a></li>
+            <li><a href="principios-valores.html">Principios y valores</a></li>
+            <li><a href="gobierno-abierto.html">Gobierno abierto</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Contáctenos</h3>
+          <ul class="footer-contacto">
+            <li><i class="fa-solid fa-location-dot"></i><span>Atacames, Esmeraldas, Ecuador</span></li>
+            <li><i class="fa-solid fa-phone"></i><span>(06) 2730-000</span></li>
+            <li><i class="fa-solid fa-envelope"></i><span>info@municipiodeatacames.gob.ec</span></li>
+            <li><i class="fa-solid fa-clock"></i><span>Lunes a viernes: 08:00–17:00</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="contenedor footer-bottom-in">
+        <p>© <span id="anio"></span> GAD Municipal de Atacames. Todos los derechos reservados.</p>
+        <p>Dirección de Tecnologías de la Información</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="org-modal" id="modalOrganigrama" role="dialog" aria-modal="true" aria-labelledby="tituloModal" inert>
+    <div class="modal-cabecera">
+      <div class="modal-titulo" id="tituloModal">
+        <i class="fa-solid fa-sitemap"></i>
+        <span>Organigrama institucional del GAD Municipal de Atacames</span>
+      </div>
+      <div class="modal-controles">
+        <button class="modal-btn" id="zoomMenos" type="button" aria-label="Alejar imagen">
+          <i class="fa-solid fa-minus"></i>
+        </button>
+        <span class="zoom-valor" id="zoomValor">100%</span>
+        <button class="modal-btn" id="zoomMas" type="button" aria-label="Acercar imagen">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+        <button class="modal-btn" id="zoomReset" type="button" aria-label="Restablecer zoom">
+          <i class="fa-solid fa-rotate-left"></i>
+        </button>
+        <a class="modal-btn" href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Organigrama.png" download="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Organigrama.png" aria-label="Descargar organigrama">
+          <i class="fa-solid fa-download"></i>
+        </a>
+        <button class="modal-btn" id="cerrarModal" type="button" aria-label="Cerrar visor">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+    <div class="modal-lienzo" id="modalLienzo">
+      <img id="imagenModal" src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Organigrama.png" alt="Organigrama institucional ampliado del GAD Municipal de Atacames">
+    </div>
+  </div>
+
+  <button class="accesibilidad" id="accesibilidad" type="button" aria-label="Activar alto contraste" aria-pressed="false">
+    <i class="fa-solid fa-universal-access"></i>
+  </button>
+  <button class="arriba" id="arriba" type="button" aria-label="Volver arriba">
+    <i class="fa-solid fa-chevron-up"></i>
+  </button>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    "use strict";
+
+    const header = document.getElementById("header");
+    const btnMenu = document.getElementById("btnMenu");
+    const menu = document.getElementById("menu");
+    const menuFondo = document.getElementById("menuFondo");
+    const arriba = document.getElementById("arriba");
+    const accesibilidad = document.getElementById("accesibilidad");
+    const subs = document.querySelectorAll(".sub-link");
+
+    const modalOrganigrama = document.getElementById("modalOrganigrama");
+    const abrirOrganigrama = document.getElementById("abrirOrganigrama");
+    const imagenOrganigrama = document.getElementById("imagenOrganigrama");
+    const cerrarModalBtn = document.getElementById("cerrarModal");
+    const zoomMas = document.getElementById("zoomMas");
+    const zoomMenos = document.getElementById("zoomMenos");
+    const zoomReset = document.getElementById("zoomReset");
+    const zoomValor = document.getElementById("zoomValor");
+    const imagenModal = document.getElementById("imagenModal");
+    const modalLienzo = document.getElementById("modalLienzo");
+
+    let zoom = 1;
+    let ultimoFoco = null;
+
+    document.getElementById("anio").textContent = new Date().getFullYear();
+
+    function cerrarMenu(){
+      menu.classList.remove("abierto");
+      menuFondo.classList.remove("visible");
+      document.body.classList.remove("menu-abierto");
+      btnMenu.setAttribute("aria-expanded","false");
+      btnMenu.setAttribute("aria-label","Abrir menú");
+      btnMenu.innerHTML = '<i class="fa-solid fa-bars"></i>';
+    }
+
+    btnMenu.addEventListener("click",function(){
+      const abierto = menu.classList.toggle("abierto");
+      menuFondo.classList.toggle("visible",abierto);
+      document.body.classList.toggle("menu-abierto",abierto);
+      btnMenu.setAttribute("aria-expanded",String(abierto));
+      btnMenu.setAttribute("aria-label",abierto ? "Cerrar menú" : "Abrir menú");
+      btnMenu.innerHTML = abierto
+        ? '<i class="fa-solid fa-xmark"></i>'
+        : '<i class="fa-solid fa-bars"></i>';
+    });
+
+    menuFondo.addEventListener("click",cerrarMenu);
+
+    subs.forEach(function(enlace){
+      enlace.addEventListener("click",function(evento){
+        if(window.innerWidth <= 980){
+          evento.preventDefault();
+          const submenu = enlace.nextElementSibling;
+          const activo = submenu.classList.toggle("activo");
+          enlace.setAttribute("aria-expanded",String(activo));
+          enlace.querySelector("i").className = activo
+            ? "fa-solid fa-chevron-up"
+            : "fa-solid fa-chevron-down";
+        }
+      });
+    });
+
+    menu.querySelectorAll("a").forEach(function(enlace){
+      enlace.addEventListener("click",function(){
+        if(window.innerWidth <= 980 && !enlace.classList.contains("sub-link")){
+          cerrarMenu();
+        }
+      });
+    });
+
+    function actualizarScroll(){
+      header.classList.toggle("fijo",window.scrollY > 90);
+      arriba.classList.toggle("visible",window.scrollY > 450);
+    }
+
+    window.addEventListener("scroll",actualizarScroll,{passive:true});
+    actualizarScroll();
+
+    arriba.addEventListener("click",function(){
+      window.scrollTo({top:0,behavior:"smooth"});
+    });
+
+    const observador = new IntersectionObserver(function(entradas,observadorActual){
+      entradas.forEach(function(entrada){
+        if(entrada.isIntersecting){
+          entrada.target.classList.add("visible");
+          observadorActual.unobserve(entrada.target);
+        }
+      });
+    },{threshold:.12,rootMargin:"0px 0px -50px 0px"});
+
+    document.querySelectorAll(".revelar").forEach(function(elemento){
+      observador.observe(elemento);
+    });
+
+    accesibilidad.addEventListener("click",function(){
+      const activo = document.body.classList.toggle("alto-contraste");
+      accesibilidad.setAttribute("aria-pressed",String(activo));
+      accesibilidad.setAttribute(
+        "aria-label",
+        activo ? "Desactivar alto contraste" : "Activar alto contraste"
+      );
+    });
+
+    function aplicarZoom(){
+      imagenModal.style.width = (zoom * 100) + "%";
+      zoomValor.textContent = Math.round(zoom * 100) + "%";
+    }
+
+    function abrirVisor(){
+      ultimoFoco = document.activeElement;
+      zoom = window.innerWidth <= 700 ? 1.15 : 1;
+      aplicarZoom();
+      modalOrganigrama.classList.add("abierto");
+      modalOrganigrama.removeAttribute("inert");
+      document.body.classList.add("modal-abierto");
+      modalLienzo.scrollTo({top:0,left:0});
+      cerrarModalBtn.focus();
+    }
+
+    function cerrarVisor(){
+      modalOrganigrama.classList.remove("abierto");
+      modalOrganigrama.setAttribute("inert","");
+      document.body.classList.remove("modal-abierto");
+      if(ultimoFoco) ultimoFoco.focus();
+    }
+
+    abrirOrganigrama.addEventListener("click",abrirVisor);
+    imagenOrganigrama.addEventListener("click",abrirVisor);
+    cerrarModalBtn.addEventListener("click",cerrarVisor);
+
+    zoomMas.addEventListener("click",function(){
+      zoom = Math.min(3,zoom + .25);
+      aplicarZoom();
+    });
+
+    zoomMenos.addEventListener("click",function(){
+      zoom = Math.max(.5,zoom - .25);
+      aplicarZoom();
+    });
+
+    zoomReset.addEventListener("click",function(){
+      zoom = 1;
+      aplicarZoom();
+      modalLienzo.scrollTo({top:0,left:0,behavior:"smooth"});
+    });
+
+    modalOrganigrama.addEventListener("click",function(evento){
+      if(evento.target === modalOrganigrama) cerrarVisor();
+    });
+
+    document.addEventListener("keydown",function(evento){
+      if(evento.key === "Escape"){
+        if(modalOrganigrama.classList.contains("abierto")){
+          cerrarVisor();
+        }else{
+          cerrarMenu();
+        }
+      }
+
+      if(modalOrganigrama.classList.contains("abierto")){
+        if(evento.key === "+"){
+          zoom = Math.min(3,zoom + .25);
+          aplicarZoom();
+        }
+        if(evento.key === "-"){
+          zoom = Math.max(.5,zoom - .25);
+          aplicarZoom();
+        }
+      }
+    });
+
+    window.addEventListener("resize",function(){
+      if(window.innerWidth > 980){
+        cerrarMenu();
+        document.querySelectorAll(".submenu").forEach(function(submenu){
+          submenu.classList.remove("activo");
+        });
+        subs.forEach(function(enlace){
+          enlace.setAttribute("aria-expanded","false");
+          enlace.querySelector("i").className = "fa-solid fa-chevron-down";
+        });
+      }
+    });
+  </script>
+</body>
+</html>
