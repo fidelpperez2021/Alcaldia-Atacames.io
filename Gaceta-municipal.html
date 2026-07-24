@@ -468,6 +468,126 @@
       transform:translateY(-2px);
     }
 
+    .modal-visor .modal-dialog{
+      max-width:min(1280px,calc(100% - 32px));
+    }
+    .modal-visor .modal-content{
+      overflow:hidden;
+      border:0;
+      border-radius:18px;
+      box-shadow:0 24px 70px rgba(4,18,33,.32);
+    }
+    .modal-visor .modal-header{
+      gap:18px;
+      padding:18px 22px;
+      border:0;
+      background:linear-gradient(90deg,var(--azul-oscuro),var(--azul));
+      color:#fff;
+    }
+    .modal-visor-tipo{
+      display:block;
+      margin-bottom:3px;
+      color:var(--turquesa-claro);
+      font-size:.69rem;
+      font-weight:800;
+      letter-spacing:1.2px;
+      text-transform:uppercase;
+    }
+    .modal-visor .modal-title{
+      margin:0;
+      color:#fff;
+      font-size:clamp(.93rem,2vw,1.15rem);
+      font-weight:800;
+      line-height:1.35;
+    }
+    .modal-visor .btn-close{
+      flex-shrink:0;
+      filter:invert(1) grayscale(1) brightness(2);
+      opacity:.9;
+    }
+    .visor-pdf-contenedor{
+      position:relative;
+      min-height:70vh;
+      background:#e9eef3;
+    }
+    .visor-pdf{
+      display:block;
+      width:100%;
+      height:70vh;
+      border:0;
+      background:#fff;
+    }
+    .visor-cargando{
+      position:absolute;
+      inset:0;
+      z-index:2;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:13px;
+      background:#eef3f7;
+      color:var(--azul);
+      font-weight:800;
+      transition:opacity .25s ease,visibility .25s ease;
+    }
+    .visor-cargando.oculto{
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
+    }
+    .modal-visor .modal-footer{
+      justify-content:space-between;
+      gap:12px;
+      padding:14px 18px;
+      border-color:var(--borde);
+      background:#fff;
+    }
+    .visor-ayuda{
+      flex:1;
+      min-width:240px;
+      margin:0;
+      color:var(--gris);
+      font-size:.76rem;
+    }
+    .visor-acciones{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      gap:9px;
+    }
+    .btn-visor{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      min-height:40px;
+      padding:0 14px;
+      border-radius:9px;
+      font-size:.78rem;
+      font-weight:800;
+      transition:var(--transicion);
+    }
+    .btn-visor-abrir{
+      border:1px solid var(--azul);
+      color:var(--azul);
+      background:#fff;
+    }
+    .btn-visor-abrir:hover{
+      color:#fff;
+      background:var(--azul);
+    }
+    .btn-visor-descargar{
+      border:1px solid var(--rojo);
+      color:#fff;
+      background:var(--rojo);
+    }
+    .btn-visor-descargar:hover{
+      color:#fff;
+      background:#b93333;
+      border-color:#b93333;
+    }
+
     .sin-resultados{
       display:none;
       padding:45px 25px;
@@ -711,6 +831,21 @@
         width:45px;
         height:50px;
       }
+      .modal-visor .modal-dialog{max-width:none}
+      .modal-visor .modal-header{padding:15px 17px}
+      .visor-pdf-contenedor,
+      .visor-pdf{
+        min-height:calc(100vh - 180px);
+        height:calc(100vh - 180px);
+      }
+      .modal-visor .modal-footer{align-items:stretch}
+      .visor-ayuda{display:none}
+      .visor-acciones{
+        width:100%;
+        display:grid;
+        grid-template-columns:1fr 1fr;
+      }
+      .btn-visor{padding:0 10px}
     }
   </style>
 </head>
@@ -916,12 +1051,13 @@
             </div>
 
             <div class="gaceta-contenido">
-              <span class="categoria">Ordenanza</span>
-              <h3>Ordenanza para la gestión integral de residuos sólidos en el cantón Atacames</h3>
-              <p>
-                Normativa para el manejo, recolección y disposición responsable
-                de residuos en zonas urbanas, rurales y turísticas.
-              </p>
+              <span class="categoria">Reglamento</span>
+             <h3>Plan de Uso y Gestión de Suelo en el cantón Atacames</h3>
+            <p>
+                Instrumento de planificación territorial que regula el uso, ocupación y
+                gestión del suelo, promoviendo un crecimiento urbano y rural ordenado,
+                sostenible y acorde con las necesidades del cantón.
+            </p>
 
               <div class="gaceta-meta">
                 <span><i class="fa-solid fa-calendar-days"></i>15 de julio de 2026</span>
@@ -936,7 +1072,7 @@
                 Vista previa
               </a>
 
-              <a href="docs/gaceta-006-2026.pdf" class="btn-accion btn-descargar" download>
+              <a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Gaceta-Doc/pdot%20-PUGS.pdf" class="btn-accion btn-descargar" download>
                 <i class="fa-solid fa-download"></i>
                 Descargar
               </a>
@@ -957,7 +1093,7 @@
 
             <div class="gaceta-contenido">
               <span class="categoria">Resolución</span>
-              <h3>Resoluciones adoptadas por el Concejo Municipal durante junio de 2026</h3>
+              <h3>CODIGO DE LA NIÑEZ Y ADOLESCENCIA</h3>
               <p>
                 Compendio de resoluciones relacionadas con presupuesto,
                 planificación y gestión administrativa.
@@ -976,7 +1112,7 @@
                 Vista previa
               </a>
 
-              <a href="docs/gaceta-005-2026.pdf" class="btn-accion btn-descargar" download>
+              <a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Gaceta-Doc/codigo_ninezyadolescencia.pdf" class="btn-accion btn-descargar" download>
                 <i class="fa-solid fa-download"></i>
                 Descargar
               </a>
@@ -1225,6 +1361,76 @@
 
   </main>
 
+  <div
+    class="modal fade modal-visor"
+    id="modalVistaPrevia"
+    tabindex="-1"
+    aria-labelledby="tituloVistaPrevia"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-fullscreen-sm-down">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div>
+            <span class="modal-visor-tipo">
+              <i class="fa-solid fa-file-pdf"></i>
+              Documento PDF
+            </span>
+            <h2 class="modal-title" id="tituloVistaPrevia">Vista previa</h2>
+          </div>
+
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Cerrar vista previa"
+          ></button>
+        </div>
+
+        <div class="modal-body p-0">
+          <div class="visor-pdf-contenedor">
+            <div class="visor-cargando" id="visorCargando" role="status" aria-live="polite">
+              <div class="spinner-border text-primary" aria-hidden="true"></div>
+              <span>Cargando documento…</span>
+            </div>
+
+            <iframe
+              class="visor-pdf"
+              id="visorPDF"
+              title="Vista previa del documento PDF"
+              src="about:blank"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <p class="visor-ayuda">
+            Si el navegador no muestra el PDF, utilice “Abrir en otra pestaña”.
+          </p>
+
+          <div class="visor-acciones">
+            <a
+              href="#"
+              class="btn-visor btn-visor-abrir"
+              id="abrirPDF"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="fa-solid fa-up-right-from-square"></i>
+              Abrir aparte
+            </a>
+
+            <a href="#" class="btn-visor btn-visor-descargar" id="descargarPDF" download>
+              <i class="fa-solid fa-download"></i>
+              Descargar
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <footer class="pie" id="contacto">
     <div class="pie-principal">
       <div class="contenedor pie-grid">
@@ -1307,6 +1513,15 @@
     const tarjetasGaceta = document.querySelectorAll(".gaceta-card");
     const cantidadResultados = document.getElementById("cantidadResultados");
     const sinResultados = document.getElementById("sinResultados");
+
+    const modalVistaPreviaElemento = document.getElementById("modalVistaPrevia");
+    const modalVistaPrevia = bootstrap.Modal.getOrCreateInstance(modalVistaPreviaElemento);
+    const botonesVistaPrevia = document.querySelectorAll(".btn-ver");
+    const tituloVistaPrevia = document.getElementById("tituloVistaPrevia");
+    const visorPDF = document.getElementById("visorPDF");
+    const visorCargando = document.getElementById("visorCargando");
+    const abrirPDF = document.getElementById("abrirPDF");
+    const descargarPDF = document.getElementById("descargarPDF");
 
     document.getElementById("anioActual").textContent = new Date().getFullYear();
 
@@ -1452,6 +1667,46 @@
 
     botonAccesibilidad.addEventListener("click", () => {
       document.body.classList.toggle("alto-contraste");
+    });
+
+    botonesVistaPrevia.forEach((boton) => {
+      boton.addEventListener("click", (evento) => {
+        evento.preventDefault();
+
+        const tarjeta = boton.closest(".gaceta-card");
+        const enlaceDescarga = tarjeta?.querySelector(".btn-descargar");
+        const tituloDocumento = tarjeta?.querySelector(".gaceta-contenido h3")?.textContent.trim();
+        const rutaPDF = enlaceDescarga?.getAttribute("href");
+
+        if (!rutaPDF || rutaPDF === "#") {
+          return;
+        }
+
+        const urlPDF = new URL(rutaPDF, window.location.href).href;
+        const urlVisor = `${urlPDF.split("#")[0]}#toolbar=1&navpanes=0&view=FitH`;
+
+        tituloVistaPrevia.textContent = tituloDocumento || "Vista previa del documento";
+        visorPDF.title = `Vista previa: ${tituloDocumento || "documento PDF"}`;
+        abrirPDF.href = urlPDF;
+        descargarPDF.href = urlPDF;
+        visorCargando.classList.remove("oculto");
+        visorPDF.src = urlVisor;
+
+        modalVistaPrevia.show();
+      });
+    });
+
+    visorPDF.addEventListener("load", () => {
+      if (visorPDF.src !== "about:blank") {
+        visorCargando.classList.add("oculto");
+      }
+    });
+
+    modalVistaPreviaElemento.addEventListener("hidden.bs.modal", () => {
+      visorPDF.src = "about:blank";
+      visorCargando.classList.remove("oculto");
+      abrirPDF.href = "#";
+      descargarPDF.href = "#";
     });
 
     window.addEventListener("resize", () => {
