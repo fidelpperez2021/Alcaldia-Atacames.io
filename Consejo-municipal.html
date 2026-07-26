@@ -104,6 +104,41 @@
     .presentacion-grid{display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:center}
     .presentacion-imagen{position:relative}
     .presentacion-imagen img{width:100%;height:520px;object-fit:cover;border-radius:22px;box-shadow:var(--sombra)}
+    .presentacion-imagen-boton{
+      position:relative;
+      width:100%;
+      display:block;
+      overflow:hidden;
+      padding:0;
+      border:0;
+      border-radius:22px;
+      background:transparent;
+      cursor:zoom-in;
+    }
+    .presentacion-imagen-boton img{transition:transform .45s ease,filter .45s ease}
+    .presentacion-imagen-boton:hover img{transform:scale(1.025);filter:brightness(.88)}
+    .presentacion-imagen-boton:focus-visible{
+      outline:4px solid var(--turquesa);
+      outline-offset:5px;
+    }
+    .indicador-ampliar{
+      position:absolute;
+      right:18px;
+      bottom:18px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:9px 14px;
+      border-radius:999px;
+      background:rgba(4,18,33,.88);
+      color:#fff;
+      font-size:.72rem;
+      font-weight:800;
+      box-shadow:0 8px 22px rgba(4,18,33,.28);
+      pointer-events:none;
+      transition:var(--transicion);
+    }
+    .presentacion-imagen-boton:hover .indicador-ampliar{background:var(--turquesa);transform:translateY(-3px)}
     .presentacion-sello{position:absolute;left:-25px;bottom:30px;width:230px;padding:22px;border-radius:15px;background:var(--azul-oscuro);color:#fff;box-shadow:var(--sombra)}
     .presentacion-sello strong{display:block;margin-bottom:7px;font-size:1.08rem}
     .presentacion-sello span{font-size:.8rem;color:rgba(255,255,255,.75)}
@@ -112,6 +147,39 @@
     .lista-check{display:grid;gap:12px;margin-top:24px}
     .lista-check li{display:flex;gap:11px;align-items:flex-start}
     .lista-check i{width:28px;height:28px;border-radius:50%;background:rgba(0,168,168,.13);color:var(--turquesa);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+
+    .modal-imagen-concejo .modal-dialog{max-width:min(1400px,96vw)}
+    .modal-imagen-concejo .modal-content{
+      overflow:hidden;
+      border:0;
+      border-radius:18px;
+      background:#041221;
+      box-shadow:0 28px 80px rgba(0,0,0,.5);
+    }
+    .modal-imagen-concejo .modal-header{
+      position:absolute;
+      top:14px;
+      right:14px;
+      z-index:5;
+      padding:0;
+      border:0;
+    }
+    .modal-imagen-concejo .btn-close{
+      width:18px;
+      height:18px;
+      padding:13px;
+      border-radius:50%;
+      background-color:#fff;
+      box-shadow:0 7px 22px rgba(0,0,0,.38);
+      opacity:1;
+    }
+    .modal-imagen-concejo .modal-body{padding:0}
+    .modal-imagen-concejo img{
+      width:100%;
+      max-height:90vh;
+      object-fit:contain;
+      background:#041221;
+    }
 
     .funciones-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
     .funcion-card{height:100%;background:#fff;border:1px solid var(--borde);border-radius:18px;padding:28px;box-shadow:var(--sombra-suave);transition:var(--transicion)}
@@ -259,7 +327,7 @@
         <img src="https://www.municipiodeatacames.gob.ec/images/Logo%20Institucional/2023/TRANSPARENTE2.png" alt="Municipio de Atacames">
         <div class="logo-texto"><strong>Municipio de Atacames</strong><span>Gobierno Autónomo Descentralizado Municipal</span></div>
       </a>
-      <button class="boton-menu" id="botonMenu" aria-label="Abrir menú"><i class="fa-solid fa-bars"></i></button>
+      <button type="button" class="boton-menu" id="botonMenu" aria-label="Abrir menú"><i class="fa-solid fa-bars"></i></button>
       <nav>
         <ul class="menu-principal" id="menuPrincipal">
           <li><a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Alcaldia-Atacames-menu-municipio.html">Inicio</a></li>
@@ -289,12 +357,26 @@
       <div class="contenedor"><div class="breadcrumb-personalizado"><a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Alcaldia-Atacames-menu-municipio.html"><i class="fa-solid fa-house"></i> Inicio</a><i class="fa-solid fa-chevron-right"></i><span>Nuestra Institución</span><i class="fa-solid fa-chevron-right"></i><span>Concejo Municipal</span></div></div>
     </div>
 
-   
+
 
     <section class="seccion">
       <div class="contenedor presentacion-grid">
         <div class="presentacion-imagen revelar">
-          <img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Carrusel%202%20(2).jpeg" alt="Sesión del Concejo Municipal">
+          <button
+            type="button"
+            class="presentacion-imagen-boton"
+            id="botonAmpliarConcejo"
+            aria-label="Ampliar fotografía del Concejo Municipal"
+            aria-controls="modalImagenConcejo"
+            aria-haspopup="dialog"
+            aria-expanded="false"
+          >
+            <img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Carrusel%202%20(2).jpeg" alt="Sesión del Concejo Municipal">
+            <span class="indicador-ampliar">
+              <i class="fa-solid fa-magnifying-glass-plus"></i>
+              Ampliar foto
+            </span>
+          </button>
         </div>
         <div class="presentacion-contenido revelar">
           <span class="subtitulo">Institución</span><h2>¿Qué es el Concejo Municipal?</h2>
@@ -304,6 +386,22 @@
         </div>
       </div>
     </section>
+
+    <div class="modal fade modal-imagen-concejo" id="modalImagenConcejo" tabindex="-1" aria-label="Fotografía ampliada del Concejo Municipal">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar fotografía ampliada"></button>
+          </div>
+          <div class="modal-body">
+            <img
+              src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Carrusel%202%20(2).jpeg"
+              alt="Fotografía ampliada de una sesión del Concejo Municipal"
+            >
+          </div>
+        </div>
+      </div>
+    </div>
 
     <section class="seccion seccion-fondo" id="funciones">
       <div class="contenedor">
@@ -347,7 +445,7 @@
       </div>
     </section>
 
- 
+
 
 
     <section class="seccion seccion-fondo">
@@ -377,13 +475,14 @@
     <div class="pie-inferior"><div class="contenedor pie-inferior-contenido"><p>© <span id="anioActual"></span> GAD Municipal de Atacames. Todos los derechos reservados.</p><p>Dirección de Tecnologías de la Información</p></div></div>
   </footer>
 
-  <button class="boton-accesibilidad" id="botonAccesibilidad" aria-label="Activar alto contraste"><i class="fa-solid fa-universal-access"></i></button>
-  <button class="boton-arriba" id="botonArriba" aria-label="Volver arriba"><i class="fa-solid fa-chevron-up"></i></button>
+  <button type="button" class="boton-accesibilidad" id="botonAccesibilidad" aria-label="Activar alto contraste"><i class="fa-solid fa-universal-access"></i></button>
+  <button type="button" class="boton-arriba" id="botonArriba" aria-label="Volver arriba"><i class="fa-solid fa-chevron-up"></i></button>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     "use strict";
     const encabezado=document.getElementById("encabezado"),botonMenu=document.getElementById("botonMenu"),menuPrincipal=document.getElementById("menuPrincipal"),botonArriba=document.getElementById("botonArriba"),botonAccesibilidad=document.getElementById("botonAccesibilidad"),enlacesSubmenu=document.querySelectorAll(".enlace-submenu");
+    const elementoModalImagenConcejo=document.getElementById("modalImagenConcejo"),botonAmpliarConcejo=document.getElementById("botonAmpliarConcejo"),modalImagenConcejo=new bootstrap.Modal(elementoModalImagenConcejo);
     document.getElementById("anioActual").textContent=new Date().getFullYear();
     function cerrarMenu(){menuPrincipal.classList.remove("abierto");document.body.classList.remove("menu-abierto");botonMenu.innerHTML='<i class="fa-solid fa-bars"></i>'}
     botonMenu.addEventListener("click",()=>{const abierto=menuPrincipal.classList.toggle("abierto");document.body.classList.toggle("menu-abierto",abierto);botonMenu.innerHTML=abierto?'<i class="fa-solid fa-xmark"></i>':'<i class="fa-solid fa-bars"></i>'});
@@ -395,12 +494,18 @@
     const observador=new IntersectionObserver((entradas,observer)=>{entradas.forEach(entrada=>{if(entrada.isIntersecting){entrada.target.classList.add("visible");observer.unobserve(entrada.target)}})},{threshold:.12,rootMargin:"0px 0px -50px 0px"});
     document.querySelectorAll(".revelar").forEach(elemento=>observador.observe(elemento));
     botonAccesibilidad.addEventListener("click",()=>document.body.classList.toggle("alto-contraste"));
+    botonAmpliarConcejo.addEventListener("click",()=>modalImagenConcejo.show());
+    elementoModalImagenConcejo.addEventListener("shown.bs.modal",()=>botonAmpliarConcejo.setAttribute("aria-expanded","true"));
+    elementoModalImagenConcejo.addEventListener("hidden.bs.modal",()=>botonAmpliarConcejo.setAttribute("aria-expanded","false"));
     window.addEventListener("resize",()=>{if(window.innerWidth>980){cerrarMenu();document.querySelectorAll(".submenu").forEach(submenu=>submenu.classList.remove("activo"))}});
 
     const buscador=document.getElementById("buscadorDocumentos"),filtroTipo=document.getElementById("filtroTipo"),filas=[...document.querySelectorAll("#tablaDocumentos tr")],sinResultados=document.getElementById("sinResultados");
     function normalizar(texto){return texto.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim()}
     function filtrarDocumentos(){const texto=normalizar(buscador.value),tipo=filtroTipo.value;let visibles=0;filas.forEach(fila=>{const coincideTexto=normalizar(fila.dataset.busqueda||fila.textContent).includes(texto),coincideTipo=tipo==="todos"||fila.dataset.tipo===tipo,mostrar=coincideTexto&&coincideTipo;fila.style.display=mostrar?"":"none";if(mostrar)visibles++});sinResultados.style.display=visibles?"none":"block"}
-    buscador.addEventListener("input",filtrarDocumentos);filtroTipo.addEventListener("change",filtrarDocumentos);
+    if(buscador&&filtroTipo&&sinResultados){
+      buscador.addEventListener("input",filtrarDocumentos);
+      filtroTipo.addEventListener("change",filtrarDocumentos);
+    }
 
     document.querySelectorAll('a[href="#"]').forEach(enlace=>enlace.addEventListener("click",evento=>evento.preventDefault()));
   </script>
