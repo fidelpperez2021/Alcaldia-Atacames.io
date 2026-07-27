@@ -975,25 +975,6 @@
       text-align:center;
     }
 
-    .youtube-open-link{
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      margin-left:8px;
-      padding:5px 9px;
-      border-radius:999px;
-      color:#fff;
-      background:#d91c1c;
-      font-size:11px;
-      text-decoration:none;
-      white-space:nowrap;
-    }
-
-    .youtube-open-link:hover{
-      color:#fff;
-      background:#b40000;
-    }
-
     .mini-carousel-slide::after{
       content:"";
       position:absolute;
@@ -1209,6 +1190,10 @@
       transform:scale(1);
     }
 
+    .carousel-expand-modal .expanded-slide.sin-leyenda{
+      padding-bottom:16px;
+    }
+
     /* CLAVE: contain evita que la noticia sea recortada */
     .carousel-expand-modal .expanded-slide > img,
     .carousel-expand-modal .expanded-slide > video,
@@ -1227,29 +1212,6 @@
     .carousel-expand-modal .expanded-slide > video,
     .carousel-expand-modal .expanded-slide > iframe{
       background:#000;
-    }
-
-    .carousel-expand-modal .expanded-youtube-link{
-      position:absolute;
-      top:28px;
-      right:92px;
-      z-index:5;
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:10px 16px;
-      border-radius:999px;
-      color:#fff;
-      background:#d91c1c;
-      font-size:13px;
-      font-weight:800;
-      text-decoration:none;
-      box-shadow:0 8px 22px rgba(0,0,0,.26);
-    }
-
-    .carousel-expand-modal .expanded-youtube-link:hover{
-      color:#fff;
-      background:#b40000;
     }
 
     /* Se elimina la capa oscura que cubría parte de la noticia */
@@ -1360,6 +1322,10 @@
         padding:10px 48px 92px;
       }
 
+      .carousel-expand-modal .expanded-slide.sin-leyenda{
+        padding-bottom:10px;
+      }
+
       .carousel-expand-modal .expanded-caption{
         min-height:76px;
         padding:15px 54px 25px;
@@ -1384,12 +1350,6 @@
         bottom:8px;
       }
 
-      .carousel-expand-modal .expanded-youtube-link{
-        top:18px;
-        right:56px;
-        padding:8px 12px;
-        font-size:12px;
-      }
     }
 
     @media(max-width:420px){
@@ -1915,7 +1875,18 @@
             <div class="mini-carousel" data-carousel data-interval="4500">
 <div class="mini-carousel-track">
 
+                    <!-- El video aparece primero y queda activo al cargar -->
                     <div class="mini-carousel-slide active">
+                        <iframe
+                            src="https://www.youtube.com/embed/B6NrQ-E9RQg?enablejsapi=1&amp;rel=0"
+                            title="Video informativo del GAD Municipal de Atacames"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+
+                    <div class="mini-carousel-slide">
                         <img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Carrusel%203%20(1).jpeg">
                         <div class="mini-carousel-caption">
                             Actividades y eventos de la alcaldía y el concejo municipal.
@@ -1933,28 +1904,6 @@
                         <img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Carrusel%203%20(3).jpeg">
                         <div class="mini-carousel-caption">
                             🌎 Juntos por un Atacames mas limpio.
-                        </div>
-                    </div>
-
-                    <!-- Video de YouTube integrado en el carrusel -->
-                    <div class="mini-carousel-slide"
-                         data-youtube-url="https://youtu.be/B6NrQ-E9RQg">
-                        <iframe
-                            src="https://www.youtube.com/embed/B6NrQ-E9RQg?enablejsapi=1&amp;rel=0"
-                            title="Video informativo del GAD Municipal de Atacames"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            referrerpolicy="strict-origin-when-cross-origin"
-                            allowfullscreen>
-                        </iframe>
-                        <div class="mini-carousel-caption">
-                            <span></span>
-                            <a class="youtube-open-link"
-                               href="https://youtu.be/B6NrQ-E9RQg"
-                               target="_blank"
-                               rel="noopener noreferrer">
-                                <i class="fa-brands fa-youtube" aria-hidden="true"></i>
-                                Abrir en YouTube
-                            </a>
                         </div>
                     </div>
 
@@ -2628,21 +2577,7 @@
       const videoId = obtenerIdYouTube(iframe.getAttribute("src"));
       if(!videoId) return;
 
-      const slide = iframe.closest(".mini-carousel-slide");
-      const externalUrl = `https://youtu.be/${videoId}`;
       iframe.src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&rel=0`;
-      slide.dataset.youtubeUrl = externalUrl;
-
-      const caption = slide.querySelector(".mini-carousel-caption");
-      if(caption && !caption.querySelector(".youtube-open-link")){
-        const externalLink = document.createElement("a");
-        externalLink.className = "youtube-open-link";
-        externalLink.href = externalUrl;
-        externalLink.target = "_blank";
-        externalLink.rel = "noopener noreferrer";
-        externalLink.innerHTML = '<i class="fa-brands fa-youtube" aria-hidden="true"></i> Abrir en YouTube';
-        caption.appendChild(externalLink);
-      }
     });
 
 
@@ -2859,7 +2794,6 @@
             return {
               type:"youtube",
               src:iframe.src || "",
-              externalUrl:slide.dataset.youtubeUrl || iframe.src || "",
               alt:iframe.title || fallbackTitle,
               caption
             };
@@ -2885,6 +2819,10 @@
         expandedItems.forEach((item, index) => {
           const slide = document.createElement("div");
           slide.className = "expanded-slide";
+
+          if(!item.caption){
+            slide.classList.add("sin-leyenda");
+          }
 
           if(index === expandedIndex){
             slide.classList.add("active");
@@ -2913,20 +2851,13 @@
             media.alt = item.alt;
           }
 
-          const caption = document.createElement("div");
-          caption.className = "expanded-caption";
-          caption.textContent = item.caption;
+          slide.appendChild(media);
 
-          if(item.type === "youtube"){
-            const externalLink = document.createElement("a");
-            externalLink.className = "expanded-youtube-link";
-            externalLink.href = item.externalUrl;
-            externalLink.target = "_blank";
-            externalLink.rel = "noopener noreferrer";
-            externalLink.innerHTML = '<i class="fa-brands fa-youtube" aria-hidden="true"></i> Abrir en YouTube';
-            slide.append(media, externalLink, caption);
-          }else{
-            slide.append(media, caption);
+          if(item.caption){
+            const caption = document.createElement("div");
+            caption.className = "expanded-caption";
+            caption.textContent = item.caption;
+            slide.appendChild(caption);
           }
 
           expandedSlides.appendChild(slide);
@@ -3029,7 +2960,6 @@
         card.addEventListener("click", event => {
           if(event.target.closest(".mini-carousel-btn") ||
              event.target.closest(".mini-carousel-dot") ||
-             event.target.closest(".youtube-open-link") ||
              event.target.closest("video")){
             return;
           }
