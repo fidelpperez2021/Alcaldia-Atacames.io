@@ -1,0 +1,2077 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Alcaldía del Gobierno Autónomo Descentralizado Municipal de Atacames: autoridades, organización, gestión e información institucional.">
+  <title>Alcaldía | Municipio de Atacames</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    :root{
+      --azul:#164a7b;
+      --azul-oscuro:#082b49;
+      --azul-profundo:#041221;
+      --celeste:#1b75bc;
+      --turquesa:#00a8a8;
+      --turquesa-claro:#20c4c2;
+      --verde:#20b946;
+      --amarillo:#f4c430;
+      --blanco:#fff;
+      --fondo:#f4f7fa;
+      --borde:#e6edf3;
+      --gris:#687782;
+      --texto:#263238;
+      --sombra:0 16px 38px rgba(12,48,79,.14);
+      --sombra-suave:0 8px 25px rgba(0,0,0,.08);
+      --transicion:all .3s ease;
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:"Montserrat",sans-serif;
+      color:var(--texto);
+      line-height:1.7;
+      overflow-x:hidden;
+      background:#fff;
+    }
+    body.menu-abierto{overflow:hidden}
+    img{display:block;max-width:100%}
+    a{text-decoration:none;color:inherit}
+    ul{list-style:none;padding:0;margin:0}
+    button,input,select{font:inherit}
+    section{scroll-margin-top:110px}
+    .contenedor{width:min(1180px,calc(100% - 40px));margin:auto}
+    .seccion{padding:90px 0}
+    .seccion-fondo{background:var(--fondo)}
+
+    /* BARRA SUPERIOR */
+    .barra-superior{background:#0c385f;color:#fff;font-size:.82rem}
+    .barra-contenido{
+      min-height:42px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+    }
+    .barra-grupo{display:flex;gap:22px;align-items:center}
+    .barra-item{display:flex;gap:8px;align-items:center}
+    .barra-item i{color:var(--turquesa-claro)}
+    .barra-superior a:hover{color:var(--turquesa-claro)}
+
+    /* NAVEGACIÓN */
+    .encabezado{
+      position:absolute;
+      top:42px;
+      left:0;
+      width:100%;
+      z-index:1000;
+      background:linear-gradient(90deg,#041221 0%,#082b49 55%,#0b3155 100%);
+      border-bottom:1px solid rgba(255,255,255,.12);
+      transition:var(--transicion);
+    }
+    .encabezado.fijo{
+      position:fixed;
+      top:0;
+      box-shadow:0 8px 25px rgba(0,0,0,.18);
+      backdrop-filter:blur(14px);
+    }
+    .navegacion{
+      min-height:118px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+    .logo{display:flex;align-items:center;gap:20px;color:#fff;flex-shrink:0}
+    .logo img{width:240px;height:auto}
+    .logo-texto strong{display:block;font-size:1.3rem;font-weight:800}
+    .logo-texto span{font-size:.72rem;opacity:.88}
+    .menu-principal{display:flex;align-items:center;gap:3px}
+    .menu-principal>li{position:relative}
+    .menu-principal>li>a{
+      display:flex;
+      align-items:center;
+      gap:7px;
+      padding:13px 11px;
+      color:#fff;
+      font-size:.8rem;
+      font-weight:700;
+      border-radius:8px;
+      transition:var(--transicion);
+    }
+    .menu-principal>li>a:hover,
+    .menu-principal>li>a.activo{
+      background:rgba(255,255,255,.12);
+      color:var(--turquesa-claro);
+    }
+    .submenu{
+      position:absolute;
+      top:calc(100% + 12px);
+      left:0;
+      min-width:255px;
+      padding:10px;
+      background:#fff;
+      border-radius:12px;
+      box-shadow:var(--sombra);
+      opacity:0;
+      visibility:hidden;
+      transform:translateY(10px);
+      transition:var(--transicion);
+    }
+    .menu-principal li:hover .submenu{
+      opacity:1;
+      visibility:visible;
+      transform:translateY(0);
+    }
+    .submenu a{
+      display:block;
+      padding:11px 13px;
+      border-radius:8px;
+      color:var(--texto);
+      font-size:.84rem;
+      font-weight:600;
+      transition:var(--transicion);
+    }
+    .submenu a:hover{background:var(--fondo);color:var(--celeste);padding-left:18px}
+    .boton-menu{
+      display:none;
+      width:45px;
+      height:45px;
+      align-items:center;
+      justify-content:center;
+      background:transparent;
+      color:#fff;
+      border:1px solid rgba(255,255,255,.55);
+      border-radius:10px;
+      font-size:1.25rem;
+    }
+
+    /* BANNER */
+    .banner{
+      min-height:590px;
+      position:relative;
+      display:flex;
+      align-items:flex-end;
+      color:#fff;
+      background:
+        linear-gradient(90deg,rgba(4,18,33,.96),rgba(8,43,73,.67)),
+        url("https://wp.municipiodeatacames.gob.ec/wp-content/uploads/2026/07/Atacames-1-1024x769.jpeg") center 45%/cover no-repeat;
+    }
+    .banner::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:0;
+      width:100%;
+      height:8px;
+      background:linear-gradient(90deg,var(--celeste),var(--turquesa),var(--verde));
+    }
+    .banner-contenido{position:relative;z-index:2;padding:235px 0 76px}
+    .banner-etiqueta{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:18px;
+      padding:9px 16px;
+      border:1px solid rgba(255,255,255,.25);
+      border-radius:50px;
+      background:rgba(255,255,255,.1);
+      color:var(--turquesa-claro);
+      font-size:.76rem;
+      font-weight:800;
+      letter-spacing:1.3px;
+      text-transform:uppercase;
+    }
+    .banner h1{
+      max-width:900px;
+      font-family:"Playfair Display",serif;
+      font-size:clamp(2.8rem,6vw,5rem);
+      line-height:1.05;
+      margin-bottom:14px;
+    }
+    .banner p{max-width:830px;color:rgba(255,255,255,.88);font-size:1.02rem}
+    .banner-botones{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+    .btn-banner{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:13px 20px;
+      border-radius:10px;
+      background:var(--turquesa);
+      color:#fff;
+      font-weight:800;
+      transition:var(--transicion);
+    }
+    .btn-banner:hover{background:var(--turquesa-claro);color:#fff;transform:translateY(-3px)}
+    .btn-banner.secundario{background:transparent;border:1px solid rgba(255,255,255,.5)}
+    .btn-banner.secundario:hover{background:#fff;color:var(--azul-oscuro)}
+
+    /* MIGAS DE PAN */
+    .breadcrumb-wrap{padding:25px 0;border-bottom:1px solid var(--borde)}
+    .breadcrumb-personalizado{
+      display:inline-flex;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:10px;
+      padding:13px 18px;
+      background:var(--fondo);
+      border-radius:9px;
+      font-size:.91rem;
+    }
+    .breadcrumb-personalizado a,
+    .breadcrumb-personalizado i{color:var(--celeste)}
+    .breadcrumb-personalizado a{font-weight:700}
+    .breadcrumb-personalizado span{color:var(--gris)}
+
+    /* TÍTULOS */
+    .encabezado-seccion{max-width:820px;margin:0 auto 55px;text-align:center}
+    .subtitulo{
+      display:inline-block;
+      margin-bottom:10px;
+      color:var(--turquesa);
+      font-size:.81rem;
+      font-weight:800;
+      letter-spacing:2px;
+      text-transform:uppercase;
+    }
+    .titulo{
+      font-family:"Playfair Display",serif;
+      font-size:clamp(2rem,4vw,3rem);
+      color:var(--azul);
+      line-height:1.15;
+      margin-bottom:18px;
+    }
+    .titulo::after{
+      content:"";
+      display:block;
+      width:86px;
+      height:4px;
+      margin:18px auto 0;
+      border-radius:4px;
+      background:linear-gradient(90deg,var(--celeste),var(--turquesa));
+    }
+    .encabezado-seccion p{color:var(--gris)}
+
+    /* INDICADORES */
+    .indicadores{margin-top:-52px;position:relative;z-index:10}
+    .indicadores-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+    .indicador{
+      background:#fff;
+      border-radius:18px;
+      padding:24px;
+      box-shadow:var(--sombra);
+      display:flex;
+      align-items:center;
+      gap:16px;
+      border-bottom:4px solid var(--turquesa);
+      transition:var(--transicion);
+    }
+    .indicador:hover{transform:translateY(-6px)}
+    .indicador-icono{
+      width:58px;
+      height:58px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:15px;
+      background:linear-gradient(135deg,var(--azul),var(--turquesa));
+      color:#fff;
+      font-size:1.35rem;
+      flex-shrink:0;
+    }
+    .indicador strong{display:block;font-size:.98rem;color:var(--azul);line-height:1.2}
+    .indicador span{display:block;margin-top:7px;color:var(--gris);font-size:.72rem}
+
+    /* PRESENTACIÓN */
+    .presentacion-grid{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:55px;
+      align-items:center;
+    }
+    .presentacion-imagen{position:relative}
+    .presentacion-imagen>img{
+      width:100%;
+      height:520px;
+      object-fit:cover;
+      border-radius:24px;
+      box-shadow:var(--sombra);
+    }
+    .sello-flotante{
+      position:absolute;
+      right:-24px;
+      bottom:34px;
+      width:190px;
+      padding:24px 18px;
+      border-radius:20px;
+      background:linear-gradient(135deg,var(--azul-oscuro),var(--turquesa));
+      color:#fff;
+      text-align:center;
+      box-shadow:var(--sombra);
+    }
+    .sello-flotante i{display:block;font-size:2rem;margin-bottom:9px}
+    .sello-flotante strong{display:block;font-size:.9rem;line-height:1.35}
+    .presentacion-contenido h2{
+      font-family:"Playfair Display",serif;
+      font-size:clamp(1.85rem,4vw,2.8rem);
+      color:var(--azul);
+      line-height:1.18;
+      margin-bottom:20px;
+    }
+    .presentacion-contenido p{color:var(--gris);margin-bottom:17px}
+    .lista-check{display:grid;gap:13px;margin:25px 0 30px}
+    .lista-check li{display:flex;gap:12px;align-items:flex-start;color:var(--texto);font-weight:600;font-size:.88rem}
+    .lista-check i{
+      width:27px;
+      height:27px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:50%;
+      background:rgba(0,168,168,.12);
+      color:var(--turquesa);
+      flex-shrink:0;
+    }
+    .btn-principal{
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      border:0;
+      padding:13px 20px;
+      border-radius:10px;
+      background:var(--azul);
+      color:#fff;
+      font-weight:800;
+      transition:var(--transicion);
+    }
+    .btn-principal:hover{background:var(--turquesa);color:#fff;transform:translateY(-3px)}
+
+    /* NOTICIAS DE LA ALCALDÍA */
+    .noticias-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:26px;
+    }
+    .noticia-card{
+      position:relative;
+      overflow:hidden;
+      height:100%;
+      display:flex;
+      flex-direction:column;
+      border:1px solid var(--borde);
+      border-radius:20px;
+      background:#fff;
+      box-shadow:var(--sombra-suave);
+      transition:var(--transicion);
+    }
+    .noticia-card:hover{
+      transform:translateY(-8px);
+      box-shadow:var(--sombra);
+    }
+    .noticia-imagen{
+      position:relative;
+      height:225px;
+      overflow:hidden;
+      background:linear-gradient(135deg,var(--azul-oscuro),var(--turquesa));
+    }
+    .noticia-imagen::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top,rgba(4,18,33,.7),transparent 58%);
+      pointer-events:none;
+    }
+    .noticia-imagen img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:transform .55s ease;
+    }
+    .noticia-card:hover .noticia-imagen img{transform:scale(1.06)}
+    .noticia-categoria{
+      position:absolute;
+      left:18px;
+      bottom:18px;
+      z-index:2;
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      padding:7px 12px;
+      border-radius:999px;
+      background:var(--turquesa);
+      color:#fff;
+      font-size:.66rem;
+      font-weight:800;
+      letter-spacing:.25px;
+      text-transform:uppercase;
+    }
+    .noticia-contenido{
+      flex:1;
+      display:flex;
+      flex-direction:column;
+      padding:25px;
+    }
+    .noticia-fecha{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin-bottom:12px;
+      color:var(--gris);
+      font-size:.72rem;
+      font-weight:600;
+    }
+    .noticia-fecha i{color:var(--turquesa)}
+    .noticia-card h3{
+      margin-bottom:12px;
+      color:var(--azul);
+      font-size:1.02rem;
+      line-height:1.45;
+    }
+    .noticia-card p{
+      margin-bottom:21px;
+      color:var(--gris);
+      font-size:.8rem;
+      display:-webkit-box;
+      overflow:hidden;
+      -webkit-box-orient:vertical;
+      -webkit-line-clamp:5;
+      line-clamp:5;
+    }
+    .noticia-enlace{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      margin-top:auto;
+      padding:0;
+      border:0;
+      background:transparent;
+      color:var(--turquesa);
+      font-size:.77rem;
+      font-weight:800;
+      cursor:pointer;
+      transition:var(--transicion);
+    }
+    .noticia-enlace:hover{gap:12px;color:var(--azul)}
+    .noticias-acciones{
+      display:flex;
+      justify-content:center;
+      margin-top:38px;
+    }
+    #botonTodasNoticias{cursor:pointer}
+    .noticias-grid.modo-completo .noticia-card:first-child{
+      grid-column:auto;
+    }
+    .noticias-grid.modo-completo .noticia-card:first-child .noticia-imagen{
+      height:225px;
+    }
+    .estado-noticias{
+      margin:35px 0 18px;
+      color:var(--gris);
+      font-size:.82rem;
+      font-weight:700;
+      text-align:center;
+    }
+    .paginacion-noticias{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-bottom:6px;
+    }
+    .paginacion-noticias[hidden],
+    .estado-noticias[hidden]{display:none!important}
+    .paginas-noticias{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .pagina-btn{
+      min-width:43px;
+      height:43px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:7px;
+      padding:0 13px;
+      border:1px solid var(--borde);
+      border-radius:10px;
+      background:#fff;
+      color:var(--azul);
+      font-size:.78rem;
+      font-weight:800;
+      cursor:pointer;
+      transition:var(--transicion);
+    }
+    .pagina-btn:hover:not(:disabled),
+    .pagina-btn.activa{
+      border-color:var(--turquesa);
+      background:var(--turquesa);
+      color:#fff;
+      transform:translateY(-2px);
+    }
+    .pagina-btn:disabled{
+      cursor:not-allowed;
+      opacity:.45;
+    }
+    .modal-noticia .modal-dialog{max-width:920px}
+    .modal-noticia .modal-content{
+      overflow:hidden;
+      border:0;
+      border-radius:22px;
+      box-shadow:0 28px 75px rgba(4,18,33,.32);
+    }
+    .modal-noticia .modal-header{
+      position:absolute;
+      top:14px;
+      right:14px;
+      z-index:5;
+      padding:0;
+      border:0;
+    }
+    .modal-noticia .btn-close{
+      width:18px;
+      height:18px;
+      padding:13px;
+      border-radius:50%;
+      background-color:#fff;
+      box-shadow:0 5px 20px rgba(4,18,33,.28);
+      opacity:1;
+    }
+    .modal-noticia-imagen{
+      position:relative;
+      height:390px;
+      overflow:hidden;
+      background:linear-gradient(135deg,var(--azul-oscuro),var(--turquesa));
+    }
+    .modal-noticia-imagen::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top,rgba(4,18,33,.78),transparent 62%);
+      pointer-events:none;
+    }
+    .modal-noticia-imagen img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+    .modal-noticia-categoria{
+      position:absolute;
+      left:30px;
+      bottom:24px;
+      z-index:2;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 14px;
+      border-radius:999px;
+      background:var(--turquesa);
+      color:#fff;
+      font-size:.72rem;
+      font-weight:800;
+      letter-spacing:.25px;
+      text-transform:uppercase;
+    }
+    .modal-noticia .modal-body{padding:32px 36px 38px}
+    .modal-noticia-fecha{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin-bottom:13px;
+      color:var(--gris);
+      font-size:.78rem;
+      font-weight:700;
+    }
+    .modal-noticia-fecha i{color:var(--turquesa)}
+    .modal-noticia h2{
+      margin:0 0 18px;
+      color:var(--azul);
+      font-family:"Playfair Display",serif;
+      font-size:clamp(1.45rem,3vw,2rem);
+      line-height:1.25;
+    }
+    .modal-noticia-texto{
+      margin:0;
+      color:var(--texto);
+      font-size:.95rem;
+      line-height:1.85;
+      white-space:pre-line;
+    }
+
+    /* RUTA DE GESTIÓN */
+    .gestion{background:linear-gradient(135deg,var(--azul-profundo),var(--azul));color:#fff}
+    .gestion .titulo,.gestion .encabezado-seccion p{color:#fff}
+    .gestion-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+    .gestion-paso{
+      position:relative;
+      height:100%;
+      padding:30px 24px;
+      border:1px solid rgba(255,255,255,.15);
+      border-radius:18px;
+      background:rgba(255,255,255,.08);
+      backdrop-filter:blur(7px);
+      transition:var(--transicion);
+    }
+    .gestion-paso:hover{background:rgba(255,255,255,.14);transform:translateY(-6px)}
+    .paso-numero{
+      width:55px;
+      height:55px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-bottom:20px;
+      border-radius:15px;
+      background:var(--amarillo);
+      color:var(--azul-profundo);
+      font-size:1.2rem;
+      font-weight:800;
+    }
+    .gestion-paso h3{font-size:1.02rem;margin-bottom:12px}
+    .gestion-paso p{color:rgba(255,255,255,.72);font-size:.8rem;margin:0}
+
+    /* CONTENIDO MULTIMEDIA */
+    .multimedia-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      align-items:stretch;
+      gap:26px;
+    }
+    .video-principal{
+      position:relative;
+      min-height:640px;
+      overflow:hidden;
+      isolation:isolate;
+      border-radius:22px;
+      background:var(--azul-profundo);
+      box-shadow:var(--sombra);
+    }
+    .video-principal>img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center;
+    }
+    .video-principal::after{
+      content:"";
+      position:absolute;
+      z-index:1;
+      inset:0;
+      background:linear-gradient(to top,rgba(4,18,33,.94) 0%,rgba(4,18,33,.42) 32%,rgba(4,18,33,.08) 65%,transparent 100%);
+      pointer-events:none;
+    }
+    .play-btn{
+      position:absolute;
+      z-index:3;
+      top:50%;
+      left:50%;
+      width:84px;
+      height:84px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border:0;
+      border-radius:50%;
+      background:var(--turquesa);
+      color:#fff;
+      font-size:1.65rem;
+      box-shadow:0 0 0 14px rgba(255,255,255,.18);
+      transform:translate(-50%,-50%);
+      transition:var(--transicion);
+    }
+    .play-btn:hover{
+      background:var(--turquesa-claro);
+      color:#fff;
+      transform:translate(-50%,-50%) scale(1.08);
+    }
+    .video-info{
+      position:absolute;
+      z-index:3;
+      right:32px;
+      bottom:30px;
+      left:32px;
+      color:#fff;
+      text-shadow:0 2px 14px rgba(0,0,0,.42);
+    }
+    .video-info h3{
+      margin-bottom:8px;
+      font-family:"Playfair Display",serif;
+      font-size:clamp(1.55rem,3vw,2.2rem);
+    }
+    .video-info p{margin:0;color:rgba(255,255,255,.82);font-size:.88rem}
+    .videos-lista{display:grid;gap:18px}
+    .video-mini{
+      width:100%;
+      min-height:112px;
+      display:grid;
+      grid-template-columns:150px 1fr;
+      align-items:center;
+      gap:18px;
+      padding:14px;
+      border:1px solid var(--borde);
+      border-radius:17px;
+      background:#fff;
+      color:var(--texto);
+      text-align:left;
+      box-shadow:var(--sombra-suave);
+      transition:var(--transicion);
+    }
+    .video-mini:hover{
+      border-color:rgba(0,168,168,.5);
+      box-shadow:var(--sombra);
+      transform:translateY(-5px);
+    }
+    .video-mini-imagen{
+      position:relative;
+      height:94px;
+      display:block;
+      overflow:hidden;
+      border-radius:12px;
+      background:var(--azul-profundo);
+    }
+    .video-mini-imagen img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:transform .45s ease;
+    }
+    .video-mini:hover .video-mini-imagen img{transform:scale(1.06)}
+    .video-mini-imagen i{
+      position:absolute;
+      top:50%;
+      left:50%;
+      width:45px;
+      height:45px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:50%;
+      background:var(--turquesa);
+      color:#fff;
+      box-shadow:0 7px 18px rgba(0,0,0,.22);
+      transform:translate(-50%,-50%);
+    }
+    .video-mini-contenido{display:block}
+    .video-mini-contenido strong{
+      display:block;
+      margin-bottom:9px;
+      color:var(--azul);
+      font-size:.9rem;
+      line-height:1.4;
+    }
+    .video-mini-contenido small{
+      display:flex;
+      align-items:center;
+      gap:7px;
+      color:var(--gris);
+      font-size:.72rem;
+    }
+    .video-mini-contenido small i{color:#e62117}
+    .modal-video .modal-content{
+      overflow:hidden;
+      border:0;
+      border-radius:18px;
+      background:#061727;
+      box-shadow:0 28px 75px rgba(4,18,33,.38);
+    }
+    .modal-video .modal-header{
+      padding:15px 18px;
+      border-bottom:1px solid rgba(255,255,255,.12);
+      background:var(--azul-oscuro);
+      color:#fff;
+    }
+    .modal-video .modal-title{font-size:1rem;font-weight:800}
+    .modal-video .btn-close{filter:brightness(0) invert(1);opacity:.9}
+    .reproductor-video{
+      position:relative;
+      width:100%;
+      padding-top:56.25%;
+      background:#000;
+    }
+    .reproductor-video iframe{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0;
+    }
+
+    /* ACCESOS INSTITUCIONALES */
+    .recursos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    .recurso-card{
+      height:100%;
+      padding:28px;
+      border:1px solid var(--borde);
+      border-radius:19px;
+      background:#fff;
+      box-shadow:var(--sombra-suave);
+      transition:var(--transicion);
+    }
+    .recurso-card:hover{transform:translateY(-7px);box-shadow:var(--sombra)}
+    .recurso-cabecera{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:20px}
+    .recurso-icono{
+      width:56px;
+      height:56px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:15px;
+      background:linear-gradient(135deg,var(--azul),var(--turquesa));
+      color:#fff;
+      font-size:1.3rem;
+    }
+    .recurso-tipo{
+      padding:6px 10px;
+      border-radius:20px;
+      background:var(--fondo);
+      color:var(--gris);
+      font-size:.65rem;
+      font-weight:800;
+      text-transform:uppercase;
+    }
+    .recurso-card h3{color:var(--azul);font-size:1rem;margin-bottom:11px}
+    .recurso-card p{color:var(--gris);font-size:.8rem;margin-bottom:19px}
+    .recurso-enlace{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      color:var(--turquesa);
+      font-size:.78rem;
+      font-weight:800;
+      transition:var(--transicion);
+    }
+    .recurso-enlace:hover{gap:12px;color:var(--azul)}
+
+    /* PREGUNTAS */
+    .acordeon-wrap{max-width:900px;margin:auto}
+    .accordion-item{
+      margin-bottom:14px;
+      border:1px solid var(--borde)!important;
+      border-radius:15px!important;
+      overflow:hidden;
+      box-shadow:var(--sombra-suave);
+    }
+    .accordion-button{padding:20px 22px;color:var(--azul);font-weight:800;background:#fff}
+    .accordion-button:not(.collapsed){
+      color:#fff;
+      background:linear-gradient(90deg,var(--azul-oscuro),var(--azul));
+      box-shadow:none;
+    }
+    .accordion-button:not(.collapsed)::after{filter:brightness(0) invert(1)}
+    .accordion-button:focus{box-shadow:none}
+    .accordion-body{padding:22px;color:var(--gris);font-size:.88rem}
+
+    /* LLAMADO A LA ACCIÓN */
+    .cta{
+      padding:50px;
+      border-radius:24px;
+      background:linear-gradient(135deg,var(--azul-oscuro),var(--azul));
+      color:#fff;
+      box-shadow:var(--sombra);
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:30px;
+      align-items:center;
+    }
+    .cta h2{font-family:"Playfair Display",serif;font-size:clamp(2rem,4vw,3rem);margin-bottom:12px}
+    .cta p{max-width:760px;color:rgba(255,255,255,.8);margin:0}
+    .btn-cta{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:14px 22px;
+      border-radius:10px;
+      background:var(--turquesa);
+      color:#fff;
+      font-weight:800;
+      transition:var(--transicion);
+    }
+    .btn-cta:hover{background:var(--turquesa-claro);color:#fff;transform:translateY(-3px)}
+
+    /* PIE DE PÁGINA */
+    .pie{background:#072844;color:#fff}
+    .pie-principal{padding:70px 0 45px}
+    .pie-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:45px}
+    .pie-logo img{width:190px;margin-bottom:20px}
+    .pie-descripcion{color:rgba(255,255,255,.68);font-size:.85rem}
+    .pie h3{margin-bottom:22px}
+    .pie-enlaces,.pie-contacto{display:grid;gap:11px}
+    .pie-enlaces a,.pie-contacto li{color:rgba(255,255,255,.72);font-size:.84rem}
+    .pie-enlaces a:hover{color:var(--turquesa-claro)}
+    .pie-contacto li{display:flex;gap:10px}
+    .pie-contacto i{color:var(--turquesa-claro);margin-top:4px}
+    .pie-inferior{padding:22px 0;border-top:1px solid rgba(255,255,255,.1)}
+    .pie-inferior-contenido{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      color:rgba(255,255,255,.62);
+      font-size:.78rem;
+    }
+
+    /* BOTONES FLOTANTES Y ANIMACIONES */
+    .boton-arriba,.boton-accesibilidad{
+      position:fixed;
+      z-index:1200;
+      border:none;
+      color:#fff;
+      box-shadow:var(--sombra);
+      cursor:pointer;
+    }
+    .boton-arriba{
+      right:22px;
+      bottom:22px;
+      width:48px;
+      height:48px;
+      border-radius:10px;
+      background:var(--celeste);
+      opacity:0;
+      visibility:hidden;
+      transform:translateY(15px);
+      transition:var(--transicion);
+    }
+    .boton-arriba.visible{opacity:1;visibility:visible;transform:translateY(0)}
+    .boton-accesibilidad{
+      left:0;
+      top:55%;
+      width:54px;
+      height:60px;
+      border-radius:0 8px 8px 0;
+      background:var(--azul);
+      font-size:1.45rem;
+    }
+    .revelar{opacity:0;transform:translateY(35px);transition:opacity .75s ease,transform .75s ease}
+    .revelar.visible{opacity:1;transform:translateY(0)}
+
+    /* ALTO CONTRASTE */
+    body.alto-contraste{
+      --azul:#000;
+      --azul-oscuro:#000;
+      --azul-profundo:#000;
+      --celeste:#ffd900;
+      --turquesa:#ffd900;
+      --turquesa-claro:#ffff00;
+      --fondo:#111;
+      --borde:#444;
+      --gris:#fff;
+      --texto:#fff;
+      background:#000;
+      color:#fff;
+    }
+    body.alto-contraste .noticia-card,
+    body.alto-contraste .modal-noticia .modal-content,
+    body.alto-contraste .modal-video .modal-content,
+    body.alto-contraste .pagina-btn,
+    body.alto-contraste .indicador,
+    body.alto-contraste .video-mini,
+    body.alto-contraste .recurso-card,
+    body.alto-contraste .accordion-item,
+    body.alto-contraste .accordion-button{background:#111;color:#fff}
+    body.alto-contraste .noticia-card h3,
+    body.alto-contraste .modal-noticia h2,
+    body.alto-contraste .video-mini-contenido strong,
+    body.alto-contraste .indicador strong,
+    body.alto-contraste .recurso-card h3,
+    body.alto-contraste .titulo{color:#ffd900}
+    body.alto-contraste .pagina-btn.activa{
+      background:#ffd900;
+      color:#000;
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:1100px){
+      .logo img{width:190px}
+      .menu-principal>li>a{font-size:.74rem;padding:13px 8px}
+    }
+
+    @media(max-width:980px){
+      .barra-contenido{justify-content:center}
+      .barra-contenido>.barra-grupo:last-child{display:none}
+      .encabezado{top:42px}
+      .encabezado.fijo{top:0}
+      .navegacion{min-height:95px}
+      .boton-menu{display:flex}
+      .menu-principal{
+        position:fixed;
+        top:0;
+        right:-100%;
+        width:min(390px,88vw);
+        height:100vh;
+        padding:112px 24px 35px;
+        display:block;
+        overflow-y:auto;
+        background:var(--azul-profundo);
+        box-shadow:-10px 0 30px rgba(0,0,0,.25);
+        transition:right .35s ease;
+      }
+      .menu-principal.abierto{right:0}
+      .menu-principal>li>a{
+        width:100%;
+        justify-content:space-between;
+        margin-bottom:4px;
+        padding:14px 12px;
+      }
+      .submenu{
+        position:static;
+        display:none;
+        min-width:0;
+        margin:0 0 8px;
+        padding:6px 10px;
+        opacity:1;
+        visibility:visible;
+        transform:none;
+        box-shadow:none;
+        background:rgba(255,255,255,.07);
+      }
+      .submenu.activo{display:block}
+      .submenu a{color:#fff}
+      .submenu a:hover{background:rgba(255,255,255,.08);color:var(--turquesa-claro)}
+      .indicadores-grid{grid-template-columns:repeat(2,1fr)}
+      .presentacion-grid{grid-template-columns:1fr}
+      .presentacion-imagen{max-width:700px}
+      .sello-flotante{right:20px}
+      .noticias-grid,.recursos-grid{grid-template-columns:repeat(2,1fr)}
+      .noticia-card:first-child{grid-column:1/-1}
+      .noticia-card:first-child .noticia-imagen{height:340px}
+      .gestion-grid{grid-template-columns:repeat(2,1fr)}
+      .multimedia-grid{grid-template-columns:1fr}
+      .video-principal{min-height:520px}
+      .videos-lista{grid-template-columns:repeat(2,1fr)}
+      .cta{grid-template-columns:1fr;text-align:center}
+      .pie-grid{grid-template-columns:repeat(2,1fr)}
+    }
+
+    @media(max-width:700px){
+      .contenedor{width:min(100% - 28px,1180px)}
+      .seccion{padding:70px 0}
+      .barra-contenido{font-size:.72rem}
+      .barra-item:nth-child(2){display:none}
+      .logo img{width:160px}
+      .banner{min-height:550px;text-align:center}
+      .banner-contenido{padding:170px 0 62px}
+      .banner-botones{justify-content:center}
+      .indicadores{margin-top:-30px}
+      .indicadores-grid,.noticias-grid,.recursos-grid,.gestion-grid{grid-template-columns:1fr}
+      .presentacion-imagen>img{height:380px}
+      .sello-flotante{
+        position:relative;
+        right:auto;
+        bottom:auto;
+        width:100%;
+        margin-top:-22px;
+        border-radius:0 0 20px 20px;
+      }
+      .noticia-card:first-child{grid-column:auto}
+      .noticia-card:first-child .noticia-imagen,.noticia-imagen{height:225px}
+      .modal-noticia .modal-dialog{margin:12px}
+      .modal-noticia-imagen{height:245px}
+      .modal-noticia-categoria{left:18px;bottom:17px}
+      .modal-noticia .modal-body{padding:25px 22px 30px}
+      .paginacion-noticias{gap:8px}
+      .pagina-btn{min-width:40px;height:40px;padding:0 11px}
+      .pagina-btn span{display:none}
+      .video-principal{min-height:390px}
+      .video-info{right:22px;bottom:22px;left:22px}
+      .videos-lista{grid-template-columns:1fr}
+      .video-mini{grid-template-columns:125px 1fr;gap:14px}
+      .video-mini-imagen{height:86px}
+      .cta{padding:35px 24px}
+      .pie-grid{grid-template-columns:1fr}
+      .pie-inferior-contenido{flex-direction:column;text-align:center}
+      .boton-accesibilidad{top:auto;bottom:85px;width:45px;height:50px}
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      *,*::before,*::after{scroll-behavior:auto!important;transition:none!important}
+      .revelar{opacity:1;transform:none}
+    }
+  </style>
+</head>
+
+<body>
+  <!-- BARRA SUPERIOR -->
+  <div class="barra-superior">
+    <div class="contenedor barra-contenido">
+      <div class="barra-grupo">
+        <div class="barra-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>Atacames, Esmeraldas, Ecuador</span>
+        </div>
+        <div class="barra-item">
+          <i class="fa-solid fa-phone"></i>
+          <span>(06) 2730-000</span>
+        </div>
+      </div>
+      <div class="barra-grupo">
+        <a href="#mapaSitio">Mapa del sitio</a>
+        <a href="#contacto">Correo institucional</a>
+        <a href="#contacto">Contáctenos</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENCABEZADO -->
+  <header class="encabezado" id="encabezado">
+    <div class="contenedor navegacion">
+      <a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Alcaldia-Atacames-menu-municipio.html" class="logo">
+        <img src="https://www.municipiodeatacames.gob.ec/images/Logo%20Institucional/2023/TRANSPARENTE2.png" alt="Municipio de Atacames">
+        <div class="logo-texto">
+          <strong>Municipio de Atacames</strong>
+          <span>Gobierno Autónomo Descentralizado Municipal</span>
+        </div>
+      </a>
+
+      <button type="button" class="boton-menu" id="botonMenu" aria-label="Abrir menú" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <nav aria-label="Navegación principal">
+        <ul class="menu-principal" id="menuPrincipal">
+          <li>
+            <a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Alcaldia-Atacames-menu-municipio.html">Inicio</a>
+          </li>
+          <li>
+            <a href="#" class="enlace-submenu activo">
+              Alcaldía <i class="fa-solid fa-chevron-down"></i>
+            </a>
+            <ul class="submenu">
+              <li><a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Alcalde.html">Alcalde</a></li>
+              <li><a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Autoridades.html">Autoridades</a></li>
+              <li><a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Consejo-municipal.html">Concejo Municipal</a></li>
+              <li><a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Filosofia-institucional.html">Filosofía institucional</a></li>
+              <li><a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Estructura-organica.html">Estructura orgánica</a></li>
+            </ul>
+          </li>
+          <li><a href="#institucion">Institución</a></li>
+          <li><a href="#noticias">Noticias</a></li>
+          <li><a href="#gestion">Gestión</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- PORTADA -->
+    <section class="banner" id="inicio">
+      <div class="contenedor banner-contenido">
+        <div class="banner-etiqueta">
+          <i class="fa-solid fa-building-columns"></i>
+          Gobierno municipal
+        </div>
+        <h1>Alcaldía de Atacames</h1>
+        <p>
+          Una administración cercana, transparente y comprometida con el
+          bienestar de las familias, el desarrollo sostenible y el futuro del
+          primer cantón turístico del Ecuador.
+        </p>
+        <div class="banner-botones">
+          <a href="#institucion" class="btn-banner">
+            <i class="fa-solid fa-landmark"></i>
+            Conocer la institución
+          </a>
+          <a href="#accesos" class="btn-banner secundario">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            Accesos institucionales
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- MIGAS DE PAN -->
+    <div class="breadcrumb-wrap">
+      <div class="contenedor">
+        <div class="breadcrumb-personalizado">
+          <a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Alcaldia-Atacames-menu-municipio.html">
+            <i class="fa-solid fa-house"></i> Inicio
+          </a>
+          <i class="fa-solid fa-chevron-right"></i>
+          <span>Alcaldía</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRESENTACIÓN -->
+    <section class="seccion" id="institucion">
+      <div class="contenedor presentacion-grid">
+        <div class="presentacion-imagen revelar">
+          <img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Alcaldia.png" alt="Representantes del Municipio de Atacames durante una jornada de trabajo">
+        </div>
+
+        <div class="presentacion-contenido revelar">
+          <span class="subtitulo">Nuestra Alcaldía</span>
+          <h2>QUERIDO PUEBLO ATACAMEÑO</h2>
+          <p>
+            Con trabajo, compromiso y una gestión permanente ante los diferentes
+            organismos nacionales e internacionales mas el aporte de cada uno de
+            ustedes a través del pago de sus impuestos, poco a poco estamos consiguiendo
+            los recursos que nos están permitiendo hacer realidad las obras que
+            nuestro cantón tanto necesita.
+          </p>
+          <p>
+            Sabemos que aún queda mucho por hacer, pero cada paso nos acerca al cambio que todos anhelamos.
+            Seguiremos trabajando con transparencia, responsabilidad y dedicación para construir el
+            "ATACAMES SEGURO, PRODUCTIVO Y TURISTICO" con el que todos soñamos.
+          </p>
+          <ul class="lista-check">
+            <li><i class="fa-solid fa-check"></i><span>Atención cercana y orientación a la ciudadanía.</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Planificación responsable del desarrollo cantonal.</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Transparencia y acceso a la información pública.</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Trabajo coordinado con barrios y parroquias.</span></li>
+          </ul>
+          <a href="#noticias" class="btn-principal">
+            Ver noticias <i class="fa-solid fa-arrow-down"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOTICIAS DE LA ALCALDÍA -->
+    <section class="seccion seccion-fondo" id="noticias">
+      <div class="contenedor">
+        <div class="encabezado-seccion revelar">
+          <span class="subtitulo">Noticias de la Alcaldía</span>
+          <h2 class="titulo">Conozca la gestión y el trabajo de la Alcaldía del Cantón Atacames</h2>
+          <p>
+            Infórmese sobre las acciones, proyectos, gestiones y actividades
+            desarrolladas en beneficio del cantón y sus comunidades.
+          </p>
+        </div>
+
+        <div class="noticias-grid" id="gridNoticias">
+          <article class="noticia-card revelar">
+            <div class="noticia-imagen">
+              <img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Puente%20la%2013.jpg" alt="Autoridades municipales durante una jornada de trabajo">
+              <span class="noticia-categoria"><i class="fa-solid fa-landmark"></i> Gestión municipal</span>
+            </div>
+            <div class="noticia-contenido">
+              <span class="noticia-fecha"><i class="fa-regular fa-calendar"></i> 26 de julio de 2026</span>
+              <h3>SE CONCLUYE LA ESTRUCTURA GRIS DEL NUEVO PUENTE VEHICULAR.</h3>
+              <p>
+                La construcción del nuevo puente vehicular, que unirá los barrios Nueva Esperanza y Victoria de Dios
+                con el centro de la ciudad, registra un importante avance. El Consorcio Atacames, encargado de ejecutar
+                la obra, se encuentra en la etapa final del proyecto.
+                Actualmente, los trabajos se concentran en el armado de los muros de acceso en ambos extremos del puente.
+                Además, ya se ha concluido la construcción de los pilotes, los estribos y las vigas principales, elementos
+                que conforman la estructura gris de la obra.
+                #MunicipioDeAtacames
+              </p>
+              <button class="noticia-enlace" type="button">
+                Leer noticia <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </article>
+
+          <article class="noticia-card revelar">
+            <div class="noticia-imagen">
+              <img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/pe%C3%B1on.jpg" alt="Vista de la playa y zona urbana de Atacames" loading="lazy">
+              <span class="noticia-categoria"><i class="fa-solid fa-city"></i> Desarrollo cantonal</span>
+            </div>
+            <div class="noticia-contenido">
+              <span class="noticia-fecha"><i class="fa-regular fa-calendar"></i> 24 de julio de 2026</span>
+              <h3>SE MEJORA EL MIRADOR TURÍSTICO DEL PEÑÓN DEL SUICIDA</h3>
+              <p>
+                Con el objetivo de brindar mayor comodidad a quienes visitan el mirador turístico del Peñón del
+                Suicida, la Dirección de Ambiente del Gobierno Autónomo Descentralizado Municipal de Atacames ejecuta
+                trabajos de mejoramiento en este importante atractivo del cantón.
+                Como parte de las adecuaciones, se construyen asientos de madera en el área techada del mirador, lo que
+                permitirá que los turistas dispongan de un espacio cómodo para descansar y protegerse del sol mientras
+                disfrutan del paisaje.
+                #MunicipioDeAtacames
+              </p>
+              <button class="noticia-enlace" type="button">
+                Leer noticia <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </article>
+
+          <article class="noticia-card revelar">
+            <div class="noticia-imagen">
+              <img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/maquinaria.jpg" alt="Representantes municipales reunidos para coordinar acciones institucionales" loading="lazy">
+              <span class="noticia-categoria"><i class="fa-solid fa-handshake"></i> Cooperación</span>
+            </div>
+            <div class="noticia-contenido">
+              <span class="noticia-fecha"><i class="fa-regular fa-calendar"></i> 22 de julio de 2026</span>
+              <h3>SE MEJORAN LAS CALLES DEL BARRIO MORÁN VALVERDE, EN TONSUPA</h3>
+              <p>
+                Con el objetivo de fortalecer la movilidad y preparar la infraestructura vial ante la próxima temporada
+                invernal, la Alcaldía de Atacames, a través de la Dirección de Obras Públicas, ejecuta trabajos de lastrado
+                en las calles del barrio Morán Valverde, ubicado en la parroquia Tonsupa.
+                Las labores comprenden la colocación de material pétreo y su posterior compactación, acciones que permitirán
+                mejorar las condiciones de las vías y garantizar un tránsito más seguro y cómodo, tanto para peatones como para
+                conductores.
+                La administración municipal reafirma su compromiso de atender las necesidades de los barrios del cantón mediante
+                obras que contribuyen al bienestar de la ciudadanía y al mejoramiento de la infraestructura vial.
+              </p>
+              <button class="noticia-enlace" type="button">
+                Leer noticia <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </article>
+
+          <article class="noticia-card revelar">
+            <div class="noticia-imagen">
+              <img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Funcionarios.jpg" alt="Representantes municipales reunidos para coordinar acciones institucionales" loading="lazy">
+              <span class="noticia-categoria"><i class="fa-solid fa-handshake"></i> Cooperación</span>
+            </div>
+            <div class="noticia-contenido">
+              <span class="noticia-fecha"><i class="fa-regular fa-calendar"></i> 22 de julio de 2026</span>
+              <h3>🏗️🤝 ¡Los comerciantes de Tonchigüe serán reubicados!</h3>
+              <p>
+                Con el firme compromiso de embellecer la parroquia y fortalecer su desarrollo, se ha consolidado un importante
+                acuerdo de colaboración entre el presidente del GAD Parroquial de Tonchigüe, la Alcaldía de Atacames y los
+                comerciantes locales.
+                Este esfuerzo conjunto permitirá ejecutar un proyecto de regeneración del área central, revitalizar los espacios
+                públicos y preparar la futura reubicación de los comerciantes en un espacio más ordenado, seguro y funcional. 🌿✨
+                Esta iniciativa representa un paso importante para mejorar la calidad de vida de las familias, impulsar el
+                comercio y ofrecer una mejor imagen de Tonchigüe a quienes visitan la parroquia.
+                ¡Juntos seguimos construyendo un futuro con más oportunidades para todos! 💙🌊
+                #Tonchigüe #Atacames #DesarrolloLocal
+              </p>
+              <button class="noticia-enlace" type="button">
+                Leer noticia <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </article>
+
+           <article class="noticia-card revelar">
+            <div class="noticia-imagen">
+              <img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Funcionario%204.jpg" alt="Representantes municipales reunidos para coordinar acciones institucionales" loading="lazy">
+              <span class="noticia-categoria"><i class="fa-solid fa-handshake"></i> Cooperación</span>
+            </div>
+            <div class="noticia-contenido">
+              <span class="noticia-fecha"><i class="fa-regular fa-calendar"></i> 22 de julio de 2026</span>
+              <h3>¡Cuidar nuestro entorno es tarea de todos! 🫱🏼‍🫲🏽✨</h3>
+              <p>
+                #GestiónAmbiental 🌳
+                Hoy, nuestro equipo de Parques y Jardines desarrolló una intensa jornada de trabajo en el malecón de Súa
+                y en el Parque Central, por disposición de la Dirección de Gestión Ambiental.
+                Seguimos embelleciendo nuestros espacios públicos para el disfrute de las familias atacameñas y de quienes nos visitan.
+              </p>
+              <button class="noticia-enlace" type="button">
+                Leer noticia <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </article>
+
+          <article class="noticia-card revelar">
+            <div class="noticia-imagen">
+              <img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/funcionarios%205.jpg" alt="Representantes municipales reunidos para coordinar acciones institucionales" loading="lazy">
+              <span class="noticia-categoria"><i class="fa-solid fa-handshake"></i> Cooperación</span>
+            </div>
+            <div class="noticia-contenido">
+              <span class="noticia-fecha"><i class="fa-regular fa-calendar"></i> 22 de julio de 2026</span>
+              <h3>CONTINÚAN LOS TRABAJOS EN LA CANCHA DE LA UNIÓN</h3>
+              <p>
+                 La Alcaldía de Atacames avanza con la construcción del cerramiento de la cancha de fútbol ubicada en la parroquia La Unión.
+                 Esta obra progresa satisfactoriamente y permitirá fortalecer un espacio esencial para la práctica deportiva y la integración
+                 comunitaria.
+                 El proyecto incluye el cerramiento completo del área deportiva con malla, así como el mantenimiento de la cubierta y de los
+                 graderíos. Estas labores se ejecutan mediante administración directa.
+                 Con esta iniciativa, la administración municipal reafirma su compromiso con el deporte comunitario, promoviendo la
+                 integración social de niños, jóvenes y adultos.
+                 #MunicipioDeAtacames
+              </p>
+              <button class="noticia-enlace" type="button">
+                Leer noticia <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </article>
+        </div>
+
+        <div class="noticias-acciones revelar">
+          <button type="button" class="btn-principal" id="botonTodasNoticias" aria-expanded="false">
+            Ver todas las noticias <i class="fa-solid fa-newspaper"></i>
+          </button>
+        </div>
+
+        <p class="estado-noticias" id="estadoNoticias" aria-live="polite" hidden></p>
+        <nav class="paginacion-noticias" id="paginacionNoticias" aria-label="Paginación de noticias" hidden>
+          <button type="button" class="pagina-btn" id="paginaAnterior">
+            <i class="fa-solid fa-chevron-left"></i><span>Anterior</span>
+          </button>
+          <div class="paginas-noticias" id="paginasNoticias"></div>
+          <button type="button" class="pagina-btn" id="paginaSiguiente">
+            <span>Siguiente</span><i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </nav>
+      </div>
+    </section>
+
+    <!-- VISTA AMPLIADA DE NOTICIA -->
+    <div class="modal fade modal-noticia" id="modalNoticia" tabindex="-1" aria-labelledby="modalNoticiaTitulo">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar noticia"></button>
+          </div>
+          <div class="modal-noticia-imagen">
+            <img id="modalNoticiaImagen" src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Puente%20la%2013.jpg" alt="Detalle de la noticia municipal">
+            <span class="modal-noticia-categoria" id="modalNoticiaCategoria"></span>
+          </div>
+          <div class="modal-body">
+            <span class="modal-noticia-fecha" id="modalNoticiaFecha"></span>
+            <h2 id="modalNoticiaTitulo">Detalle de la noticia</h2>
+            <p class="modal-noticia-texto" id="modalNoticiaTexto"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GESTIÓN MUNICIPAL -->
+    <section class="seccion gestion" id="gestion">
+      <div class="contenedor">
+        <div class="encabezado-seccion revelar">
+          <span class="subtitulo">Compromiso institucional</span>
+          <h2 class="titulo">Una gestión orientada a resultados</h2>
+          <p>
+            La administración municipal convierte las necesidades del
+            territorio en acciones planificadas, coordinadas y evaluables.
+          </p>
+        </div>
+
+        <div class="gestion-grid">
+          <article class="gestion-paso revelar">
+            <div class="paso-numero">01</div>
+            <h3>Escuchar</h3>
+            <p>Recogemos las necesidades y propuestas de barrios, parroquias y sectores sociales.</p>
+          </article>
+          <article class="gestion-paso revelar">
+            <div class="paso-numero">02</div>
+            <h3>Planificar</h3>
+            <p>Priorizamos proyectos, recursos y acciones de acuerdo con la realidad del cantón.</p>
+          </article>
+          <article class="gestion-paso revelar">
+            <div class="paso-numero">03</div>
+            <h3>Ejecutar</h3>
+            <p>Coordinamos servicios, obras y programas con responsabilidad institucional.</p>
+          </article>
+          <article class="gestion-paso revelar">
+            <div class="paso-numero">04</div>
+            <h3>Informar</h3>
+            <p>Comunicamos avances, resultados y decisiones para fortalecer la transparencia.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTENIDO MULTIMEDIA -->
+    <section class="seccion" id="multimedia">
+      <div class="contenedor">
+        <div class="encabezado-seccion revelar">
+          <span class="subtitulo">Contenido audiovisual</span>
+          <h2 class="titulo">Gestión municipal en acción</h2>
+          <p>
+            Conozca mediante videos las actividades, campañas, proyectos y
+            acciones desarrolladas por la Alcaldía de Atacames.
+          </p>
+        </div>
+
+        <div class="multimedia-grid">
+          <article class="video-principal revelar">
+            <img
+              src="https://img.youtube.com/vi/HSmT-UD7gCQ/maxresdefault.jpg"
+              alt="Miniatura del video principal de la Alcaldía de Atacames"
+            >
+            <button
+              type="button"
+              class="play-btn abrir-video"
+              data-youtube-video="https://youtube.com/shorts/4PmRMdb68MU?si=8UL3ZcCI4QkQeCtx"
+              data-video-titulo="📊 INFORME DE GESTIÓN SEMANAL:
+ALCALDÍA DE ATACAMES
+𝐖𝐢𝐥𝐥𝐢𝐚𝐧𝐬 𝐌𝐞𝐧𝐝𝐨𝐳𝐚 𝐕. 𝐀𝐥𝐜𝐚𝐥𝐝𝐞.
+"Por un Atacames seguro, productivo y turístico"
+              aria-label="Reproducir video Cuidemos nuestras vidas"
+            >
+              <i class="fa-solid fa-play"></i>
+            </button>
+            <div class="video-info">
+              <h3>📊 INFORME DE GESTIÓN SEMANAL:
+ALCALDÍA DE ATACAMES
+𝐖𝐢𝐥𝐥𝐢𝐚𝐧𝐬 𝐌𝐞𝐧𝐝𝐨𝐳𝐚 𝐕. 𝐀𝐥𝐜𝐚𝐥𝐝𝐞.
+"Por un Atacames seguro, productivo y turístico"</h3>
+              <p></p>
+            </div>
+          </article>
+
+          <div class="videos-lista">
+            <button
+              type="button"
+              class="video-mini revelar abrir-video"
+              data-youtube-video="https://www.youtube.com/shorts/xrYltvy3rMM"
+              data-video-titulo="𝗠𝗜𝗡𝗚𝗔 𝗖𝗢𝗠𝗨𝗡𝗜𝗧𝗔𝗥𝗜𝗔 𝗙𝗢𝗥𝗧𝗔𝗟𝗘𝗖𝗘 𝗘𝗟 𝗢𝗥𝗡𝗔𝗧𝗢 𝗗𝗘𝗟 𝗣𝗔𝗥𝗤𝗨𝗘 𝗗𝗘𝗟 𝗥𝗘𝗖𝗜𝗡𝗧𝗢 𝗦𝗔𝗠𝗘."
+              aria-label="Ver video Atacames Seguro, Productivo y Turístico"
+            >
+              <span class="video-mini-imagen">
+                <img
+                  src="https://img.youtube.com/vi/WLqVwunJp14/maxresdefault.jpg"
+                  alt="Miniatura del cantón Atacames"
+                  loading="lazy"
+                >
+                <i class="fa-solid fa-play"></i>
+              </span>
+              <span class="video-mini-contenido">
+                <strong>𝗠𝗜𝗡𝗚𝗔 𝗖𝗢𝗠𝗨𝗡𝗜𝗧𝗔𝗥𝗜𝗔 𝗙𝗢𝗥𝗧𝗔𝗟𝗘𝗖𝗘 𝗘𝗟 𝗢𝗥𝗡𝗔𝗧𝗢 𝗗𝗘𝗟 𝗣𝗔𝗥𝗤𝗨𝗘 𝗗𝗘𝗟 𝗥𝗘𝗖𝗜𝗡𝗧𝗢 𝗦𝗔𝗠𝗘.</strong>
+                <small><i class="fa-brands fa-youtube"></i> Ver video en YouTube</small>
+              </span>
+            </button>
+
+            <button
+              type="button"
+              class="video-mini revelar abrir-video"
+              data-youtube-video="https://www.youtube.com/shorts/ftBxURrjgBE"
+              data-video-titulo=""
+              aria-label="Ver video Inician trabajos de dragado en el río Sua para mitigar riesgos ante el fenómeno de El Niño"
+            >
+              <span class="video-mini-imagen">
+                <img
+                  src="https://img.youtube.com/vi/nXv5rOtiuPE/maxresdefault.jpg"
+                  alt="Miniatura de Atacames como destino turístico"
+                  loading="lazy"
+                >
+                <i class="fa-solid fa-play"></i>
+              </span>
+              <span class="video-mini-contenido">
+                <strong>Inician trabajos de dragado en el río Sua para mitigar riesgos ante el fenómeno de El Niño</strong>
+                <small><i class="fa-brands fa-youtube"></i> Ver video en YouTube</small>
+              </span>
+            </button>
+
+            <button
+              type="button"
+              class="video-mini revelar abrir-video"
+              data-youtube-video="https://www.youtube.com/shorts/VTOO1i_AHHE"
+              data-video-titulo="¡𝗕𝘂𝗲𝗻𝗮𝘀 𝗡𝗼𝘁𝗶𝗰𝗶𝗮𝘀❗#Tonsupa
+#MunicipioDeAtacames 
+#WilliansMendozaAlcalde"
+              aria-label="Ver video ¡𝗕𝘂𝗲𝗻𝗮𝘀 𝗡𝗼𝘁𝗶𝗰𝗶𝗮𝘀❗#Tonsupa
+#MunicipioDeAtacames 
+#WilliansMendozaAlcalde"
+            >
+              <span class="video-mini-imagen">
+                <img
+                  src="https://img.youtube.com/vi/fTKqJdzlBhA/maxresdefault.jpg"
+                  alt="Miniatura de avistamiento de ballenas en Atacames"
+                  loading="lazy"
+                >
+                <i class="fa-solid fa-play"></i>
+              </span>
+              <span class="video-mini-contenido">
+                <strong>¡𝗕𝘂𝗲𝗻𝗮𝘀 𝗡𝗼𝘁𝗶𝗰𝗶𝗮𝘀❗#Tonsupa
+#MunicipioDeAtacames 
+#WilliansMendozaAlcalde</strong>
+                <small><i class="fa-brands fa-youtube"></i> Ver video en YouTube</small>
+              </span>
+            </button>
+
+            <button
+              type="button"
+              class="video-mini revelar abrir-video"
+              data-youtube-video="https://www.youtube.com/shorts/k-aTQ5A59bQ"
+              data-video-titulo="#BuenasNoticias 
+🚧 𝗘𝗡 𝗦𝗔𝗠𝗘 𝗬 𝗦𝗔𝗡 𝗔𝗡𝗧𝗢𝗡𝗜𝗢, 𝗖𝗢𝗡𝗧𝗜𝗡𝗨́𝗔𝗡
+𝗧𝗥𝗔𝗕𝗔𝗝𝗢𝗦 𝗗𝗘𝗟 𝗔𝗟𝗖𝗔𝗡𝗧𝗔𝗥𝗜𝗟𝗟𝗔𝗗𝗢.👷👷‍♀️
+#MunicipioDeAtacames
+"
+              aria-label="Ver video #BuenasNoticias 
+🚧 𝗘𝗡 𝗦𝗔𝗠𝗘 𝗬 𝗦𝗔𝗡 𝗔𝗡𝗧𝗢𝗡𝗜𝗢, 𝗖𝗢𝗡𝗧𝗜𝗡𝗨́𝗔𝗡
+𝗧𝗥𝗔𝗕𝗔𝗝𝗢𝗦 𝗗𝗘𝗟 𝗔𝗟𝗖𝗔𝗡𝗧𝗔𝗥𝗜𝗟𝗟𝗔𝗗𝗢.👷👷‍♀️
+#MunicipioDeAtacames
+Atacames es más que playa"
+            >
+              <span class="video-mini-imagen">
+                <img
+                  src="https://img.youtube.com/vi/RxOP-fiSaa8/maxresdefault.jpg"
+                  alt="Miniatura de experiencias turísticas en Atacames"
+                  loading="lazy"
+                >
+                <i class="fa-solid fa-play"></i>
+              </span>
+              <span class="video-mini-contenido">
+                <strong>#BuenasNoticias 
+🚧 𝗘𝗡 𝗦𝗔𝗠𝗘 𝗬 𝗦𝗔𝗡 𝗔𝗡𝗧𝗢𝗡𝗜𝗢, 𝗖𝗢𝗡𝗧𝗜𝗡𝗨́𝗔𝗡
+𝗧𝗥𝗔𝗕𝗔𝗝𝗢𝗦 𝗗𝗘𝗟 𝗔𝗟𝗖𝗔𝗡𝗧𝗔𝗥𝗜𝗟𝗟𝗔𝗗𝗢.👷👷‍♀️
+#MunicipioDeAtacames
+</strong>
+                <small><i class="fa-brands fa-youtube"></i> Ver video en YouTube</small>
+              </span>
+            </button>            
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REPRODUCTOR MULTIMEDIA -->
+    <div class="modal fade modal-video" id="modalVideo" tabindex="-1" aria-labelledby="modalVideoTitulo">
+      <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title" id="modalVideoTitulo">Video institucional</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar video"></button>
+          </div>
+          <div class="reproductor-video">
+            <iframe
+              id="reproductorVideo"
+              src="about:blank"
+              title="Reproductor de video institucional"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PREGUNTAS FRECUENTES -->
+    <section class="seccion seccion-fondo" id="preguntas">
+      <div class="contenedor">
+        <div class="encabezado-seccion revelar">
+          <span class="subtitulo">Orientación ciudadana</span>
+          <h2 class="titulo">Preguntas frecuentes</h2>
+          <p>
+            Respuestas rápidas sobre la Alcaldía, su organización y el acceso a
+            la información municipal.
+          </p>
+        </div>
+
+        <div class="accordion acordeon-wrap revelar" id="acordeonAlcaldia">
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#respuestaUno" aria-expanded="true" aria-controls="respuestaUno">
+                ¿Qué funciones cumple la Alcaldía?
+              </button>
+            </h3>
+            <div id="respuestaUno" class="accordion-collapse collapse show" data-bs-parent="#acordeonAlcaldia">
+              <div class="accordion-body">
+                La Alcaldía dirige la administración municipal, ejecuta las
+                decisiones del Concejo, coordina servicios y proyectos,
+                representa legalmente al GAD Municipal y orienta la gestión
+                hacia el desarrollo del cantón.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#respuestaDos" aria-expanded="false" aria-controls="respuestaDos">
+                ¿Dónde puedo consultar la estructura del Municipio?
+              </button>
+            </h3>
+            <div id="respuestaDos" class="accordion-collapse collapse" data-bs-parent="#acordeonAlcaldia">
+              <div class="accordion-body">
+                En la sección Estructura orgánica encontrará los niveles de
+                gestión, las principales dependencias y la distribución de las
+                responsabilidades institucionales.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#respuestaTres" aria-expanded="false" aria-controls="respuestaTres">
+                ¿Cómo puedo acceder a información pública municipal?
+              </button>
+            </h3>
+            <div id="respuestaTres" class="accordion-collapse collapse" data-bs-parent="#acordeonAlcaldia">
+              <div class="accordion-body">
+                Puede ingresar a los accesos de Transparencia, Rendición de
+                cuentas y Normativa. También puede comunicarse con el Municipio
+                cuando requiera orientación sobre un trámite o documento.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#respuestaCuatro" aria-expanded="false" aria-controls="respuestaCuatro">
+                ¿Cuál es el horario de atención?
+              </button>
+            </h3>
+            <div id="respuestaCuatro" class="accordion-collapse collapse" data-bs-parent="#acordeonAlcaldia">
+              <div class="accordion-body">
+                La atención institucional se realiza de lunes a viernes, de
+                08:00 a 17:00. Los horarios específicos de ciertos servicios
+                pueden variar.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="seccion">
+      <div class="contenedor">
+        <div class="cta revelar">
+          <div>
+            <h2>La Alcaldía está para servirle</h2>
+            <p>
+              Encuentre orientación institucional, canales de atención e
+              información útil para realizar sus consultas ante el Municipio de
+              Atacames.
+            </p>
+          </div>
+          <a href="#contacto" class="btn-cta">
+            <i class="fa-solid fa-paper-plane"></i>
+            Contactar al Municipio
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="pie" id="contacto">
+    <div class="pie-principal">
+      <div class="contenedor pie-grid">
+        <div>
+          <div class="pie-logo">
+            <img src="https://www.municipiodeatacames.gob.ec/images/Logo%20Institucional/2023/TRANSPARENTE2.png" alt="Municipio de Atacames">
+          </div>
+          <p class="pie-descripcion">
+            Portal institucional del Gobierno Autónomo Descentralizado
+            Municipal del cantón Atacames.
+          </p>
+        </div>
+
+        <div>
+          <h3>Alcaldía</h3>
+          <ul class="pie-enlaces">
+            <li><a href="#institucion">Nuestra institución</a></li>
+            <li><a href="#noticias">Noticias</a></li>
+            <li><a href="#gestion">Gestión municipal</a></li>
+            <li><a href="#accesos">Accesos institucionales</a></li>
+          </ul>
+        </div>
+
+        <div id="mapaSitio">
+          <h3>Institución</h3>
+          <ul class="pie-enlaces">
+            <li><a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Alcalde.html">Alcalde</a></li>
+            <li><a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Autoridades.html">Autoridades</a></li>
+            <li><a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Consejo-municipal.html">Concejo Municipal</a></li>
+            <li><a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Estructura-organica.html">Estructura orgánica</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Contáctenos</h3>
+          <ul class="pie-contacto">
+            <li><i class="fa-solid fa-location-dot"></i><span>Atacames, Esmeraldas, Ecuador</span></li>
+            <li><i class="fa-solid fa-phone"></i><span>(06) 2730-000</span></li>
+            <li><i class="fa-solid fa-envelope"></i><span>Información institucional</span></li>
+            <li><i class="fa-solid fa-clock"></i><span>Lunes a viernes: 08:00–17:00</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="pie-inferior">
+      <div class="contenedor pie-inferior-contenido">
+        <p>© <span id="anioActual"></span> GAD Municipal de Atacames. Todos los derechos reservados.</p>
+        <p>Dirección de Tecnologías de la Información</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BOTONES FLOTANTES -->
+  <button type="button" class="boton-accesibilidad" id="botonAccesibilidad" aria-label="Activar alto contraste" aria-pressed="false">
+    <i class="fa-solid fa-universal-access"></i>
+  </button>
+  <button type="button" class="boton-arriba" id="botonArriba" aria-label="Volver arriba">
+    <i class="fa-solid fa-chevron-up"></i>
+  </button>
+
+  <!-- BOOTSTRAP Y JAVASCRIPT -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    "use strict";
+
+    const encabezado = document.getElementById("encabezado");
+    const botonMenu = document.getElementById("botonMenu");
+    const menuPrincipal = document.getElementById("menuPrincipal");
+    const botonArriba = document.getElementById("botonArriba");
+    const botonAccesibilidad = document.getElementById("botonAccesibilidad");
+    const enlacesSubmenu = document.querySelectorAll(".enlace-submenu");
+    const elementoModalNoticia = document.getElementById("modalNoticia");
+    const modalNoticia = new bootstrap.Modal(elementoModalNoticia);
+    const elementoModalVideo = document.getElementById("modalVideo");
+    const modalVideo = new bootstrap.Modal(elementoModalVideo);
+    const reproductorVideo = document.getElementById("reproductorVideo");
+    const modalVideoTitulo = document.getElementById("modalVideoTitulo");
+    const gridNoticias = document.getElementById("gridNoticias");
+    const botonTodasNoticias = document.getElementById("botonTodasNoticias");
+    const estadoNoticias = document.getElementById("estadoNoticias");
+    const paginacionNoticias = document.getElementById("paginacionNoticias");
+    const paginasNoticias = document.getElementById("paginasNoticias");
+    const paginaAnterior = document.getElementById("paginaAnterior");
+    const paginaSiguiente = document.getElementById("paginaSiguiente");
+    const tarjetasPlantilla = [...gridNoticias.querySelectorAll(".noticia-card")]
+      .slice(0,6)
+      .map(tarjeta => tarjeta.cloneNode(true));
+    const NOTICIAS_POR_PAGINA = 30;
+    const TOTAL_NOTICIAS_PROVISIONALES = 60;
+    let paginaActualNoticias = 1;
+    let vistaCompletaNoticias = false;
+
+    document.getElementById("anioActual").textContent = new Date().getFullYear();
+
+    function cerrarMenu(){
+      menuPrincipal.classList.remove("abierto");
+      document.body.classList.remove("menu-abierto");
+      botonMenu.innerHTML = '<i class="fa-solid fa-bars"></i>';
+      botonMenu.setAttribute("aria-expanded", "false");
+    }
+
+    botonMenu.addEventListener("click", () => {
+      const abierto = menuPrincipal.classList.toggle("abierto");
+      document.body.classList.toggle("menu-abierto", abierto);
+      botonMenu.innerHTML = abierto
+        ? '<i class="fa-solid fa-xmark"></i>'
+        : '<i class="fa-solid fa-bars"></i>';
+      botonMenu.setAttribute("aria-expanded", String(abierto));
+    });
+
+    enlacesSubmenu.forEach(enlace => {
+      enlace.addEventListener("click", evento => {
+        if(window.innerWidth <= 980){
+          evento.preventDefault();
+          const submenu = enlace.nextElementSibling;
+          submenu.classList.toggle("activo");
+          enlace.querySelector("i").className = submenu.classList.contains("activo")
+            ? "fa-solid fa-chevron-up"
+            : "fa-solid fa-chevron-down";
+        }
+      });
+    });
+
+    menuPrincipal.querySelectorAll("a").forEach(enlace => {
+      enlace.addEventListener("click", () => {
+        if(window.innerWidth <= 980 && !enlace.classList.contains("enlace-submenu")){
+          cerrarMenu();
+        }
+      });
+    });
+
+    function controlarScroll(){
+      encabezado.classList.toggle("fijo", window.scrollY > 90);
+      botonArriba.classList.toggle("visible", window.scrollY > 450);
+    }
+
+    window.addEventListener("scroll", controlarScroll);
+    controlarScroll();
+
+    botonArriba.addEventListener("click", () => {
+      window.scrollTo({top:0, behavior:"smooth"});
+    });
+
+    const observador = new IntersectionObserver((entradas, observer) => {
+      entradas.forEach(entrada => {
+        if(entrada.isIntersecting){
+          entrada.target.classList.add("visible");
+          observer.unobserve(entrada.target);
+        }
+      });
+    }, {
+      threshold:.12,
+      rootMargin:"0px 0px -50px 0px"
+    });
+
+    document.querySelectorAll(".revelar").forEach(elemento => {
+      observador.observe(elemento);
+    });
+
+    botonAccesibilidad.addEventListener("click", () => {
+      const activo = document.body.classList.toggle("alto-contraste");
+      botonAccesibilidad.setAttribute("aria-pressed", String(activo));
+      botonAccesibilidad.setAttribute(
+        "aria-label",
+        activo ? "Desactivar alto contraste" : "Activar alto contraste"
+      );
+    });
+
+    function obtenerIdYouTube(enlace){
+      if(!enlace) return null;
+      const coincidencia = enlace.match(
+        /(?:youtube\.com\/(?:shorts\/|embed\/|watch\?v=)|youtu\.be\/)([A-Za-z0-9_-]{11})/
+      );
+      return coincidencia ? coincidencia[1] : null;
+    }
+
+    document.querySelectorAll(".abrir-video").forEach(boton => {
+      const idVideo = obtenerIdYouTube(boton.dataset.youtubeVideo);
+      const miniatura = boton
+        .closest(".video-principal,.video-mini")
+        ?.querySelector("img");
+
+      if(idVideo && miniatura){
+        miniatura.src = `https://img.youtube.com/vi/${idVideo}/maxresdefault.jpg`;
+        miniatura.addEventListener("error", () => {
+          const alternativa = `https://img.youtube.com/vi/${idVideo}/hqdefault.jpg`;
+          if(miniatura.src !== alternativa) miniatura.src = alternativa;
+        });
+      }
+
+      boton.addEventListener("click", () => {
+        const id = obtenerIdYouTube(boton.dataset.youtubeVideo);
+
+        if(!id){
+          alert("El enlace de YouTube no es válido.");
+          return;
+        }
+
+        modalVideoTitulo.textContent =
+          boton.dataset.videoTitulo || "Video institucional";
+        reproductorVideo.src =
+          `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+        modalVideo.show();
+      });
+    });
+
+    elementoModalVideo.addEventListener("hidden.bs.modal", () => {
+      reproductorVideo.src = "about:blank";
+    });
+
+    function crearTarjetaNoticia(indice){
+      const tarjeta = tarjetasPlantilla[indice % tarjetasPlantilla.length].cloneNode(true);
+      tarjeta.classList.add("visible");
+      tarjeta.dataset.registro = String(indice + 1);
+      return tarjeta;
+    }
+
+    function renderizarVistaPrevia(){
+      const fragmento = document.createDocumentFragment();
+      tarjetasPlantilla.forEach((plantilla, indice) => {
+        fragmento.appendChild(crearTarjetaNoticia(indice));
+      });
+      gridNoticias.replaceChildren(fragmento);
+      gridNoticias.classList.remove("modo-completo");
+      estadoNoticias.hidden = true;
+      paginacionNoticias.hidden = true;
+    }
+
+    function actualizarPaginacion(){
+      const totalPaginas = Math.ceil(TOTAL_NOTICIAS_PROVISIONALES / NOTICIAS_POR_PAGINA);
+      paginasNoticias.replaceChildren();
+
+      for(let pagina = 1; pagina <= totalPaginas; pagina++){
+        const botonPagina = document.createElement("button");
+        botonPagina.type = "button";
+        botonPagina.className = "pagina-btn";
+        botonPagina.textContent = String(pagina);
+        botonPagina.setAttribute("aria-label", `Ir a la página ${pagina}`);
+
+        if(pagina === paginaActualNoticias){
+          botonPagina.classList.add("activa");
+          botonPagina.setAttribute("aria-current", "page");
+        }
+
+        botonPagina.addEventListener("click", () => cambiarPaginaNoticias(pagina));
+        paginasNoticias.appendChild(botonPagina);
+      }
+
+      paginaAnterior.disabled = paginaActualNoticias === 1;
+      paginaSiguiente.disabled = paginaActualNoticias === totalPaginas;
+    }
+
+    function renderizarPaginaNoticias(){
+      const inicio = (paginaActualNoticias - 1) * NOTICIAS_POR_PAGINA;
+      const fin = Math.min(inicio + NOTICIAS_POR_PAGINA, TOTAL_NOTICIAS_PROVISIONALES);
+      const fragmento = document.createDocumentFragment();
+
+      for(let indice = inicio; indice < fin; indice++){
+        fragmento.appendChild(crearTarjetaNoticia(indice));
+      }
+
+      gridNoticias.replaceChildren(fragmento);
+      gridNoticias.classList.add("modo-completo");
+      estadoNoticias.textContent =
+        `Mostrando ${inicio + 1}–${fin} de ${TOTAL_NOTICIAS_PROVISIONALES} noticias`;
+      estadoNoticias.hidden = false;
+      paginacionNoticias.hidden = false;
+      actualizarPaginacion();
+    }
+
+    function cambiarPaginaNoticias(nuevaPagina){
+      const totalPaginas = Math.ceil(TOTAL_NOTICIAS_PROVISIONALES / NOTICIAS_POR_PAGINA);
+      if(nuevaPagina < 1 || nuevaPagina > totalPaginas || nuevaPagina === paginaActualNoticias) return;
+
+      paginaActualNoticias = nuevaPagina;
+      renderizarPaginaNoticias();
+      const posicion = gridNoticias.getBoundingClientRect().top + window.scrollY - 120;
+      window.scrollTo({top:posicion, behavior:"smooth"});
+    }
+
+    botonTodasNoticias.addEventListener("click", () => {
+      vistaCompletaNoticias = !vistaCompletaNoticias;
+      botonTodasNoticias.setAttribute("aria-expanded", String(vistaCompletaNoticias));
+
+      if(vistaCompletaNoticias){
+        paginaActualNoticias = 1;
+        botonTodasNoticias.innerHTML =
+          'Mostrar solo 6 noticias <i class="fa-solid fa-compress"></i>';
+        renderizarPaginaNoticias();
+      }else{
+        botonTodasNoticias.innerHTML =
+          'Ver todas las noticias <i class="fa-solid fa-newspaper"></i>';
+        renderizarVistaPrevia();
+      }
+    });
+
+    paginaAnterior.addEventListener("click", () => {
+      cambiarPaginaNoticias(paginaActualNoticias - 1);
+    });
+
+    paginaSiguiente.addEventListener("click", () => {
+      cambiarPaginaNoticias(paginaActualNoticias + 1);
+    });
+
+    gridNoticias.addEventListener("click", evento => {
+      const boton = evento.target.closest(".noticia-enlace");
+      if(!boton) return;
+
+      const tarjeta = boton.closest(".noticia-card");
+      if(tarjeta){
+        const imagen = tarjeta.querySelector(".noticia-imagen img");
+        const categoria = tarjeta.querySelector(".noticia-categoria");
+        const fecha = tarjeta.querySelector(".noticia-fecha");
+        const titulo = tarjeta.querySelector("h3");
+        const texto = tarjeta.querySelector(".noticia-contenido p");
+
+        const imagenModal = document.getElementById("modalNoticiaImagen");
+        imagenModal.src = imagen.src;
+        imagenModal.alt = imagen.alt;
+        document.getElementById("modalNoticiaCategoria").innerHTML = categoria.innerHTML;
+        document.getElementById("modalNoticiaFecha").innerHTML = fecha.innerHTML;
+        document.getElementById("modalNoticiaTitulo").textContent = titulo.textContent.trim();
+        document.getElementById("modalNoticiaTexto").textContent = texto.textContent.trim();
+
+        modalNoticia.show();
+      }
+    });
+
+    window.addEventListener("resize", () => {
+      if(window.innerWidth > 980){
+        cerrarMenu();
+        document.querySelectorAll(".submenu").forEach(submenu => {
+          submenu.classList.remove("activo");
+        });
+      }
+    });
+
+    document.querySelectorAll('a[href="#"]').forEach(enlace => {
+      enlace.addEventListener("click", evento => evento.preventDefault());
+    });
+  </script>
+</body>
+</html>
