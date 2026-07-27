@@ -144,24 +144,28 @@
     }
 
     .nav {
-      min-height: 118px;
+      min-height: 148px;
       display: flex;
+      flex-direction: row;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      gap: 28px;
     }
 
     .logo {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 24px;
       color: #fff;
       flex-shrink: 0;
     }
 
     .logo img {
-      width: 240px;
-      height: auto;
+      width: 280px;
+      height: 118px;
+      object-fit: contain;
+      object-position: left center;
+      flex-shrink: 0;
     }
 
     .logo-texto {
@@ -170,17 +174,29 @@
 
     .logo-texto strong {
       display: block;
-      font-size: 1.3rem;
+      font-size: 1.48rem;
+      font-weight: 800;
+      line-height: 1.2;
     }
 
     .logo-texto span {
-      font-size: .72rem;
+      display: block;
+      margin-top: 7px;
+      font-size: .76rem;
       opacity: .88;
+      white-space: nowrap;
+    }
+
+    .nav > nav {
+      width: auto;
+      margin-left: auto;
     }
 
     .menu {
+      min-height: auto;
       display: flex;
       align-items: center;
+      justify-content: flex-end;
       gap: 3px;
     }
 
@@ -204,6 +220,40 @@
     .menu > li > a.activo {
       background: rgba(255, 255, 255, .12);
       color: var(--turquesa2);
+    }
+
+    /* El encabezado se compacta al desplazarse para no tapar el contenido */
+    .header.fijo .nav {
+      min-height: 88px;
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .header.fijo .logo {
+      gap: 14px;
+    }
+
+    .header.fijo .logo img {
+      width: 170px;
+      height: 72px;
+    }
+
+    .header.fijo .logo-texto strong {
+      font-size: 1.05rem;
+    }
+
+    .header.fijo .logo-texto span {
+      font-size: .64rem;
+    }
+
+    .header.fijo .nav > nav {
+      width: auto;
+      margin-left: auto;
+    }
+
+    .header.fijo .menu {
+      min-height: auto;
     }
 
     .submenu {
@@ -280,7 +330,7 @@
     .banner-contenido {
       position: relative;
       z-index: 2;
-      padding: 230px 0 70px;
+      padding: 245px 0 70px;
     }
 
     .etiqueta {
@@ -806,12 +856,21 @@
     }
 
     @media (max-width: 1200px) {
+      .nav {
+        gap: 18px;
+      }
+
+      .logo {
+        gap: 16px;
+      }
+
       .logo img {
-        width: 205px;
+        width: 225px;
+        height: 100px;
       }
 
       .logo-texto {
-        display: none;
+        display: block;
       }
 
       .menu > li > a {
@@ -831,10 +890,38 @@
 
       .nav {
         min-height: 88px;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .logo {
+        min-height: auto;
+        gap: 14px;
       }
 
       .logo img {
-        width: 185px;
+        width: 150px;
+        height: 68px;
+      }
+
+      .logo-texto strong {
+        font-size: 1rem;
+      }
+
+      .logo-texto span {
+        display: none;
+      }
+
+      .nav > nav,
+      .header.fijo .nav > nav {
+        width: auto;
+        margin-left: auto;
+      }
+
+      .menu,
+      .header.fijo .menu {
+        min-height: auto;
       }
 
       .btn-menu {
@@ -908,7 +995,12 @@
       }
 
       .logo img {
-        width: 160px;
+        width: 128px;
+        height: 58px;
+      }
+
+      .logo-texto strong {
+        font-size: .9rem;
       }
 
       .banner {
@@ -1035,7 +1127,7 @@
   <header class="header" id="header">
     <div class="contenedor nav">
       <a class="logo" href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Alcaldia-Atacames-menu-municipio.html">
-        <img src="https://www.municipiodeatacames.gob.ec/images/Logo%20Institucional/2023/TRANSPARENTE2.png" alt="Municipio de Atacames">
+        <img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Logo-institucional.png" alt="Escudo del Municipio de Atacames">
         <div class="logo-texto">
           <strong>Municipio de Atacames</strong>
           <span>Gobierno Autónomo Descentralizado Municipal</span>
@@ -1059,7 +1151,6 @@
             </a>
             <ul class="submenu">
               <li><a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Alcalde.html">Alcalde</a></li>
-              <li><a href="vicealcaldesa.html">Vicealcaldesa</a></li>
               <li><a href="filosofia-institucional.html">Filosofía Institucional</a></li>
               <li><a href="#">Concejo Municipal</a></li>
               <li><a href="#">Autoridades</a></li>
@@ -1347,7 +1438,7 @@
       <div class="contenedor footer-grid">
         <div>
           <div class="footer-logo">
-            <img src="https://www.municipiodeatacames.gob.ec/images/Logo%20Institucional/2023/TRANSPARENTE2.png" alt="Municipio de Atacames">
+            <img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Logo-institucional.png" alt="Municipio de Atacames">
           </div>
           <p class="footer-desc">Portal institucional del Gobierno Autónomo Descentralizado Municipal del cantón Atacames.</p>
         </div>
