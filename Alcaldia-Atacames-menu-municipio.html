@@ -413,7 +413,7 @@
 
     .section-heading{
       color:#007fa0;
-      font-size:18px; 
+      font-size:18px;
       font-weight:900;
       text-transform:uppercase;
       margin-bottom:22px;
@@ -941,10 +941,57 @@
       transform:scale(1);
     }
 
-    .mini-carousel-slide img{
+    .mini-carousel-slide > img,
+    .mini-carousel-slide > video,
+    .mini-carousel-slide > iframe{
+      display:block;
       width:100%;
       height:100%;
+      border:0;
+      background:#111;
+    }
+
+    .mini-carousel-slide > img{
       object-fit:cover;
+    }
+
+    .mini-carousel-slide > video{
+      object-fit:contain;
+    }
+
+    .mini-carousel.media-active .mini-carousel-dots{
+      top:10px;
+      bottom:auto;
+    }
+
+    .mini-carousel.media-active .mini-carousel-caption{
+      top:38px;
+      bottom:auto;
+      left:50px;
+      right:50px;
+      padding:8px 12px;
+      border-radius:10px;
+      background:rgba(0,0,0,.68);
+      text-align:center;
+    }
+
+    .youtube-open-link{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      margin-left:8px;
+      padding:5px 9px;
+      border-radius:999px;
+      color:#fff;
+      background:#d91c1c;
+      font-size:11px;
+      text-decoration:none;
+      white-space:nowrap;
+    }
+
+    .youtube-open-link:hover{
+      color:#fff;
+      background:#b40000;
     }
 
     .mini-carousel-slide::after{
@@ -1163,15 +1210,46 @@
     }
 
     /* CLAVE: contain evita que la noticia sea recortada */
-    .carousel-expand-modal .expanded-slide img{
+    .carousel-expand-modal .expanded-slide > img,
+    .carousel-expand-modal .expanded-slide > video,
+    .carousel-expand-modal .expanded-slide > iframe{
       display:block;
       width:100%;
       height:100%;
       max-width:100%;
       max-height:100%;
+      border:0;
       object-fit:contain;
       object-position:center;
       background:#eef1f5;
+    }
+
+    .carousel-expand-modal .expanded-slide > video,
+    .carousel-expand-modal .expanded-slide > iframe{
+      background:#000;
+    }
+
+    .carousel-expand-modal .expanded-youtube-link{
+      position:absolute;
+      top:28px;
+      right:92px;
+      z-index:5;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 16px;
+      border-radius:999px;
+      color:#fff;
+      background:#d91c1c;
+      font-size:13px;
+      font-weight:800;
+      text-decoration:none;
+      box-shadow:0 8px 22px rgba(0,0,0,.26);
+    }
+
+    .carousel-expand-modal .expanded-youtube-link:hover{
+      color:#fff;
+      background:#b40000;
     }
 
     /* Se elimina la capa oscura que cubría parte de la noticia */
@@ -1305,6 +1383,13 @@
       .carousel-expand-modal .expanded-dots{
         bottom:8px;
       }
+
+      .carousel-expand-modal .expanded-youtube-link{
+        top:18px;
+        right:56px;
+        padding:8px 12px;
+        font-size:12px;
+      }
     }
 
     @media(max-width:420px){
@@ -1326,7 +1411,7 @@
 
 
 
-  
+
     /* =========================================================
        CORRECCIÓN DEL MENÚ MUNICIPIO — COMPATIBLE CON BOOTSTRAP
        ========================================================= */
@@ -1475,7 +1560,7 @@
       }
     }
 
-  
+
     /* =========================================================
        SÍMBOLOS PATRIOS — TARJETAS Y MODAL
        ========================================================= */
@@ -1609,7 +1694,7 @@
       <span>Atacames, Esmeraldas - Ecuador</span>
     </div>
 
-    <button class="mobile-menu-btn" id="mobileBtn">
+    <button type="button" class="mobile-menu-btn" id="mobileBtn">
       <i class="fa-solid fa-bars"></i>
     </button>
 
@@ -1665,8 +1750,8 @@
     <div class="slide" style="background-image:url('https://www.municipiodeatacames.gob.ec/images/banner_principal/2022/IMG_5664.JPG')"></div>
     <div class="slide" style="background-image:url('https://www.municipiodeatacames.gob.ec/images/banner_principal/2022/IMG_5670.JPG')"></div>
 
-    <button class="arrow left" id="prev"><i class="fa-solid fa-chevron-left"></i></button>
-    <button class="arrow right" id="next"><i class="fa-solid fa-chevron-right"></i></button>
+    <button type="button" class="arrow left" id="prev"><i class="fa-solid fa-chevron-left"></i></button>
+    <button type="button" class="arrow right" id="next"><i class="fa-solid fa-chevron-right"></i></button>
 
     <div class="hero-content">
       <h1>ATACAMES SEGURO PRODUCTIVO Y TURISTICO.</h1>
@@ -1812,7 +1897,7 @@
           <p>Presupuestos participativos y audiencias</p>
         </div>
       </div>
-      
+
     </section>
 
 
@@ -1851,12 +1936,34 @@
                         </div>
                     </div>
 
+                    <!-- Video de YouTube integrado en el carrusel -->
+                    <div class="mini-carousel-slide"
+                         data-youtube-url="https://youtu.be/B6NrQ-E9RQg">
+                        <iframe
+                            src="https://www.youtube.com/embed/B6NrQ-E9RQg?enablejsapi=1&amp;rel=0"
+                            title="Video informativo del GAD Municipal de Atacames"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen>
+                        </iframe>
+                        <div class="mini-carousel-caption">
+                            <span></span>
+                            <a class="youtube-open-link"
+                               href="https://youtu.be/B6NrQ-E9RQg"
+                               target="_blank"
+                               rel="noopener noreferrer">
+                                <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+                                Abrir en YouTube
+                            </a>
+                        </div>
+                    </div>
+
                 </div>
-                <button class="mini-carousel-btn prev">
+                <button type="button" class="mini-carousel-btn prev" aria-label="Elemento anterior">
                     <i class="fa-solid fa-chevron-left"></i>
                 </button>
 
-                <button class="mini-carousel-btn next">
+                <button type="button" class="mini-carousel-btn next" aria-label="Elemento siguiente">
                     <i class="fa-solid fa-chevron-right"></i>
                 </button>
 
@@ -1892,20 +1999,20 @@
                             Atacames, Seguro, productivo y turístico.
                         </div>
                     </div>
-                    
+
                     <div class="mini-carousel-slide">
                         <img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Playa-Atacames.png">
                         <div class="mini-carousel-caption">
                             Atacames, Seguro, productivo y turístico.
                         </div>
                     </div>
-                    
+
                      <div class="mini-carousel-slide">
                         <img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/La%20roca%20de%20Sua.png">
                         <div class="mini-carousel-caption">
                             Atacames, Seguro, productivo y turístico.
                         </div>
-                    </div> 
+                    </div>
 
 
                     <div class="mini-carousel-slide">
@@ -1913,7 +2020,7 @@
                         <div class="mini-carousel-caption">
                             Atacames, Seguro, productivo y turístico.
                         </div>
-                    </div> 
+                    </div>
 
                     <div class="mini-carousel-slide">
                         <img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Playa.Tonchigue.png">
@@ -1928,7 +2035,7 @@
                             Atacames, Seguro, productivo y turístico.
                         </div>
                     </div>
-                  
+
                   <div class="mini-carousel-slide active">
                         <img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Playa-Sua.png">
                         <div class="mini-carousel-caption">
@@ -1970,7 +2077,7 @@
                             Gastronomía.
                         </div>
                     </div>
-                    
+
                     <div class="mini-carousel-slide">
                         <img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Grupo-Baile2.png">
                         <div class="mini-carousel-caption">
@@ -2002,11 +2109,11 @@
                     </div>
                 </div>
 
-                <button class="mini-carousel-btn prev">
+                <button type="button" class="mini-carousel-btn prev" aria-label="Elemento anterior">
                     <i class="fa-solid fa-chevron-left"></i>
                 </button>
 
-                <button class="mini-carousel-btn next">
+                <button type="button" class="mini-carousel-btn next" aria-label="Elemento siguiente">
                     <i class="fa-solid fa-chevron-right"></i>
                 </button>
 
@@ -2050,12 +2157,12 @@
                         </div>
                     </div>
 
-                </div>              
-                <button class="mini-carousel-btn prev">
+                </div>
+                <button type="button" class="mini-carousel-btn prev" aria-label="Elemento anterior">
                     <i class="fa-solid fa-chevron-left"></i>
                 </button>
 
-                <button class="mini-carousel-btn next">
+                <button type="button" class="mini-carousel-btn next" aria-label="Elemento siguiente">
                     <i class="fa-solid fa-chevron-right"></i>
                 </button>
 
@@ -2111,7 +2218,7 @@
           <p>• Inscripción de contartos resoluciones judiciales o administrativas de bienes.</p>
         </div>
 
-        
+
 
         <div class="module-card green">
           <i class="fa-solid fa-calendar-check"></i>
@@ -2202,8 +2309,8 @@
           <p>• Asesoria y control financiero institucional.</p>
         </div>
 
-         
-        
+
+
         <div class="module-card green">
           <i class="fa-solid fa-envelope"></i>
           <h3>Direccion administrativa</h3>
@@ -2263,7 +2370,7 @@
           <p>Publicación mensual de información pública, rendición de cuentas y normativa vigente.</p>
         </div>
 
-         
+
             <div class="module-card">
   <i class="fa-solid fa-hand-holding-dollar"></i>
   <h3>Patente y coactivas</h3>
@@ -2295,12 +2402,12 @@
 
 
 
-       
+
       </div>
     </section>
 
-    
-        
+
+
       </div>
     </section>
 
@@ -2324,17 +2431,17 @@
             <div class="expanded-slides" id="expandedSlides"></div>
 
             <button class="expanded-control prev" id="expandedPrev" type="button"
-                    aria-label="Imagen anterior">
+                    aria-label="Elemento anterior">
               <i class="fa-solid fa-chevron-left"></i>
             </button>
 
             <button class="expanded-control next" id="expandedNext" type="button"
-                    aria-label="Imagen siguiente">
+                    aria-label="Elemento siguiente">
               <i class="fa-solid fa-chevron-right"></i>
             </button>
 
-            <div class="expanded-dots" id="expandedDots"
-                 aria-label="Selector de imágenes"></div>
+            <div class="expanded-dots" id="expandedDots" role="group"
+                 aria-label="Selector de imágenes y videos"></div>
 
           </div>
         </div>
@@ -2493,6 +2600,52 @@
     start();
 
 
+    /* CONVIERTE ENLACES DE YOUTUBE A FORMATO EMBEBIDO */
+    function obtenerIdYouTube(url){
+      try{
+        const parsedUrl = new URL(url, window.location.href);
+        const host = parsedUrl.hostname.replace(/^www\./, "");
+        const pathParts = parsedUrl.pathname.split("/").filter(Boolean);
+        let videoId = "";
+
+        if(host === "youtu.be"){
+          videoId = pathParts[0] || "";
+        }else if(host.endsWith("youtube.com") || host.endsWith("youtube-nocookie.com")){
+          if(["embed", "shorts", "live"].includes(pathParts[0])){
+            videoId = pathParts[1] || "";
+          }else{
+            videoId = parsedUrl.searchParams.get("v") || "";
+          }
+        }
+
+        return /^[A-Za-z0-9_-]{11}$/.test(videoId) ? videoId : null;
+      }catch(error){
+        return null;
+      }
+    }
+
+    document.querySelectorAll(".mini-carousel-slide > iframe").forEach(iframe => {
+      const videoId = obtenerIdYouTube(iframe.getAttribute("src"));
+      if(!videoId) return;
+
+      const slide = iframe.closest(".mini-carousel-slide");
+      const externalUrl = `https://youtu.be/${videoId}`;
+      iframe.src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&rel=0`;
+      slide.dataset.youtubeUrl = externalUrl;
+
+      const caption = slide.querySelector(".mini-carousel-caption");
+      if(caption && !caption.querySelector(".youtube-open-link")){
+        const externalLink = document.createElement("a");
+        externalLink.className = "youtube-open-link";
+        externalLink.href = externalUrl;
+        externalLink.target = "_blank";
+        externalLink.rel = "noopener noreferrer";
+        externalLink.innerHTML = '<i class="fa-brands fa-youtube" aria-hidden="true"></i> Abrir en YouTube';
+        caption.appendChild(externalLink);
+      }
+    });
+
+
     /* CARRUSELES DESTACADOS INDEPENDIENTES */
     document.querySelectorAll("[data-carousel]").forEach((carousel) => {
       const carouselSlides = Array.from(carousel.querySelectorAll(".mini-carousel-slide"));
@@ -2501,16 +2654,23 @@
       const carouselDots = carousel.querySelector(".mini-carousel-dots");
       const interval = Number(carousel.dataset.interval) || 5000;
 
-      let activeIndex = 0;
+      let activeIndex = carouselSlides.findIndex(slide => slide.classList.contains("active"));
       let autoPlay;
 
-      const dotButtons = carouselSlides.map((_, index) => {
+      if(activeIndex < 0) activeIndex = 0;
+
+      carouselSlides.forEach((slide, index) => {
+        slide.classList.toggle("active", index === activeIndex);
+      });
+
+      const dotButtons = carouselSlides.map((slide, index) => {
         const dotButton = document.createElement("button");
+        const isVideo = Boolean(slide.querySelector(":scope > video, :scope > iframe"));
         dotButton.type = "button";
         dotButton.className = "mini-carousel-dot";
-        dotButton.setAttribute("aria-label", `Mostrar imagen ${index + 1}`);
+        dotButton.setAttribute("aria-label", `Mostrar ${isVideo ? "video" : "imagen"} ${index + 1}`);
 
-        if(index === 0){
+        if(index === activeIndex){
           dotButton.classList.add("active");
         }
 
@@ -2523,7 +2683,26 @@
         return dotButton;
       });
 
+      function pauseSlideMedia(slide){
+        slide?.querySelectorAll("video").forEach(video => video.pause());
+        slide?.querySelectorAll("iframe").forEach(frame => {
+          frame.contentWindow?.postMessage(
+            JSON.stringify({event:"command",func:"pauseVideo",args:[]}),
+            "*"
+          );
+        });
+      }
+
+      function updateMediaState(){
+        const hasMedia = Boolean(
+          carouselSlides[activeIndex]?.querySelector(":scope > video, :scope > iframe")
+        );
+        carousel.classList.toggle("media-active", hasMedia);
+        if(hasMedia) clearInterval(autoPlay);
+      }
+
       function showFeaturedSlide(index){
+        pauseSlideMedia(carouselSlides[activeIndex]);
         carouselSlides[activeIndex].classList.remove("active");
         dotButtons[activeIndex].classList.remove("active");
 
@@ -2531,9 +2710,17 @@
 
         carouselSlides[activeIndex].classList.add("active");
         dotButtons[activeIndex].classList.add("active");
+        updateMediaState();
       }
 
       function startFeaturedCarousel(){
+        clearInterval(autoPlay);
+
+        if(carouselSlides.length < 2 ||
+           carouselSlides[activeIndex]?.querySelector(":scope > video, :scope > iframe")){
+          return;
+        }
+
         autoPlay = setInterval(() => {
           showFeaturedSlide(activeIndex + 1);
         }, interval);
@@ -2557,6 +2744,11 @@
       carousel.addEventListener("mouseenter", () => clearInterval(autoPlay));
       carousel.addEventListener("mouseleave", startFeaturedCarousel);
 
+      carousel.querySelectorAll("video").forEach(video => {
+        video.addEventListener("play", () => clearInterval(autoPlay));
+      });
+
+      updateMediaState();
       startFeaturedCarousel();
     });
 
@@ -2593,10 +2785,21 @@
         }
       }
 
+      function pauseExpandedMedia(){
+        expandedSlides.querySelectorAll("video").forEach(video => video.pause());
+        expandedSlides.querySelectorAll("iframe").forEach(frame => {
+          frame.contentWindow?.postMessage(
+            JSON.stringify({event:"command",func:"pauseVideo",args:[]}),
+            "*"
+          );
+        });
+      }
+
       function startExpandedTimer(){
         clearExpandedTimer();
 
-        if(expandedItems.length > 1){
+        if(expandedItems.length > 1 &&
+           expandedItems[expandedIndex]?.type === "image"){
           expandedTimer = setInterval(() => {
             showExpandedSlide(expandedIndex + 1);
           }, expandedInterval);
@@ -2609,6 +2812,7 @@
         const slideElements = expandedSlides.querySelectorAll(".expanded-slide");
         const dotElements = expandedDots.querySelectorAll(".expanded-dot");
 
+        pauseExpandedMedia();
         slideElements[expandedIndex]?.classList.remove("active");
         dotElements[expandedIndex]?.classList.remove("active");
 
@@ -2616,6 +2820,10 @@
 
         slideElements[expandedIndex]?.classList.add("active");
         dotElements[expandedIndex]?.classList.add("active");
+
+        if(expandedItems[expandedIndex]?.type !== "image"){
+          clearExpandedTimer();
+        }
       }
 
       function openExpandedCarousel(card){
@@ -2627,11 +2835,43 @@
         expandedIndex = activeSlide >= 0 ? activeSlide : 0;
         expandedInterval = Number(card.querySelector("[data-carousel]")?.dataset.interval) || 5000;
 
-        expandedItems = slides.map(slide => ({
-          image: slide.querySelector("img")?.src || "",
-          alt: slide.querySelector("img")?.alt || titleElement?.textContent?.trim() || "",
-          caption: slide.querySelector(".mini-carousel-caption")?.textContent?.trim() || ""
-        }));
+        expandedItems = slides.map(slide => {
+          const image = slide.querySelector(":scope > img");
+          const video = slide.querySelector(":scope > video");
+          const iframe = slide.querySelector(":scope > iframe");
+          const fallbackTitle = titleElement?.textContent?.trim() || "Información municipal";
+          const captionElement = slide.querySelector(".mini-carousel-caption");
+          const captionCopy = captionElement?.cloneNode(true);
+          captionCopy?.querySelectorAll("a").forEach(link => link.remove());
+          const caption = captionCopy?.textContent?.trim() || "";
+
+          if(video){
+            return {
+              type:"video",
+              src:video.currentSrc || video.querySelector("source")?.src || video.src || "",
+              poster:video.poster || "",
+              alt:video.getAttribute("aria-label") || fallbackTitle,
+              caption
+            };
+          }
+
+          if(iframe){
+            return {
+              type:"youtube",
+              src:iframe.src || "",
+              externalUrl:slide.dataset.youtubeUrl || iframe.src || "",
+              alt:iframe.title || fallbackTitle,
+              caption
+            };
+          }
+
+          return {
+            type:"image",
+            src:image?.src || "",
+            alt:image?.alt || fallbackTitle,
+            caption
+          };
+        });
 
         const titleIcon = iconElement
           ? `<i class="${iconElement.className}" aria-hidden="true"></i>`
@@ -2650,17 +2890,54 @@
             slide.classList.add("active");
           }
 
-          slide.innerHTML = `
-            <img src="${item.image}" alt="${item.alt}">
-            <div class="expanded-caption">${item.caption}</div>
-          `;
+          let media;
+
+          if(item.type === "video"){
+            media = document.createElement("video");
+            media.src = item.src;
+            media.poster = item.poster;
+            media.controls = true;
+            media.preload = "metadata";
+            media.setAttribute("aria-label", item.alt);
+            media.addEventListener("play", clearExpandedTimer);
+          }else if(item.type === "youtube"){
+            media = document.createElement("iframe");
+            media.src = item.src;
+            media.title = item.alt;
+            media.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+            media.referrerPolicy = "strict-origin-when-cross-origin";
+            media.allowFullscreen = true;
+          }else{
+            media = document.createElement("img");
+            media.src = item.src;
+            media.alt = item.alt;
+          }
+
+          const caption = document.createElement("div");
+          caption.className = "expanded-caption";
+          caption.textContent = item.caption;
+
+          if(item.type === "youtube"){
+            const externalLink = document.createElement("a");
+            externalLink.className = "expanded-youtube-link";
+            externalLink.href = item.externalUrl;
+            externalLink.target = "_blank";
+            externalLink.rel = "noopener noreferrer";
+            externalLink.innerHTML = '<i class="fa-brands fa-youtube" aria-hidden="true"></i> Abrir en YouTube';
+            slide.append(media, externalLink, caption);
+          }else{
+            slide.append(media, caption);
+          }
 
           expandedSlides.appendChild(slide);
 
           const dot = document.createElement("button");
           dot.type = "button";
           dot.className = "expanded-dot";
-          dot.setAttribute("aria-label", `Mostrar imagen ${index + 1}`);
+          dot.setAttribute(
+            "aria-label",
+            `Mostrar ${item.type === "image" ? "imagen" : "video"} ${index + 1}`
+          );
 
           if(index === expandedIndex){
             dot.classList.add("active");
@@ -2751,7 +3028,9 @@
       cards.forEach(card => {
         card.addEventListener("click", event => {
           if(event.target.closest(".mini-carousel-btn") ||
-             event.target.closest(".mini-carousel-dot")){
+             event.target.closest(".mini-carousel-dot") ||
+             event.target.closest(".youtube-open-link") ||
+             event.target.closest("video")){
             return;
           }
 
@@ -2778,6 +3057,7 @@
 
       modalElement.addEventListener("hidden.bs.modal", () => {
         clearExpandedTimer();
+        pauseExpandedMedia();
         expandedItems = [];
         expandedSlides.innerHTML = "";
         expandedDots.innerHTML = "";
