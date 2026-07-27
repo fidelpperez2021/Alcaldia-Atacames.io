@@ -115,26 +115,22 @@
     .linea-card h3{color:var(--azul);font-size:1.05rem;margin-bottom:12px}
     .linea-card p{color:var(--gris);font-size:.82rem;margin:0}
 
-    .filtros{display:grid;grid-template-columns:1fr auto;gap:15px;align-items:center;margin-bottom:34px}
-    .buscador-wrap{position:relative}
+    .filtros{margin-bottom:34px}
+    .buscador-wrap{position:relative;max-width:760px;margin:0 auto}
     .buscador-wrap i{position:absolute;left:17px;top:50%;transform:translateY(-50%);color:var(--turquesa)}
     .buscador-wrap input{width:100%;min-height:52px;padding:0 18px 0 48px;border:1px solid var(--borde);border-radius:12px;outline:none;background:#fff}
     .buscador-wrap input:focus{border-color:var(--turquesa);box-shadow:0 0 0 4px rgba(0,168,168,.1)}
-    .categorias-filtro{display:flex;flex-wrap:wrap;gap:8px}
-    .filtro-btn{border:1px solid var(--borde);padding:10px 15px;border-radius:30px;background:#fff;color:var(--gris);font-size:.76rem;font-weight:800;transition:var(--transicion)}
-    .filtro-btn:hover,.filtro-btn.activo{background:var(--azul);border-color:var(--azul);color:#fff}
     .oportunidades-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
     .oportunidad-card{overflow:hidden;background:#fff;border:1px solid var(--borde);border-radius:20px;box-shadow:var(--sombra-suave);transition:var(--transicion)}
     .oportunidad-card:hover{transform:translateY(-8px);box-shadow:var(--sombra)}
     .oportunidad-imagen{position:relative;height:225px;overflow:hidden;background:#dbe7ef}
     .oportunidad-imagen img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
     .oportunidad-card:hover .oportunidad-imagen img{transform:scale(1.06)}
-    .categoria-card{position:absolute;left:18px;bottom:17px;display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border-radius:30px;background:var(--turquesa);color:#fff;font-size:.67rem;font-weight:800;text-transform:uppercase}
     .oportunidad-cuerpo{padding:23px}
     .estado{display:inline-flex;align-items:center;gap:7px;margin-bottom:13px;color:var(--turquesa);font-size:.7rem;font-weight:800;text-transform:uppercase}
     .estado::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--verde);box-shadow:0 0 0 4px rgba(32,185,70,.12)}
     .oportunidad-cuerpo h3{color:var(--azul);font-size:1.04rem;line-height:1.4;margin-bottom:12px}
-    .oportunidad-cuerpo p{color:var(--gris);font-size:.81rem;margin-bottom:18px}
+    .oportunidad-cuerpo p{display:-webkit-box;overflow:hidden;color:var(--gris);font-size:.81rem;margin-bottom:18px;-webkit-box-orient:vertical;-webkit-line-clamp:5;line-clamp:5}
     .oportunidad-pie{display:flex;align-items:center;justify-content:space-between;gap:15px;padding-top:17px;border-top:1px solid var(--borde)}
     .oportunidad-pie span{color:var(--gris);font-size:.72rem}
     .oportunidad-pie i{color:var(--turquesa)}
@@ -205,6 +201,17 @@
     .modal-lista li{display:flex;gap:10px;align-items:flex-start;color:var(--gris)}
     .modal-lista i{color:var(--turquesa);margin-top:5px}
 
+    .modal-noticia-expandida .modal-dialog{max-width:950px}
+    .modal-noticia-expandida .modal-content{border-radius:22px}
+    .modal-noticia-expandida .modal-header{padding:17px 22px}
+    .modal-noticia-expandida .modal-title{font-size:.95rem;font-weight:800}
+    .modal-noticia-imagen{height:420px;overflow:hidden;background:#eef2f5}
+    .modal-noticia-imagen img{display:block;width:100%;height:100%;object-fit:contain;object-position:center}
+    .modal-noticia-expandida .modal-body{padding:30px 34px 36px}
+    .modal-noticia-fecha{display:block;margin-bottom:10px;color:var(--turquesa);font-size:.76rem;font-weight:800;text-transform:uppercase}
+    .modal-noticia-expandida .modal-body h2{margin-bottom:18px;color:var(--azul);font-family:"Playfair Display",serif;font-size:clamp(1.5rem,3vw,2.15rem);line-height:1.25}
+    .modal-noticia-expandida .modal-body .modal-noticia-texto{display:block;overflow:visible;margin:0;color:var(--texto);font-size:.94rem;line-height:1.85;white-space:pre-line}
+
     .pie{background:#072844;color:#fff}
     .pie-principal{padding:70px 0 45px}
     .pie-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:45px}
@@ -228,6 +235,8 @@
 
     body.alto-contraste{--azul:#000;--azul-oscuro:#000;--celeste:#ffd900;--turquesa:#ffd900;--turquesa-claro:#ffff00;--fondo:#111;--borde:#444;--gris:#fff;--texto:#fff;background:#000;color:#fff}
     body.alto-contraste .indicador,body.alto-contraste .linea-card,body.alto-contraste .oportunidad-card,body.alto-contraste .video-mini,body.alto-contraste .recurso-card,body.alto-contraste .buscador-wrap input,body.alto-contraste .accordion-button,body.alto-contraste .accordion-body{background:#111}
+    body.alto-contraste .modal-noticia-expandida .modal-content{background:#111;color:#fff}
+    body.alto-contraste .modal-noticia-expandida .modal-body h2{color:#ffd900}
 
     @media(max-width:1200px){.logo img{width:205px}.logo-texto{display:none}.menu-principal>li>a{font-size:.74rem;padding:11px 8px}}
     @media(max-width:980px){
@@ -242,18 +251,19 @@
       .lineas-grid,.oportunidades-grid,.recursos-grid{grid-template-columns:repeat(2,1fr)}
       .ruta-grid{grid-template-columns:repeat(2,1fr)}
       .cta{grid-template-columns:1fr;text-align:center}.pie-grid{grid-template-columns:repeat(2,1fr)}
-      .filtros{grid-template-columns:1fr}
     }
     @media(max-width:700px){
       .contenedor{width:min(100% - 28px,1180px)}.seccion{padding:70px 0}.logo img{width:160px}
       .banner{min-height:550px;text-align:center}.banner-contenido{padding:170px 0 62px}.banner-botones{justify-content:center}
       .indicadores{margin-top:-30px}.indicadores-grid,.lineas-grid,.oportunidades-grid,.ruta-grid,.recursos-grid{grid-template-columns:1fr}
       .presentacion-imagen>img{height:380px}.sello-flotante{position:relative;right:auto;bottom:auto;width:100%;margin-top:-22px;border-radius:0 0 20px 20px}
-      .categorias-filtro{justify-content:center}
       .video-principal,.video-principal img{min-height:370px;height:370px}.video-info{left:20px;right:20px;bottom:20px}
       .videos-secundarios{max-height:none}.video-mini{grid-template-columns:110px 1fr}.video-mini-imagen{height:86px}
       .cta{padding:35px 24px}.pie-grid{grid-template-columns:1fr}.pie-inferior-contenido{flex-direction:column;text-align:center}
       .boton-accesibilidad{top:auto;bottom:85px;width:45px;height:50px}
+      .modal-noticia-expandida .modal-dialog{margin:12px}
+      .modal-noticia-imagen{height:260px}
+      .modal-noticia-expandida .modal-body{padding:24px 22px 29px}
     }
   </style>
 </head>
@@ -274,7 +284,7 @@
         <img src="https://www.municipiodeatacames.gob.ec/images/Logo%20Institucional/2023/TRANSPARENTE2.png" alt="Municipio de Atacames" onerror="this.style.display='none'">
         <div class="logo-texto"><strong>Municipio de Atacames</strong><span>Gobierno Autónomo Descentralizado Municipal</span></div>
       </a>
-      <button class="boton-menu" id="botonMenu" aria-label="Abrir menú" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+      <button type="button" class="boton-menu" id="botonMenu" aria-label="Abrir menú" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
       <nav aria-label="Navegación principal">
         <ul class="menu-principal" id="menuPrincipal">
           <li><a href="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Alcaldia-Atacames-menu-municipio.html">Inicio</a></li>
@@ -318,7 +328,7 @@
       </div>
     </div>
 
-    
+
 
     <section class="seccion" id="cooperacion">
       <div class="contenedor presentacion-grid">
@@ -366,41 +376,34 @@
         </div>
         <div class="filtros revelar">
           <div class="buscador-wrap"><i class="fa-solid fa-magnifying-glass"></i><input type="search" id="buscadorOportunidades" placeholder="Buscar noticias por título o palabra clave..." aria-label="Buscar noticias"></div>
-          <div class="categorias-filtro" aria-label="Filtrar noticias">
-            <button class="filtro-btn activo" data-categoria="todos">Todas</button>
-            <button class="filtro-btn" data-categoria="gestion">Gestión</button>
-            <button class="filtro-btn" data-categoria="obras">Obras</button>
-            <button class="filtro-btn" data-categoria="turismo">Turismo</button>
-            <button class="filtro-btn" data-categoria="comunidad">Comunidad</button>
-          </div>
         </div>
         <div class="oportunidades-grid" id="oportunidadesGrid">
-             <article class="oportunidad-card revelar" data-categoria="gestion" data-busqueda="bandera roja playas seguridad prevención inocar oleaje">
-            <div class="oportunidad-imagen"><img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Funcionarios-3.png" alt="La entrega de proyectos para la convocatoria PROFECPIAM."><span class="categoria-card"><i class="fa-solid fa-shield-halved"></i> Gestión</span></div>
+             <article class="oportunidad-card revelar" data-busqueda="bandera roja playas seguridad prevención inocar oleaje">
+            <div class="oportunidad-imagen"><img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Funcionarios-3.png" alt="La entrega de proyectos para la convocatoria PROFECPIAM."></div>
             <div class="oportunidad-cuerpo"><span class="estado">12 de julio de 2026</span><h3>La entrega de proyectos para la convocatoria PROFECPIAM.</h3><p>Gracias al liderazgo del Ab. Willians Mendoza Vidal, alcalde del cantón Atacames, y a la gestión de la Unidad de Cooperación Internacional del GADMA junto a la Vicealcaldía, se avanza en nuevas oportunidades para el desarrollo productivo y económico de nuestros ciudadanos.
-✅ La Tnlga. Maritza Orellana, vicealcaldesa del cantón, junto a la Ing. Judith Díaz Reinel, coordinadora de Cooperación Internacional del GADMA, realizaron una importante visita a la Institución Nacional de Economía Popular y Solidaria (IEPS) en Quito, estableciendo una mesa técnica de trabajo.</p><div class="oportunidad-pie"><span><i class="fa-regular fa-clock"></i> 5 min</span><button class="enlace-detalle abrir-detalle" data-titulo="Bandera roja en las playas: prevención y seguridad" data-icono="fa-flag" data-contenido="Ante la alerta emitida por el INOCAR, el Gobierno Municipal hace un llamado a la prevención. Se recomienda respetar la bandera roja y seguir las indicaciones de los equipos de salvamento." data-puntos="12 de julio de 2026|Comunicación Institucional">Leer noticia <i class="fa-solid fa-arrow-right"></i></button></div></div>
+✅ La Tnlga. Maritza Orellana, vicealcaldesa del cantón, junto a la Ing. Judith Díaz Reinel, coordinadora de Cooperación Internacional del GADMA, realizaron una importante visita a la Institución Nacional de Economía Popular y Solidaria (IEPS) en Quito, estableciendo una mesa técnica de trabajo.</p><div class="oportunidad-pie"><span><i class="fa-regular fa-clock"></i> 5 min</span><button type="button" class="enlace-detalle abrir-detalle" data-titulo="La entrega de proyectos para la convocatoria PROFECPIAM." data-icono="fa-flag" data-contenido="Gracias al liderazgo del Ab. Willians Mendoza Vidal, alcalde del cantón Atacames, y a la gestión de la Unidad de Cooperación Internacional del GADMA junto a la Vicealcaldía, se avanza en nuevas oportunidades para el desarrollo productivo y económico de nuestros ciudadanos. ✅ La Tnlga. Maritza Orellana, vicealcaldesa del cantón, junto a la Ing. Judith Díaz Reinel, coordinadora de Cooperación Internacional del GADMA, realizaron una importante visita a la Institución Nacional de Economía Popular y Solidaria (IEPS) en Quito, estableciendo una mesa técnica de trabajo." data-puntos="12 de julio de 2026|Comunicación Institucional">Leer noticia <i class="fa-solid fa-arrow-right"></i></button></div></div>
           </article>
-          <article class="oportunidad-card revelar" data-categoria="obras" data-busqueda="obras transformación infraestructura calles mantenimiento">
-            <div class="oportunidad-imagen"><img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/benefactores.png" alt="Obras municipales en Atacames"><span class="categoria-card"><i class="fa-solid fa-road"></i> Obras</span></div>
-            <div class="oportunidad-cuerpo"><span class="estado">20 de julio de 2026</span><h3>🛍️ ¿Tienes una tienda de barrio y sueñas con hacerla crecer?</h3><p>Gracias al trabajo de la coordinación de Cooperación Internacional del GAD Municipal de Atacames, se brinda asesoría y acompañamiento a quienes deseen acceder a los fondos no reembolsables del IEPS, convocatoria 2025.</p><div class="oportunidad-pie"><span><i class="fa-regular fa-clock"></i> 4 min</span><button class="enlace-detalle abrir-detalle" data-titulo="🛍️ ¿Tienes una tienda de barrio y sueñas con hacerla crecer?" data-icono="fa-person-digging" data-contenido="Gracias al trabajo de la coordinación de Cooperación Internacional del GAD Municipal de Atacames, se brinda asesoría y acompañamiento a quienes deseen acceder a los fondos no reembolsables del IEPS, convocatoria 2025." data-puntos="20 de julio de 2026|Comunicación Institucional">Leer noticia <i class="fa-solid fa-arrow-right"></i></button></div></div>
+          <article class="oportunidad-card revelar" data-busqueda="obras transformación infraestructura calles mantenimiento">
+            <div class="oportunidad-imagen"><img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/benefactores.png" alt="Obras municipales en Atacames"></div>
+            <div class="oportunidad-cuerpo"><span class="estado">20 de julio de 2026</span><h3>🛍️ ¿Tienes una tienda de barrio y sueñas con hacerla crecer?</h3><p>Gracias al trabajo de la coordinación de Cooperación Internacional del GAD Municipal de Atacames, se brinda asesoría y acompañamiento a quienes deseen acceder a los fondos no reembolsables del IEPS, convocatoria 2025.</p><div class="oportunidad-pie"><span><i class="fa-regular fa-clock"></i> 4 min</span><button type="button" class="enlace-detalle abrir-detalle" data-titulo="🛍️ ¿Tienes una tienda de barrio y sueñas con hacerla crecer?" data-icono="fa-person-digging" data-contenido="Gracias al trabajo de la coordinación de Cooperación Internacional del GAD Municipal de Atacames, se brinda asesoría y acompañamiento a quienes deseen acceder a los fondos no reembolsables del IEPS, convocatoria 2025." data-puntos="20 de julio de 2026|Comunicación Institucional">Leer noticia <i class="fa-solid fa-arrow-right"></i></button></div></div>
           </article>
-          <article class="oportunidad-card revelar" data-categoria="comunidad" data-busqueda="alerta naranja prevención lluvias comunidad riesgos">
-            <div class="oportunidad-imagen"><img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Entrega%20de%20fondo%20a%20emprendedores.png" alt="Acciones preventivas ante la temporada de lluvias"><span class="categoria-card"><i class="fa-solid fa-people-group"></i> Comunidad</span></div>
-            <div class="oportunidad-cuerpo"><span class="estado">22 de julio de 2026</span><h3>¡DANIEL NOBOA ASEGURA QUE HA RECUPERADO AL PAÍS!</h3><p>El Presidente de la República, Daniel Noboa, participó en la entrega de $ 773.000 para 400 emprendedores, en el programa “Mi tienda del nuevo Ecuador”, a cargo del Instituto de la economía popular y solidaria.</p><div class="oportunidad-pie"><span><i class="fa-regular fa-clock"></i> 3 min</span><button class="enlace-detalle abrir-detalle" data-titulo="¡DANIEL NOBOA ASEGURA QUE HA RECUPERADO AL PAÍS!" data-icono="fa-cloud-showers-heavy" data-contenido="El Presidente de la República, Daniel Noboa, participó en la entrega de $ 773.000 para 400 emprendedores, en el programa “Mi tienda del nuevo Ecuador”, a cargo del Instituto de la economía popular y solidaria." data-puntos="22 de julio de 2026|Comunicación Institucional">Leer noticia <i class="fa-solid fa-arrow-right"></i></button></div></div>
+          <article class="oportunidad-card revelar" data-busqueda="alerta naranja prevención lluvias comunidad riesgos">
+            <div class="oportunidad-imagen"><img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Entrega%20de%20fondo%20a%20emprendedores.png" alt="Acciones preventivas ante la temporada de lluvias"></div>
+            <div class="oportunidad-cuerpo"><span class="estado">22 de julio de 2026</span><h3>¡DANIEL NOBOA ASEGURA QUE HA RECUPERADO AL PAÍS!</h3><p>El Presidente de la República, Daniel Noboa, participó en la entrega de $ 773.000 para 400 emprendedores, en el programa “Mi tienda del nuevo Ecuador”, a cargo del Instituto de la economía popular y solidaria.</p><div class="oportunidad-pie"><span><i class="fa-regular fa-clock"></i> 3 min</span><button type="button" class="enlace-detalle abrir-detalle" data-titulo="¡DANIEL NOBOA ASEGURA QUE HA RECUPERADO AL PAÍS!" data-icono="fa-cloud-showers-heavy" data-contenido="El Presidente de la República, Daniel Noboa, participó en la entrega de $ 773.000 para 400 emprendedores, en el programa “Mi tienda del nuevo Ecuador”, a cargo del Instituto de la economía popular y solidaria." data-puntos="22 de julio de 2026|Comunicación Institucional">Leer noticia <i class="fa-solid fa-arrow-right"></i></button></div></div>
           </article>
-          <article class="oportunidad-card revelar" data-categoria="obras" data-busqueda="miraflores hormigonado aceras bordillos financiamiento bde">
-            <div class="oportunidad-imagen"><img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Benefactores-2.png" alt="Proyecto de mejoramiento para Miraflores"><span class="categoria-card"><i class="fa-solid fa-helmet-safety"></i> Obras</span></div>
-            <div class="oportunidad-cuerpo"><span class="estado">18 de julio de 2026</span><h3>150 Beneficios recibieron un incentivo económico de parte del proyectp "MI TIENDA DEL NUEVO ECUADOR"</h3><p>150  PEQUEÑAS TIENDAS DE BARRIO FUERON BENEFICIADAS CON UN INCENTIVO ECONOMICO PARA INCREMENTAR EL CAPITAL DE SU NEGOCIO.</p><div class="oportunidad-pie"><span><i class="fa-regular fa-clock"></i> 3 min</span><button class="enlace-detalle abrir-detalle" data-titulo="Beneficios para emprendedores" data-icono="fa-hand-holding-usd" data-contenido="150  PEQUEÑAS TIENDAS DE BARRIO FUERON BENEFICIADAS CON UN INCENTIVO ECONOMICO PARA INCREMENTAR EL CAPITAL DE SU NEGOCIO." data-puntos="18 de julio de 2026|Comunicación Institucional">Leer noticia <i class="fa-solid fa-arrow-right"></i></button></div></div>
+          <article class="oportunidad-card revelar" data-busqueda="miraflores hormigonado aceras bordillos financiamiento bde">
+            <div class="oportunidad-imagen"><img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Benefactores-2.png" alt="Proyecto de mejoramiento para Miraflores"></div>
+            <div class="oportunidad-cuerpo"><span class="estado">18 de julio de 2026</span><h3>150 Beneficiarios recibieron un incentivo económico de parte del proyectp "MI TIENDA DEL NUEVO ECUADOR"</h3><p>150  PEQUEÑAS TIENDAS DE BARRIO FUERON BENEFICIADAS CON UN INCENTIVO ECONOMICO PARA INCREMENTAR EL CAPITAL DE SU NEGOCIO.</p><div class="oportunidad-pie"><span><i class="fa-regular fa-clock"></i> 3 min</span><button type="button" class="enlace-detalle abrir-detalle" data-titulo="Beneficios para emprendedores" data-icono="fa-hand-holding-usd" data-contenido="150  PEQUEÑAS TIENDAS DE BARRIO FUERON BENEFICIADAS CON UN INCENTIVO ECONOMICO PARA INCREMENTAR EL CAPITAL DE SU NEGOCIO." data-puntos="18 de julio de 2026|Comunicación Institucional">Leer noticia <i class="fa-solid fa-arrow-right"></i></button></div></div>
           </article>
-          <article class="oportunidad-card revelar" data-categoria="gestion" data-busqueda="puente victoria de dios nueva esperanza gestión obras">
-            <div class="oportunidad-imagen"><img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Funcionarios.png" alt="Nuevo puente para barrios de Atacames"><span class="categoria-card"><i class="fa-solid fa-bridge"></i> Gestión</span></div>
-            <div class="oportunidad-cuerpo"><span class="estado">16 de julio de 2026</span><h3>Atacames avanza en la gestión de un vehículo recolector con apoyo de Japón</h3><p>ULTIMANDO DETALLES DEL PROYECTO DE SOLICITUD DE DONACION DE UN RECOLECTOR DE BASURA PARA EL MUNICIPIO DE ATACAMES EN LA EMBAJADA DE JAPON</p><div class="oportunidad-pie"><span><i class="fa-regular fa-clock"></i> 4 min</span><button class="enlace-detalle abrir-detalle" data-titulo="Atacames avanza en la gestión de un vehículo recolector con apoyo de Japón" data-icono="fa-truck" data-contenido="El Municipio de Atacames avanza en la gestión de un vehículo recolector con apoyo de Japón, lo que permitirá mejorar los servicios de limpieza y mantenimiento en la ciudad." data-puntos="16 de julio de 2026|Comunicación Institucional">Leer noticia <i class="fa-solid fa-arrow-right"></i></button></div></div>
+          <article class="oportunidad-card revelar" data-busqueda="puente victoria de dios nueva esperanza gestión obras">
+            <div class="oportunidad-imagen"><img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Funcionarios.png" alt="Nuevo puente para barrios de Atacames"></div>
+            <div class="oportunidad-cuerpo"><span class="estado">16 de julio de 2026</span><h3>Atacames avanza en la gestión de un vehículo recolector con apoyo de Japón</h3><p>ULTIMANDO DETALLES DEL PROYECTO DE SOLICITUD DE DONACION DE UN RECOLECTOR DE BASURA PARA EL MUNICIPIO DE ATACAMES EN LA EMBAJADA DE JAPON</p><div class="oportunidad-pie"><span><i class="fa-regular fa-clock"></i> 4 min</span><button type="button" class="enlace-detalle abrir-detalle" data-titulo="Atacames avanza en la gestión de un vehículo recolector con apoyo de Japón" data-icono="fa-truck" data-contenido="El Municipio de Atacames avanza en la gestión de un vehículo recolector con apoyo de Japón, lo que permitirá mejorar los servicios de limpieza y mantenimiento en la ciudad." data-puntos="16 de julio de 2026|Comunicación Institucional">Leer noticia <i class="fa-solid fa-arrow-right"></i></button></div></div>
           </article>
-          <article class="oportunidad-card revelar" data-categoria="turismo" data-busqueda="campeonato nacional sonido ruedas tuning acte turismo evento">
-            <div class="oportunidad-imagen"><img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Funcionarios-2.png" alt="Campeonato nacional de sonido y tuning"><span class="categoria-card"><i class="fa-solid fa-car-side"></i> Turismo</span></div>
-            <div class="oportunidad-cuerpo"><span class="estado">14 de julio de 2026</span><h3>VIDEO LLAMADA CON AUTORIDADES DE LA FUNDACION BLOOMBERG DE LA ALCALDIA DE NUEVA YORK</h3><p>VIDEO LLAMADA CON AUTORIDADES DE LA FUNDACION BLOOMBERG DE LA ALCALDIA DE NUEVA YORK PARA CONSEGUIR EL PROYECTO FONDO JUVENIL PARA LA LUCHA CONTRA EL CAMBIO CLIMATICO EN EL CANTON ATACAMES.</p><div class="oportunidad-pie"><span><i class="fa-regular fa-clock"></i> 3 min</span><button class="enlace-detalle abrir-detalle" data-titulo="VIDEO LLAMADA CON AUTORIDADES DE LA FUNDACION BLOOMBERG DE LA ALCALDIA DE NUEVA YORK" data-icono="fa-video" data-contenido="VIDEO LLAMADA CON AUTORIDADES DE LA FUNDACION BLOOMBERG DE LA ALCALDIA DE NUEVA YORK PARA CONSEGUIR EL PROYECTO FONDO JUVENIL PARA LA LUCHA CONTRA EL CAMBIO CLIMATICO EN EL CANTON ATACAMES." data-puntos="14 de julio de 2026|Comunicación Institucional">Leer noticia <i class="fa-solid fa-arrow-right"></i></button></div></div>
+          <article class="oportunidad-card revelar" data-busqueda="campeonato nacional sonido ruedas tuning acte turismo evento">
+            <div class="oportunidad-imagen"><img src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Funcionarios-2.png" alt="Campeonato nacional de sonido y tuning"></div>
+            <div class="oportunidad-cuerpo"><span class="estado">14 de julio de 2026</span><h3>VIDEO LLAMADA CON AUTORIDADES DE LA FUNDACION BLOOMBERG DE LA ALCALDIA DE NUEVA YORK</h3><p>VIDEO LLAMADA CON AUTORIDADES DE LA FUNDACION BLOOMBERG DE LA ALCALDIA DE NUEVA YORK PARA CONSEGUIR EL PROYECTO FONDO JUVENIL PARA LA LUCHA CONTRA EL CAMBIO CLIMATICO EN EL CANTON ATACAMES.</p><div class="oportunidad-pie"><span><i class="fa-regular fa-clock"></i> 3 min</span><button type="button" class="enlace-detalle abrir-detalle" data-titulo="VIDEO LLAMADA CON AUTORIDADES DE LA FUNDACION BLOOMBERG DE LA ALCALDIA DE NUEVA YORK" data-icono="fa-video" data-contenido="VIDEO LLAMADA CON AUTORIDADES DE LA FUNDACION BLOOMBERG DE LA ALCALDIA DE NUEVA YORK PARA CONSEGUIR EL PROYECTO FONDO JUVENIL PARA LA LUCHA CONTRA EL CAMBIO CLIMATICO EN EL CANTON ATACAMES." data-puntos="14 de julio de 2026|Comunicación Institucional">Leer noticia <i class="fa-solid fa-arrow-right"></i></button></div></div>
           </article>
-          <div class="sin-resultados" id="sinResultados"><i class="fa-solid fa-newspaper fa-3x mb-3"></i><h4>No se encontraron noticias</h4><p>Pruebe con otra palabra o seleccione una categoría diferente.</p></div>
+          <div class="sin-resultados" id="sinResultados"><i class="fa-solid fa-newspaper fa-3x mb-3"></i><h4>No se encontraron noticias</h4><p>Pruebe con otra palabra.</p></div>
         </div>
       </div>
     </section>
@@ -458,8 +461,8 @@
       <!-- VIDEOS SECUNDARIOS -->
       <div class="videos-secundarios">
 
-        <button
-          type="button"
+        <a
+          href="#"
           class="video-mini revelar abrir-video"
           data-youtube-video="https://www.youtube.com/shorts/Np9hPdwfFpE"
           aria-label="Ver videollamada con autoridades de Bloomberg Philanthropies">
@@ -479,10 +482,10 @@
               Ver video
             </span>
           </div>
-        </button>
+        </a>
 
-        <button
-          type="button"
+        <a
+          href="#"
           class="video-mini revelar abrir-video"
           data-youtube-video="https://www.youtube.com/shorts/a8TomkKQBYo"
           aria-label="Ver video sobre financiamiento climático en Atacames">
@@ -502,10 +505,10 @@
               Ver video
             </span>
           </div>
-        </button>
+        </a>
 
-        <button
-          type="button"
+        <a
+          href="#"
           class="video-mini revelar abrir-video"
           data-youtube-video="https://youtu.be/RxOP-fiSaa8"
           aria-label="Ver video: Atacames es más que playa">
@@ -525,10 +528,10 @@
               Ver video
             </span>
           </div>
-        </button>
+        </a>
 
-        <button
-          type="button"
+        <a
+          href="#"
           class="video-mini revelar abrir-video"
           data-youtube-video="https://www.youtube.com/shorts/1cvM5HmWQ6I"
           aria-label="Ver video del sector rural de Atacames">
@@ -548,10 +551,10 @@
               Ver video
             </span>
           </div>
-        </button>
+        </a>
 
-        <button
-          type="button"
+        <a
+          href="#"
           class="video-mini revelar abrir-video"
           data-youtube-video="https://www.youtube.com/shorts/WLqVwunJp14"
           aria-label="Ver video: Atacames seguro, productivo y turístico">
@@ -571,55 +574,15 @@
               Ver video
             </span>
           </div>
-        </button>
+        </a>
 
       </div>
     </div>
   </div>
 </section>
 
-    <section class="seccion" id="recursos">
-      <div class="contenedor">
-        <div class="encabezado-seccion revelar">
-          <span class="subtitulo">Información útil</span>
-          <h2 class="titulo">Recursos para cooperantes</h2>
-          <p>Herramientas de orientación para instituciones interesadas en construir iniciativas junto al Municipio de Atacames.</p>
-        </div>
-        <div class="recursos-grid">
-          <article class="recurso-card revelar"><div class="recurso-cabecera"><div class="recurso-icono"><i class="fa-solid fa-file-lines"></i></div><span class="recurso-tipo">Guía</span></div><h3>Presentación de iniciativas</h3><p>Conozca la información básica que debe contener una propuesta de cooperación para su revisión institucional.</p><button class="recurso-enlace abrir-recurso" data-titulo="Presentación de iniciativas" data-icono="fa-file-lines" data-contenido="Una propuesta inicial debe incluir: problema identificado, población beneficiaria, objetivo, resultados esperados, actividades principales, plazo estimado, presupuesto referencial y aporte de cada actor.">Ver orientación <i class="fa-solid fa-arrow-right"></i></button></article>
-          <article class="recurso-card revelar"><div class="recurso-cabecera"><div class="recurso-icono"><i class="fa-solid fa-list-check"></i></div><span class="recurso-tipo">Ficha</span></div><h3>Perfil de proyecto</h3><p>Revise los componentes esenciales para estructurar una iniciativa clara, viable y alineada con las prioridades cantonales.</p><button class="recurso-enlace abrir-recurso" data-titulo="Perfil de proyecto" data-icono="fa-list-check" data-contenido="El perfil organiza la justificación, objetivos, beneficiarios, actividades, indicadores, cronograma, presupuesto, riesgos y estrategia de sostenibilidad de la iniciativa.">Ver componentes <i class="fa-solid fa-arrow-right"></i></button></article>
-          <article class="recurso-card revelar"><div class="recurso-cabecera"><div class="recurso-icono"><i class="fa-solid fa-building-columns"></i></div><span class="recurso-tipo">Registro</span></div><h3>Vinculación institucional</h3><p>Identifique los datos necesarios para establecer contacto y explorar una posible alianza con el Gobierno Municipal.</p><button class="recurso-enlace abrir-recurso" data-titulo="Vinculación institucional" data-icono="fa-building-columns" data-contenido="Para iniciar el acercamiento se recomienda presentar la institución, áreas de experiencia, tipo de cooperación disponible, ámbito geográfico, persona de contacto y propuesta inicial de colaboración.">Ver requisitos <i class="fa-solid fa-arrow-right"></i></button></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="seccion seccion-fondo" id="preguntas">
-      <div class="contenedor">
-        <div class="encabezado-seccion revelar">
-          <span class="subtitulo">Resolvemos sus dudas</span>
-          <h2 class="titulo">Preguntas frecuentes</h2>
-          <p>Información general sobre la presentación, articulación y seguimiento de iniciativas de cooperación.</p>
-        </div>
-        <div class="accordion acordeon-wrap revelar" id="acordeonCooperacion">
-          <div class="accordion-item">
-            <h3 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#respuestaUno" aria-expanded="true" aria-controls="respuestaUno">¿Quiénes pueden proponer una alianza de cooperación?</button></h3>
-            <div id="respuestaUno" class="accordion-collapse collapse show" data-bs-parent="#acordeonCooperacion"><div class="accordion-body">Organismos internacionales, gobiernos locales, universidades, fundaciones, organizaciones sociales, empresas y otras instituciones con objetivos compatibles con las prioridades del cantón.</div></div>
-          </div>
-          <div class="accordion-item">
-            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#respuestaDos" aria-expanded="false" aria-controls="respuestaDos">¿Qué información debe incluir una propuesta inicial?</button></h3>
-            <div id="respuestaDos" class="accordion-collapse collapse" data-bs-parent="#acordeonCooperacion"><div class="accordion-body">La propuesta debe describir el problema, la población beneficiaria, los objetivos, los resultados esperados, el plazo, los recursos requeridos y los aportes previstos por cada institución.</div></div>
-          </div>
-          <div class="accordion-item">
-            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#respuestaTres" aria-expanded="false" aria-controls="respuestaTres">¿La cooperación siempre implica financiamiento?</button></h3>
-            <div id="respuestaTres" class="accordion-collapse collapse" data-bs-parent="#acordeonCooperacion"><div class="accordion-body">No. La cooperación también puede incluir asistencia técnica, capacitación, intercambio de experiencias, tecnología, voluntariado especializado, equipos o articulación con redes.</div></div>
-          </div>
-          <div class="accordion-item">
-            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#respuestaCuatro" aria-expanded="false" aria-controls="respuestaCuatro">¿Cómo se realiza el seguimiento de un proyecto?</button></h3>
-            <div id="respuestaCuatro" class="accordion-collapse collapse" data-bs-parent="#acordeonCooperacion"><div class="accordion-body">Mediante un plan de trabajo acordado, responsables definidos, indicadores, reportes de avance y espacios periódicos de coordinación entre las partes.</div></div>
-          </div>
-        </div>
-      </div>
-    </section>
+   
+    
 
     <section class="seccion">
       <div class="contenedor">
@@ -643,22 +606,42 @@
     <div class="pie-inferior"><div class="contenedor pie-inferior-contenido"><p>© <span id="anioActual"></span> GAD Municipal de Atacames. Todos los derechos reservados.</p><p>Dirección de Tecnologías de la Información</p></div></div>
   </footer>
 
-  <button class="boton-accesibilidad" id="botonAccesibilidad" aria-label="Activar alto contraste" aria-pressed="false"><i class="fa-solid fa-universal-access"></i></button>
-  <button class="boton-arriba" id="botonArriba" aria-label="Volver arriba"><i class="fa-solid fa-chevron-up"></i></button>
+  <button type="button" class="boton-accesibilidad" id="botonAccesibilidad" aria-label="Activar alto contraste" aria-pressed="false"><i class="fa-solid fa-universal-access"></i></button>
+  <button type="button" class="boton-arriba" id="botonArriba" aria-label="Volver arriba"><i class="fa-solid fa-chevron-up"></i></button>
 
-  <div class="modal fade" id="modalInformacion" tabindex="-1" aria-hidden="true">
+  <div class="modal fade" id="modalInformacion" tabindex="-1" aria-labelledby="modalInformacionTitulo">
     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
-        <div class="modal-header"><h5 class="modal-title"><i class="fa-solid fa-earth-americas me-2"></i> Cooperación Internacional</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button></div>
-        <div class="modal-body"><div class="modal-icono" id="modalIcono"><i class="fa-solid fa-handshake"></i></div><h2 id="modalTitulo"></h2><p id="modalContenido"></p><ul class="modal-lista" id="modalLista"></ul><a href="#contacto" class="btn-principal" data-bs-dismiss="modal">Solicitar información <i class="fa-solid fa-arrow-right"></i></a></div>
+        <div class="modal-header"><h5 class="modal-title" id="modalInformacionTitulo"><i class="fa-solid fa-earth-americas me-2"></i> Cooperación Internacional</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button></div>
+        <div class="modal-body"><div class="modal-icono" id="modalIcono"><i class="fa-solid fa-handshake"></i></div><h2 id="modalTitulo">Información de cooperación</h2><p id="modalContenido"></p><ul class="modal-lista" id="modalLista"></ul><a href="#contacto" class="btn-principal" data-bs-dismiss="modal">Solicitar información <i class="fa-solid fa-arrow-right"></i></a></div>
       </div>
     </div>
   </div>
-  <div class="modal fade" id="modalVideo" tabindex="-1" aria-hidden="true">
+
+  <div class="modal fade modal-noticia-expandida" id="modalNoticia" tabindex="-1" aria-labelledby="modalNoticiaEncabezado">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalNoticiaEncabezado"><i class="fa-solid fa-newspaper me-2"></i> Detalle de la noticia</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar noticia"></button>
+        </div>
+        <div class="modal-noticia-imagen">
+          <img id="modalNoticiaImagen" src="https://fidelpperez2021.github.io/Alcaldia-Atacames.io/Funcionarios-3.png" alt="Detalle de noticia municipal">
+        </div>
+        <div class="modal-body">
+          <span class="modal-noticia-fecha" id="modalNoticiaFecha">Información municipal</span>
+          <h2 id="modalNoticiaTitulo">Detalle de la noticia</h2>
+          <p class="modal-noticia-texto" id="modalNoticiaTexto">Contenido de la noticia.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalVideo" tabindex="-1" aria-labelledby="modalVideoTitulo">
     <div class="modal-dialog modal-xl modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header"><h5 class="modal-title"><i class="fa-solid fa-circle-play me-2"></i> Video institucional</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button></div>
-        <div class="modal-body p-0 bg-dark"><div class="ratio ratio-16x9"><iframe id="reproductorVideo" src="" title="Video institucional" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div>
+        <div class="modal-header"><h5 class="modal-title" id="modalVideoTitulo"><i class="fa-solid fa-circle-play me-2"></i> Video institucional</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button></div>
+        <div class="modal-body p-0 bg-dark"><div class="ratio ratio-16x9"><iframe id="reproductorVideo" src="about:blank" title="Video institucional" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div>
       </div>
     </div>
   </div>
@@ -737,10 +720,8 @@
     });
 
     const buscador=document.getElementById("buscadorOportunidades");
-    const botonesFiltro=document.querySelectorAll(".filtro-btn");
     const tarjetas=[...document.querySelectorAll(".oportunidad-card")];
     const sinResultados=document.getElementById("sinResultados");
-    let categoriaActiva="todos";
 
     function normalizar(texto){
       return texto.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim();
@@ -752,21 +733,13 @@
       tarjetas.forEach(tarjeta=>{
         const contenido=normalizar(tarjeta.dataset.busqueda||tarjeta.textContent);
         const coincideTexto=contenido.includes(termino);
-        const coincideCategoria=categoriaActiva==="todos"||tarjeta.dataset.categoria===categoriaActiva;
-        const mostrar=coincideTexto&&coincideCategoria;
-        tarjeta.style.display=mostrar?"":"none";
-        if(mostrar)visibles++;
+        tarjeta.style.display=coincideTexto?"":"none";
+        if(coincideTexto)visibles++;
       });
       sinResultados.style.display=visibles?"none":"block";
     }
 
     buscador.addEventListener("input",filtrarOportunidades);
-    botonesFiltro.forEach(boton=>boton.addEventListener("click",()=>{
-      botonesFiltro.forEach(item=>item.classList.remove("activo"));
-      boton.classList.add("activo");
-      categoriaActiva=boton.dataset.categoria;
-      filtrarOportunidades();
-    }));
 
     const modalInformacion=new bootstrap.Modal(document.getElementById("modalInformacion"));
     const modalTitulo=document.getElementById("modalTitulo");
@@ -790,7 +763,34 @@
       modalInformacion.show();
     }
 
-    document.querySelectorAll(".abrir-detalle,.abrir-recurso").forEach(boton=>boton.addEventListener("click",()=>abrirModal(boton)));
+    document.querySelectorAll(".abrir-recurso").forEach(boton=>boton.addEventListener("click",()=>abrirModal(boton)));
+
+    const elementoModalNoticia=document.getElementById("modalNoticia");
+    const modalNoticia=new bootstrap.Modal(elementoModalNoticia);
+    const modalNoticiaImagen=document.getElementById("modalNoticiaImagen");
+    const modalNoticiaFecha=document.getElementById("modalNoticiaFecha");
+    const modalNoticiaTitulo=document.getElementById("modalNoticiaTitulo");
+    const modalNoticiaTexto=document.getElementById("modalNoticiaTexto");
+
+    function abrirNoticia(boton){
+      const tarjeta=boton.closest(".oportunidad-card");
+      if(!tarjeta)return;
+
+      const imagen=tarjeta.querySelector(".oportunidad-imagen img");
+      const fecha=tarjeta.querySelector(".estado");
+      const titulo=tarjeta.querySelector(".oportunidad-cuerpo h3");
+      const resumen=tarjeta.querySelector(".oportunidad-cuerpo > p");
+      if(!imagen||!fecha||!titulo||!resumen)return;
+
+      modalNoticiaImagen.src=imagen.src;
+      modalNoticiaImagen.alt=imagen.alt||titulo.textContent.trim();
+      modalNoticiaFecha.textContent=fecha.textContent.trim();
+      modalNoticiaTitulo.textContent=titulo.textContent.trim();
+      modalNoticiaTexto.textContent=boton.dataset.contenido?.trim()||resumen.textContent.trim();
+      modalNoticia.show();
+    }
+
+    document.querySelectorAll(".abrir-detalle").forEach(boton=>boton.addEventListener("click",()=>abrirNoticia(boton)));
 
     const modalVideoElemento=document.getElementById("modalVideo");
     const modalVideo=new bootstrap.Modal(modalVideoElemento);
